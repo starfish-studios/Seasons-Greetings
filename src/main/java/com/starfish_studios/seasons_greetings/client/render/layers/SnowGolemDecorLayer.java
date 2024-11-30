@@ -13,9 +13,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.client.model.SnowGolemModel;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -24,7 +21,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.SnowGolem;
-import net.minecraft.world.entity.animal.horse.Markings;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -32,7 +28,6 @@ import net.minecraft.world.level.block.WoolCarpetBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class SnowGolemDecorLayer extends RenderLayer<SnowGolem, SnowGolemModel<SnowGolem>> {
@@ -56,11 +51,8 @@ public class SnowGolemDecorLayer extends RenderLayer<SnowGolem, SnowGolemModel<S
 
     });
 
-    private final SnowGolemModel<SnowGolem> model;
-
-    public SnowGolemDecorLayer(RenderLayerParent<SnowGolem, SnowGolemModel<SnowGolem>> renderLayerParent, EntityModelSet entityModelSet) {
+    public SnowGolemDecorLayer(RenderLayerParent<SnowGolem, SnowGolemModel<SnowGolem>> renderLayerParent) {
         super(renderLayerParent);
-        this.model = new SnowGolemModel<>(entityModelSet.bakeLayer(ModelLayers.SNOW_GOLEM));
     }
 
     private static DyeColor getDyeColor(ItemStack itemStack) {
@@ -69,12 +61,10 @@ public class SnowGolemDecorLayer extends RenderLayer<SnowGolem, SnowGolemModel<S
     }
 
     public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, SnowGolem snowGolem, float f, float g, float h, float j, float k, float l) {
-        DyeColor dyeColor = getDyeColor(snowGolem.getItemBySlot(EquipmentSlot.CHEST));
-
-        this.getParentModel().copyPropertiesTo(this.model);
-        this.model.setupAnim(snowGolem, f, g, j, k, l);
-        assert dyeColor != null;
-        VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull((ResourceLocation)TEXTURE_LOCATION.get(dyeColor)));
-        this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+        DyeColor dyeColor = getDyeColor(snowGolem.getItemBySlot(EquipmentSlot.BODY));
+        if (dyeColor != null) {
+            VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutout((ResourceLocation)TEXTURE_LOCATION.get(dyeColor)));
+            this.getParentModel().renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+        }
     }
 }
