@@ -1,14 +1,12 @@
 package com.starfish_studios.seasons_greetings.mixin;
 
-import com.starfish_studios.seasons_greetings.client.SeasonsGreetingsClient;
-import com.starfish_studios.seasons_greetings.client.render.layers.HappyGolemLayer;
 import com.starfish_studios.seasons_greetings.client.render.layers.SnowGolemDecorLayer;
+import com.starfish_studios.seasons_greetings.client.render.layers.SnowGolemNosesLayer;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.SnowGolemRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.SnowGolem;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +22,7 @@ public class SnowGolemRendererMixin extends MobRenderer<SnowGolem, SnowGolemMode
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addDecorLayer(EntityRendererProvider.Context context, CallbackInfo ci) {
-//        this.addLayer(new HappyGolemLayer(this));
+        this.addLayer((new SnowGolemNosesLayer(this)));
         this.addLayer(new SnowGolemDecorLayer(this));
     }
 

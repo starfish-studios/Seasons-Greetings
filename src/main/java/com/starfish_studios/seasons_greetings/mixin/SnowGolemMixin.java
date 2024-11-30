@@ -1,11 +1,15 @@
 package com.starfish_studios.seasons_greetings.mixin;
 
 import com.google.common.collect.Maps;
+import com.starfish_studios.seasons_greetings.registry.SGTags;
 import net.minecraft.Util;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.AbstractGolem;
@@ -61,24 +65,61 @@ public class SnowGolemMixin extends AbstractGolem {
         return block instanceof WoolCarpetBlock ? ((WoolCarpetBlock)block).getColor() : null;
     }
 
+    @Unique
+    public void snowSound(SoundEvent soundEvent) {
+        float f = 1.0F;
+        float g = 1.0F;
+        this.level().playSound(null, this, soundEvent, this.getSoundSource(), f, g);
+    }
+
+    // This makes them drop all of their equipment.
+    protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+        super.dropCustomDeathLoot(serverLevel, damageSource, bl);
+        for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
+            ItemStack itemStack = this.getItemBySlot(equipmentSlot);
+            if (!itemStack.isEmpty()) {
+                this.spawnAtLocation(itemStack);
+                this.setItemSlot(equipmentSlot, ItemStack.EMPTY);
+            }
+        }
+    }
+
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     public void mobInteract(Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         SnowGolem snowGolem = (SnowGolem)(Object)this;
         DyeColor dyeColor = getDyeColor(snowGolem.getItemBySlot(EquipmentSlot.BODY));
 
-        if (itemStack.is(Items.CARVED_PUMPKIN) && !snowGolem.hasPumpkin()) {
-            this.level().playSound(null, this, SoundEvents.SNOW_PLACE, this.getSoundSource(), 1.0F, 1.0F);
+
+        // Head Item Placement
+        if (itemStack.is(SGTags.SeasonsGreetingsItemTags.SNOW_GOLEM_NOSES) && !snowGolem.hasPumpkin() && snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+            snowSound(SoundEvents.SNOW_PLACE);
+            snowGolem.setItemSlot(EquipmentSlot.HEAD, new ItemStack(itemStack.getItem()));
+            cir.setReturnValue(InteractionResult.SUCCESS);
+        }
+
+        // Pumpkin Re-Placement
+        if (itemStack.is(Items.CARVED_PUMPKIN) && !snowGolem.hasPumpkin() && snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+            snowSound(SoundEvents.SNOW_PLACE);
             snowGolem.setPumpkin(true);
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
 
-        if (itemStack.getItem() instanceof ShearsItem && dyeColor != null) {
-            snowGolem.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
-            this.level().playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, this.getSoundSource(), 1.0F, 1.0F);
-            ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY() + 1, this.getZ(), new ItemStack(ITEM_BY_DYE.get(dyeColor)));
-            this.level().addFreshEntity(itemEntity);
-            cir.setReturnValue(InteractionResult.SUCCESS);
+        // Shearing
+        if (itemStack.getItem() instanceof ShearsItem) {
+            if (dyeColor != null) {
+                snowGolem.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
+                this.level().playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, this.getSoundSource(), 1.0F, 1.0F);
+                ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY() + 1, this.getZ(), new ItemStack(ITEM_BY_DYE.get(dyeColor)));
+                this.level().addFreshEntity(itemEntity);
+                cir.setReturnValue(InteractionResult.SUCCESS);
+            } else if (!snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+                this.level().playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, this.getSoundSource(), 1.0F, 1.0F);
+                ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY() + 1.5, this.getZ(), snowGolem.getItemBySlot(EquipmentSlot.HEAD));
+                this.level().addFreshEntity(itemEntity);
+                snowGolem.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+                cir.setReturnValue(InteractionResult.SUCCESS);
+            }
         }
 
         if (itemStack.is(ItemTags.WOOL_CARPETS) && snowGolem.getItemBySlot(EquipmentSlot.BODY).isEmpty()) {

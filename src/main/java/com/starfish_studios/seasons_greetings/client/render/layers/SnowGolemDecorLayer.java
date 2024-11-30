@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package com.starfish_studios.seasons_greetings.client.render.layers;
 
 import com.google.common.collect.Maps;

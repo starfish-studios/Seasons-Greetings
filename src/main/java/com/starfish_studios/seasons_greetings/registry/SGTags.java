@@ -19,6 +19,8 @@ public class SGTags {
 
     public static class SeasonsGreetingsItemTags {
 
+        public static final TagKey<Item> SNOW_GOLEM_NOSES = of("snow_golem_noses");
+
 //        public static final TagKey<Item> PEARLESCENT_FLOWERS = of("pearlescent_flowers");
 
         private static TagKey<Item> of(String id) {
