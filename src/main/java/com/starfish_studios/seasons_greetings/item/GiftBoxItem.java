@@ -18,13 +18,26 @@ import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GiftBoxItem extends BlockItem {
     public GiftBoxItem(Block block, Properties properties) {
         super(block, properties);
     }
 
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        CustomData data = stack.get(DataComponents.BLOCK_ENTITY_DATA);
+        if (data != null && !data.isEmpty()) {
+            CompoundTag tag = data.copyTag();
+
+            if (tag.contains("bow")) {
+                tooltip.add(
+                        Component.translatable("color.minecraft." + tag.getString("bow"))
+                                .withStyle(ChatFormatting.GRAY)
+                                .append(" ")
+                                .append(Component.translatable("tooltip.seasons_greetings.bow")));
+            }
+        }
     }
 }

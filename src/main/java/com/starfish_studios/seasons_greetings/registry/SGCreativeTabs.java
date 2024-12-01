@@ -4,7 +4,10 @@ import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -15,11 +18,15 @@ import static com.starfish_studios.seasons_greetings.registry.SGItems.*;
 public class SGCreativeTabs {
     @SuppressWarnings("unused")
     public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
+        output.accept(FRUITCAKE);
+        output.accept(STRING_LIGHTS);
+
         output.accept(WHITE_GIFT_BOX);
         output.accept(LIGHT_GRAY_GIFT_BOX);
         output.accept(GRAY_GIFT_BOX);
         output.accept(BLACK_GIFT_BOX);
         output.accept(BROWN_GIFT_BOX);
+//        output.accept(RED_GIFT_BOX);
         output.accept(RED_GIFT_BOX);
         output.accept(ORANGE_GIFT_BOX);
         output.accept(YELLOW_GIFT_BOX);

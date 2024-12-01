@@ -30,10 +30,6 @@ public class SnowGolemNosesLayer extends RenderLayer<SnowGolem, SnowGolemModel<S
         hashMap.put(Items.WHEAT, SeasonsGreetings.id("textures/entity/snow_golem/nose/wheat.png"));
     });
 
-//    if (this.isAlive() && this.random.nextInt(1000) < this.ambientSoundTime++) {
-    // Explain how this works in real words.
-
-
     public SnowGolemNosesLayer(RenderLayerParent<SnowGolem, SnowGolemModel<SnowGolem>> renderLayerParent) {
         super(renderLayerParent);
     }

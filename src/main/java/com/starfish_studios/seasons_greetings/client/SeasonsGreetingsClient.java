@@ -1,7 +1,10 @@
 package com.starfish_studios.seasons_greetings.client;
 
+import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.client.gui.screens.GiftBoxScreen;
+import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
 import com.starfish_studios.seasons_greetings.registry.SGBlocks;
+import com.starfish_studios.seasons_greetings.registry.SGItems;
 import com.starfish_studios.seasons_greetings.registry.SGMenus;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -9,6 +12,18 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
+
+import java.awt.*;
+import java.util.Objects;
 
 @Environment(EnvType.CLIENT)
 public class SeasonsGreetingsClient  implements ClientModInitializer {
@@ -16,11 +31,36 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     public void onInitializeClient() {
         registerRenderers();
         registerScreens();
-    }
 
-//    public static final ModelLayerLocation
-//            SNOW_GOLEM_DECOR = new ModelLayerLocation(SeasonsGreetings.id("snow_golem_decor"), mainString);
-
+        ItemProperties.register(SGItems.RED_GIFT_BOX, SeasonsGreetings.id("bow_color"), (stack, world, entity, num) -> {
+            CustomData customData = stack.get(DataComponents.BLOCK_ENTITY_DATA);
+            String variantString = "bow";
+            if (customData != null) {
+            CompoundTag tag = customData.copyTag();
+            return tag.contains(variantString) ? switch (tag.getString(variantString)) {
+                case "white" -> 0.0625F;
+                case "orange" -> 0.125F;
+                case "magenta" -> 0.1875F;
+                case "light_blue" -> 0.25F;
+                case "yellow" -> 0.3125F;
+                case "lime" -> 0.375F;
+                case "pink" -> 0.4375F;
+                case "gray" -> 0.5F;
+                case "light_gray" -> 0.5625F;
+                case "cyan" -> 0.625F;
+                case "purple" -> 0.6875F;
+                case "blue" -> 0.75F;
+                case "brown" -> 0.8125F;
+                case "green" -> 0.875F;
+                case "red" -> 0.9375F;
+                case "black" -> 1.0F;
+                default -> 0.0F;
+            } : 0.0F;
+        } else {
+            return 0.0F;
+        }
+    });
+        }
 
     public static void registerScreens() {
         MenuScreens.register(SGMenus.GIFT_BOX, GiftBoxScreen::new);
@@ -29,6 +69,8 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     @SuppressWarnings("all")
     public static void registerRenderers() {
     BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
+            SGBlocks.STRING_LIGHTS,
+
             SGBlocks.WHITE_GIFT_BOX,
             SGBlocks.LIGHT_GRAY_GIFT_BOX,
             SGBlocks.GRAY_GIFT_BOX,
@@ -46,6 +88,7 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
             SGBlocks.MAGENTA_GIFT_BOX,
             SGBlocks.PINK_GIFT_BOX
         );
+
 
 //        EntityModelLayerRegistry.registerModelLayer(SNOW_GOLEM_DECOR, () -> SnowGolemModel.createBodyLayer());
     }

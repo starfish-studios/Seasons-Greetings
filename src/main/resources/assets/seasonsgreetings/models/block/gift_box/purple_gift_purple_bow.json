@@ -1,0 +1,13 @@
+{
+    "parent": "seasonsgreetings:block/template/gift_box",
+    "textures": {
+        "gift_sides": "seasonsgreetings:block/template/purple_gift",
+        "gift_bottom": "seasonsgreetings:block/template/purple_gift_bottom",
+        "gift_top": "seasonsgreetings:block/template/purple_gift_top",
+        "bow": "seasonsgreetings:block/template/purple_bow",
+        "bow_bottom": "seasonsgreetings:block/template/purple_bow_bottom",
+        "bow_geo": "seasonsgreetings:block/template/purple_bow_geo",
+        "particle": "seasonsgreetings:block/template/purple_bow_top",
+        "bow_top": "seasonsgreetings:block/template/purple_bow_top"
+    }
+}

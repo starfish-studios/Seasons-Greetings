@@ -1,3 +1,101 @@
 {
-    "parent": "seasonsgreetings:block/gift_box/red"
+    "parent": "seasonsgreetings:block/template/gift_box",
+    "overrides": [
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_white_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.0625
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_orange_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.125
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_magenta_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.1875
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_light_blue_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.25
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_yellow_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.3125
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_lime_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.375
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_pink_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.4375
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_gray_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.5
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_light_gray_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.5625
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_cyan_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.625
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_purple_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.6875
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_blue_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.75
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_brown_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.8125
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_green_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.875
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_red_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 0.9375
+            }
+        },
+        {
+            "model": "seasonsgreetings:item/gift_boxes/red_gift_black_bow",
+            "predicate": {
+                "seasonsgreetings:bow_color": 1.0
+            }
+        }
+    ]
 }

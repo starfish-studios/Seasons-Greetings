@@ -10,6 +10,8 @@ public class SGItems {
 
     public static final Item FRUITCAKE = registerItem("fruitcake", new Item(new Item.Properties()));
 
+    public static final Item STRING_LIGHTS = registerItem("string_lights", new BlockItem(SGBlocks.STRING_LIGHTS, new Item.Properties()));
+//
 //    public static final Item GIFT_BOX = registerItem("gift_box", new BlockItem(SGBlocks.GIFT_BOX, new Item.Properties()));
     public static final Item WHITE_GIFT_BOX = registerItem("white_gift_box", new GiftBoxItem(SGBlocks.WHITE_GIFT_BOX, new Item.Properties()));
     public static final Item LIGHT_GRAY_GIFT_BOX = registerItem("light_gray_gift_box", new GiftBoxItem(SGBlocks.LIGHT_GRAY_GIFT_BOX, new Item.Properties()));
@@ -27,6 +29,9 @@ public class SGItems {
     public static final Item PURPLE_GIFT_BOX = registerItem("purple_gift_box", new GiftBoxItem(SGBlocks.PURPLE_GIFT_BOX, new Item.Properties()));
     public static final Item MAGENTA_GIFT_BOX = registerItem("magenta_gift_box", new GiftBoxItem(SGBlocks.MAGENTA_GIFT_BOX, new Item.Properties()));
     public static final Item PINK_GIFT_BOX = registerItem("pink_gift_box", new GiftBoxItem(SGBlocks.PINK_GIFT_BOX, new Item.Properties()));
+
+    public static final Item[] GIFT_BOXES = new Item[DyeColor.values().length];
+
 
 
     // Registry
