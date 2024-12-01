@@ -6,4 +6,6 @@
      - This can only be done if they do not have a Pumpkin head.
    - Interacting with **_Carved Pumpkins_** will add back their Pumpkin head.
    - Items can be sheared off of Snow Golems, and will prioritize head items over scarves.
+
+
 2. **Snowballs** now have sounds when they hit things.

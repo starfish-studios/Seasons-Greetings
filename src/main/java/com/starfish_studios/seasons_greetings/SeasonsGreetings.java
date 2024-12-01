@@ -1,5 +1,6 @@
 package com.starfish_studios.seasons_greetings;
 
+import com.starfish_studios.seasons_greetings.client.SeasonsGreetingsClient;
 import com.starfish_studios.seasons_greetings.registry.SGRegistry;
 import net.fabricmc.api.ModInitializer;
 

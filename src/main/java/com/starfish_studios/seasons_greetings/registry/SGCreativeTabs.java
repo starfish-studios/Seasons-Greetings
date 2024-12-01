@@ -14,7 +14,23 @@ import static com.starfish_studios.seasons_greetings.registry.SGItems.*;
 
 public class SGCreativeTabs {
     @SuppressWarnings("unused")
-    public static final CreativeModeTab SPELLBOUND_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
+    public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
+        output.accept(WHITE_GIFT_BOX);
+        output.accept(LIGHT_GRAY_GIFT_BOX);
+        output.accept(GRAY_GIFT_BOX);
+        output.accept(BLACK_GIFT_BOX);
+        output.accept(BROWN_GIFT_BOX);
+        output.accept(RED_GIFT_BOX);
+        output.accept(ORANGE_GIFT_BOX);
+        output.accept(YELLOW_GIFT_BOX);
+        output.accept(LIME_GIFT_BOX);
+        output.accept(GREEN_GIFT_BOX);
+        output.accept(CYAN_GIFT_BOX);
+        output.accept(LIGHT_BLUE_GIFT_BOX);
+        output.accept(BLUE_GIFT_BOX);
+        output.accept(PURPLE_GIFT_BOX);
+        output.accept(MAGENTA_GIFT_BOX);
+        output.accept(PINK_GIFT_BOX);
 
     }).build()
     );

@@ -1,3 +1,26 @@
 {
+  "itemGroup.seasonsgreetings.tab": "Season's Greetings",
+
+  "block.seasonsgreetings.white_gift_box": "White Gift Box",
+    "block.seasonsgreetings.light_gray_gift_box": "Light Gray Gift Box",
+    "block.seasonsgreetings.gray_gift_box": "Gray Gift Box",
+    "block.seasonsgreetings.black_gift_box": "Black Gift Box",
+    "block.seasonsgreetings.brown_gift_box": "Brown Gift Box",
+    "block.seasonsgreetings.red_gift_box": "Red Gift Box",
+    "block.seasonsgreetings.orange_gift_box": "Orange Gift Box",
+    "block.seasonsgreetings.yellow_gift_box": "Yellow Gift Box",
+    "block.seasonsgreetings.lime_gift_box": "Lime Gift Box",
+    "block.seasonsgreetings.green_gift_box": "Green Gift Box",
+    "block.seasonsgreetings.cyan_gift_box": "Cyan Gift Box",
+    "block.seasonsgreetings.light_blue_gift_box": "Light Blue Gift Box",
+    "block.seasonsgreetings.blue_gift_box": "Blue Gift Box",
+    "block.seasonsgreetings.purple_gift_box": "Purple Gift Box",
+    "block.seasonsgreetings.magenta_gift_box": "Magenta Gift Box",
+    "block.seasonsgreetings.pink_gift_box": "Pink Gift Box",
+
+  "container.giftBox": "Gift Box",
+
+  "tooltip.seasons_greetings.bow": "Bow",
+
   "seasonsgreetings.subtitles.entity.snowball.hit": "Snowball hits"
 }

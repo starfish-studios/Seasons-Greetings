@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
           "com.starfish_studios.seasons_greetings.SeasonsGreetings"
+		],
+		"client": [
+			"com.starfish_studios.seasons_greetings.client.SeasonsGreetingsClient"
 		]
 	},
 	"mixins": [

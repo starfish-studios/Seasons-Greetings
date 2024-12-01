@@ -1,9 +1,8 @@
-package com.starfish_studios.seasons_greetings.client.render.layers;
+package com.starfish_studios.seasons_greetings.client.renderer.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.registry.SGTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.animal.SnowGolem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.HashMap;
 
@@ -31,6 +29,10 @@ public class SnowGolemNosesLayer extends RenderLayer<SnowGolem, SnowGolemModel<S
         hashMap.put(Items.BEETROOT, SeasonsGreetings.id("textures/entity/snow_golem/nose/beetroot.png"));
         hashMap.put(Items.WHEAT, SeasonsGreetings.id("textures/entity/snow_golem/nose/wheat.png"));
     });
+
+//    if (this.isAlive() && this.random.nextInt(1000) < this.ambientSoundTime++) {
+    // Explain how this works in real words.
+
 
     public SnowGolemNosesLayer(RenderLayerParent<SnowGolem, SnowGolemModel<SnowGolem>> renderLayerParent) {
         super(renderLayerParent);

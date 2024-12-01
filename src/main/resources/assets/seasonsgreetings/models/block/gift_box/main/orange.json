@@ -1,0 +1,8 @@
+{
+    "parent": "seasonsgreetings:block/template/gift_box_main",
+    "textures": {
+        "gift_sides": "seasonsgreetings:block/template/orange_gift",
+        "gift_bottom": "seasonsgreetings:block/template/orange_gift_bottom",
+        "gift_top": "seasonsgreetings:block/template/orange_gift_top"
+    }
+}

@@ -1,4 +1,4 @@
-package com.starfish_studios.seasons_greetings.client.render.layers;
+package com.starfish_studios.seasons_greetings.client.renderer.layers;
 
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -1,7 +1,7 @@
 package com.starfish_studios.seasons_greetings.mixin;
 
-import com.starfish_studios.seasons_greetings.client.render.layers.SnowGolemDecorLayer;
-import com.starfish_studios.seasons_greetings.client.render.layers.SnowGolemNosesLayer;
+import com.starfish_studios.seasons_greetings.client.renderer.layers.SnowGolemDecorLayer;
+import com.starfish_studios.seasons_greetings.client.renderer.layers.SnowGolemNosesLayer;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
