@@ -2,14 +2,17 @@ package com.starfish_studios.seasons_greetings.client;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.client.gui.screens.GiftBoxScreen;
+import com.starfish_studios.seasons_greetings.client.particles.CocoaBubbleParticle;
 import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
 import com.starfish_studios.seasons_greetings.registry.SGBlocks;
 import com.starfish_studios.seasons_greetings.registry.SGItems;
 import com.starfish_studios.seasons_greetings.registry.SGMenus;
+import com.starfish_studios.seasons_greetings.registry.SGParticles;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -31,6 +34,7 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     public void onInitializeClient() {
         registerRenderers();
         registerScreens();
+        registerParticles();
 
         ItemProperties.register(SGItems.RED_GIFT_BOX, SeasonsGreetings.id("bow_color"), (stack, world, entity, num) -> {
             CustomData customData = stack.get(DataComponents.BLOCK_ENTITY_DATA);
@@ -64,6 +68,10 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
 
     public static void registerScreens() {
         MenuScreens.register(SGMenus.GIFT_BOX, GiftBoxScreen::new);
+    }
+
+    private static void registerParticles() {
+        ParticleFactoryRegistry.getInstance().register(SGParticles.COCOA_BUBBLE, CocoaBubbleParticle.Provider::new);
     }
 
     @SuppressWarnings("all")

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:fire",
+    "#minecraft:campfires",
+    "#minecraft:strider_warm_blocks",
+    "#minecraft:candles",
+    "minecraft:magma_block",
+    "minecraft:lava_cauldron",
+
+    {"id": "create:blaze_burner","required": false},
+    {"id": "mynethersdelight:nether_stove","required": false},
+    {"id": "mynethersdelight:bullet_pepper_crate","required": false},
+    {"id": "farmersdelight:stove","required": false},
+    {"id": "#farmersdelight:tray_heat_sources","required": false}
+  ]
+}
+

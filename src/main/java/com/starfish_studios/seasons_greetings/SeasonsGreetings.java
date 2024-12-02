@@ -1,9 +1,11 @@
 package com.starfish_studios.seasons_greetings;
 
 import com.starfish_studios.seasons_greetings.client.SeasonsGreetingsClient;
+import com.starfish_studios.seasons_greetings.event.SnowCauldronUseEvent;
 import com.starfish_studios.seasons_greetings.registry.SGRegistry;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,5 +28,8 @@ public class SeasonsGreetings implements ModInitializer {
 		SGRegistry.registerAll();
 
 		LOGGER.info("Hello Fabric world!");
+
+
+		UseBlockCallback.EVENT.register(new SnowCauldronUseEvent());
 	}
 }

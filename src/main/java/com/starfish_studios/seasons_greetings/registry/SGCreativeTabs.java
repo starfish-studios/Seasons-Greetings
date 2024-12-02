@@ -20,6 +20,8 @@ public class SGCreativeTabs {
     public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
         output.accept(FRUITCAKE);
         output.accept(STRING_LIGHTS);
+        output.accept(CHOCOLATE);
+        output.accept(HOT_COCOA_BOTTLE);
 
         output.accept(WHITE_GIFT_BOX);
         output.accept(LIGHT_GRAY_GIFT_BOX);

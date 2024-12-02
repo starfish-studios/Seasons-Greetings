@@ -6,5 +6,30 @@
       "entity/snowman/hurt3"
     ],
     "subtitle": "seasonsgreetings.subtitles.entity.snowball.hit"
+  },
+  "block.cocoa_cauldron.bubble": {
+    "sounds": [
+      "seasonsgreetings:block/cocoa_cauldron/bubbling1",
+      "seasonsgreetings:block/cocoa_cauldron/bubbling2",
+      "seasonsgreetings:block/cocoa_cauldron/bubbling3",
+      "seasonsgreetings:block/cocoa_cauldron/bubbling4",
+      "seasonsgreetings:block/cocoa_cauldron/bubbling5"
+    ],
+    "subtitle": "seasonsgreetings.subtitles.block.cocoa_cauldron.bubble"
+  },
+  "item.hot_cocoa_bottle.drink": {
+    "sounds": [
+      "item/bottle/drink_honey1",
+      "item/bottle/drink_honey2",
+      {
+        "name": "item/bottle/drink_honey3",
+        "volume": 0.35
+      },
+      {
+        "name": "item/bottle/drink_honey3",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "seasonsgreetings.subtitles.item.hot_cocoa_bottle.drink"
   }
 }

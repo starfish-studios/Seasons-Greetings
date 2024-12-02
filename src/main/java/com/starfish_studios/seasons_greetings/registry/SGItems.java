@@ -2,16 +2,30 @@ package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
+import com.starfish_studios.seasons_greetings.item.HotCocoaBottleItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 
 public class SGItems {
 
     public static final Item FRUITCAKE = registerItem("fruitcake", new Item(new Item.Properties()));
 
+    public static final Item CHOCOLATE = registerItem("chocolate", new Item(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .nutrition(2)
+                    .saturationModifier(0.1f)
+            .build())));
+
+    public static  final Item HOT_COCOA_BOTTLE = registerItem("hot_cocoa_bottle", new HotCocoaBottleItem(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .nutrition(4)
+                    .saturationModifier(0.3f)
+            .build())));
+
     public static final Item STRING_LIGHTS = registerItem("string_lights", new BlockItem(SGBlocks.STRING_LIGHTS, new Item.Properties()));
-//
+
 //    public static final Item GIFT_BOX = registerItem("gift_box", new BlockItem(SGBlocks.GIFT_BOX, new Item.Properties()));
     public static final Item WHITE_GIFT_BOX = registerItem("white_gift_box", new GiftBoxItem(SGBlocks.WHITE_GIFT_BOX, new Item.Properties()));
     public static final Item LIGHT_GRAY_GIFT_BOX = registerItem("light_gray_gift_box", new GiftBoxItem(SGBlocks.LIGHT_GRAY_GIFT_BOX, new Item.Properties()));

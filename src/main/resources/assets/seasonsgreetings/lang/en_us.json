@@ -20,7 +20,13 @@
 
   "container.giftBox": "Gift Box",
 
+  "block.seasonsgretings.hot_cocoa_cauldron": "Hot Cocoa Cauldron",
+  "item.seasonsgreetings.chocolate": "Chocolate",
+  "item.seasonsgreetings.hot_cocoa_bottle": "Hot Cocoa Bottle",
+
   "tooltip.seasons_greetings.bow": "Bow",
 
+  "seasonsgreetings.subtitles.item.hot_cocoa_bottle.drink": "Drinking",
+  "seasonsgreetings.subtitles.block.cocoa_cauldron.bubble": "Hot Cocoa bubbles",
   "seasonsgreetings.subtitles.entity.snowball.hit": "Snowball hits"
 }

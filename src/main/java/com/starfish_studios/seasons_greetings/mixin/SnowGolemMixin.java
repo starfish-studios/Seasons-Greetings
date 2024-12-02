@@ -92,7 +92,7 @@ public class SnowGolemMixin extends AbstractGolem {
 
 
         // Head Item Placement
-        if (itemStack.is(SGTags.SeasonsGreetingsItemTags.SNOW_GOLEM_NOSES) && !snowGolem.hasPumpkin() && snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
+        if (itemStack.is(SGTags.SGItemTags.SNOW_GOLEM_NOSES) && !snowGolem.hasPumpkin() && snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
             snowSound(SoundEvents.SNOW_PLACE);
             snowGolem.setItemSlot(EquipmentSlot.HEAD, new ItemStack(itemStack.getItem()));
             cir.setReturnValue(InteractionResult.SUCCESS);

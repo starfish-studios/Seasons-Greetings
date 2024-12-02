@@ -2,12 +2,13 @@ package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.block.GiftBoxBlock;
+import com.starfish_studios.seasons_greetings.block.HotCocoaCauldronBlock;
 import com.starfish_studios.seasons_greetings.block.WrappedBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.PushReaction;
 
 public class SGBlocks {
@@ -15,6 +16,8 @@ public class SGBlocks {
 
 
     public static final Block.Properties giftBoxProperties = Block.Properties.of().pushReaction(PushReaction.DESTROY).instabreak().noOcclusion();
+
+    public static final Block HOT_COCOA_CAULDRON = registerBlock("hot_cocoa_cauldron", new HotCocoaCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
     public static final Block STRING_LIGHTS = registerBlock("string_lights", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
 

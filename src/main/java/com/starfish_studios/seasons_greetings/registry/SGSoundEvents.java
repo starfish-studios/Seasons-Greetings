@@ -3,12 +3,14 @@ package com.starfish_studios.seasons_greetings.registry;
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
 public class SGSoundEvents {
     public static final SoundEvent SNOWBALL_HIT = registerSoundEvent("entity.snowball.hit");
+    public static final SoundEvent HOT_COCOA_BUBBLE = registerSoundEvent("block.cocoa_cauldron.bubble");
+    public static final SoundEvent COCOA_DRINK = registerSoundEvent("item.hot_cocoa_bottle.drink");
+
 //    }
 
     public static void registerSoundEvents() {
