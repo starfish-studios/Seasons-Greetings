@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "seasonsgreetings:item/purple_gumdrop_button"
+  }
+}

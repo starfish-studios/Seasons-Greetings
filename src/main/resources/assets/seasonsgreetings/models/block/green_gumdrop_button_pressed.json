@@ -1,0 +1,6 @@
+{
+  "parent": "seasonsgreetings:block/template/gumdrop_button_pressed",
+  "textures": {
+    "all": "seasonsgreetings:block/green_gumdrop_button"
+  }
+}

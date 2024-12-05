@@ -1,0 +1,21 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"all": "seasonsgreetings:block/red_gumdrop_block_button"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 6],
+			"to": [11, 1, 10],
+			"faces": {
+				"north": {"uv": [6, 0, 12, 1], "texture": "#all"},
+				"east": {"uv": [6, 4, 10, 5], "texture": "#all"},
+				"south": {"uv": [6, 2, 12, 3], "texture": "#all"},
+				"west": {"uv": [6, 6, 10, 7], "texture": "#all"},
+				"up": {"uv": [6, 4, 0, 0], "texture": "#all"},
+				"down": {"uv": [6, 4, 0, 8], "texture": "#all", "cullface": "down"}
+			}
+		}
+	],
+	"display": {}
+}

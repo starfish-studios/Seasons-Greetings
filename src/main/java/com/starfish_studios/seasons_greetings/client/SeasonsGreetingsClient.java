@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.block.Blocks;
 
 @Environment(EnvType.CLIENT)
 public class SeasonsGreetingsClient  implements ClientModInitializer {
@@ -73,6 +74,8 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     @SuppressWarnings("all")
     public static void registerRenderers() {
     BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
+            Blocks.SNOW,
+
             SGBlocks.STRING_LIGHTS,
             SGBlocks.WREATH,
 

@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "obtain_gumdrop_button": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "seasonsgreetings:red_gumdrop_button",
+              "seasonsgreetings:orange_gumdrop_button",
+              "seasonsgreetings:yellow_gumdrop_button",
+              "seasonsgreetings:green_gumdrop_button",
+              "seasonsgreetings:purple_gumdrop_button"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.gumdrop_buttons.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "seasonsgreetings:gingerbread_cookie"
+    },
+    "title": {
+      "translate": "advancements.adventure.gumdrop_buttons.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_gumdrop_button"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

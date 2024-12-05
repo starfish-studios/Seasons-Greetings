@@ -22,17 +22,23 @@ public class SGCreativeTabs {
         output.accept(GINGERBREAD_COOKIE);
         output.accept(GINGERBREAD_CRUMBS);
 
-        output.accept(STRING_LIGHTS);
-        output.accept(WREATH);
+//        output.accept(STRING_LIGHTS);
+//        output.accept(WREATH);
         output.accept(CHOCOLATE);
         output.accept(WARM_MILK_BOTTLE);
         output.accept(HOT_COCOA_BOTTLE);
 
-        output.accept(RED_GUMDROP);
-        output.accept(ORANGE_GUMDROP);
-        output.accept(YELLOW_GUMDROP);
-        output.accept(GREEN_GUMDROP);
-        output.accept(PURPLE_GUMDROP);
+        output.accept(RED_GUMDROP_BLOCK);
+        output.accept(ORANGE_GUMDROP_BLOCK);
+        output.accept(YELLOW_GUMDROP_BLOCK);
+        output.accept(GREEN_GUMDROP_BLOCK);
+        output.accept(PURPLE_GUMDROP_BLOCK);
+
+        output.accept(RED_GUMDROP_BUTTON);
+        output.accept(ORANGE_GUMDROP_BUTTON);
+        output.accept(YELLOW_GUMDROP_BUTTON);
+        output.accept(GREEN_GUMDROP_BUTTON);
+        output.accept(PURPLE_GUMDROP_BUTTON);
 
         output.accept(PEPPERMINT_BLOCK);
         output.accept(PEPPERMINT_STAIRS);
@@ -68,6 +74,8 @@ public class SGCreativeTabs {
         output.accept(PURPLE_GIFT_BOX);
         output.accept(MAGENTA_GIFT_BOX);
         output.accept(PINK_GIFT_BOX);
+
+        output.accept(GINGERBREAD_MAN_SPAWN_EGG);
 
     }).build()
     );

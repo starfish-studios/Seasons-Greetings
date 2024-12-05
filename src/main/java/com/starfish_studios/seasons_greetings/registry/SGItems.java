@@ -22,10 +22,14 @@ public class SGItems {
                     .nutrition(2)
                     .saturationModifier(0.1f)
             .build())));
+
+    // Gingerbread Crumbs should drop 2-3 when broken, and 3-4 Crumbs with Fortune 3.
+
     public static final Item GINGERBREAD_CRUMBS = registerItem("gingerbread_crumbs", new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(1)
                     .saturationModifier(0.1f)
+                    .fast()
             .build())));
 
     public static final Item CHOCOLATE = registerItem("chocolate", new Item(new Item.Properties()
@@ -72,13 +76,20 @@ public class SGItems {
 
     // endregion
 
-    // region Gumdrops
+    // region Gumdrop Blocks
 
-    public static final Item RED_GUMDROP = registerItem("red_gumdrop", new BlockItem(SGBlocks.RED_GUMDROP, new Item.Properties()));
-    public static final Item ORANGE_GUMDROP = registerItem("orange_gumdrop", new BlockItem(SGBlocks.ORANGE_GUMDROP, new Item.Properties()));
-    public static final Item YELLOW_GUMDROP = registerItem("yellow_gumdrop", new BlockItem(SGBlocks.YELLOW_GUMDROP, new Item.Properties()));
-    public static final Item GREEN_GUMDROP = registerItem("green_gumdrop", new BlockItem(SGBlocks.GREEN_GUMDROP, new Item.Properties()));
-    public static final Item PURPLE_GUMDROP = registerItem("purple_gumdrop", new BlockItem(SGBlocks.PURPLE_GUMDROP, new Item.Properties()));
+    public static final Item RED_GUMDROP_BLOCK = registerItem("red_gumdrop_block", new BlockItem(SGBlocks.RED_GUMDROP_BLOCK, new Item.Properties()));
+    public static final Item ORANGE_GUMDROP_BLOCK = registerItem("orange_gumdrop_block", new BlockItem(SGBlocks.ORANGE_GUMDROP_BLOCK, new Item.Properties()));
+    public static final Item YELLOW_GUMDROP_BLOCK = registerItem("yellow_gumdrop_block", new BlockItem(SGBlocks.YELLOW_GUMDROP_BLOCK, new Item.Properties()));
+    public static final Item GREEN_GUMDROP_BLOCK = registerItem("green_gumdrop_block", new BlockItem(SGBlocks.GREEN_GUMDROP_BLOCK, new Item.Properties()));
+    public static final Item PURPLE_GUMDROP_BLOCK = registerItem("purple_gumdrop_block", new BlockItem(SGBlocks.PURPLE_GUMDROP_BLOCK, new Item.Properties()));
+    
+    public static final Item RED_GUMDROP_BUTTON = registerItem("red_gumdrop_button", new BlockItem(SGBlocks.RED_GUMDROP_BUTTON, new Item.Properties()));
+    public static final Item ORANGE_GUMDROP_BUTTON = registerItem("orange_gumdrop_button", new BlockItem(SGBlocks.ORANGE_GUMDROP_BUTTON, new Item.Properties()));
+    public static final Item YELLOW_GUMDROP_BUTTON = registerItem("yellow_gumdrop_button", new BlockItem(SGBlocks.YELLOW_GUMDROP_BUTTON, new Item.Properties()));
+    public static final Item GREEN_GUMDROP_BUTTON = registerItem("green_gumdrop_button", new BlockItem(SGBlocks.GREEN_GUMDROP_BUTTON, new Item.Properties()));
+    public static final Item PURPLE_GUMDROP_BUTTON = registerItem("purple_gumdrop_button", new BlockItem(SGBlocks.PURPLE_GUMDROP_BUTTON, new Item.Properties()));
+
 
     // endregion
 
@@ -103,6 +114,8 @@ public class SGItems {
     public static final Item CHOCOLATE_BLOCK = registerItem("chocolate_block", new BlockItem(SGBlocks.CHOCOLATE_BLOCK, new Item.Properties()));
     public static final Item CHOCOLATE_STAIRS = registerItem("chocolate_stairs", new BlockItem(SGBlocks.CHOCOLATE_STAIRS, new Item.Properties()));
     public static final Item CHOCOLATE_SLAB = registerItem("chocolate_slab", new BlockItem(SGBlocks.CHOCOLATE_SLAB, new Item.Properties()));
+
+    public static final Item GINGERBREAD_MAN_SPAWN_EGG = registerItem("gingerbread_man_spawn_egg", new SpawnEggItem(SGEntityType.GINGERBREAD_MAN, 0xFF8B24, 0xFFFFFF, new Item.Properties()));
 
     // Registry
 

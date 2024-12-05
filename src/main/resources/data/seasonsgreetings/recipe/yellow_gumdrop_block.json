@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "seasonsgreetings:yellow_gumdrop_button"
+    }
+  },
+  "result": {
+    "id": "seasonsgreetings:yellow_gumdrop_block",
+    "count": 1
+  },
+  "group": "gumdrop_buttons"
+}

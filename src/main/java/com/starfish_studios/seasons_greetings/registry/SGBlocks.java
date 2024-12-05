@@ -8,8 +8,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 public class SGBlocks {
@@ -51,14 +49,20 @@ public class SGBlocks {
     public static final Block PEPPERMINT_STAIRS = registerBlock("peppermint_stairs", new StairBlock(PEPPERMINT_BLOCK.defaultBlockState(), peppermintProperties));
     public static final Block PEPPERMINT_SLAB = registerBlock("peppermint_slab", new SlabBlock(peppermintProperties));
 
-    // Gumdrops : Red, Orange, Yellow, Green, Purple
-    public static final BlockBehaviour.Properties gumdropProperties = Block.Properties.of().strength(0.3F).sound(SoundType.MUD);
+    // Gumdrop Blocks : Red, Orange, Yellow, Green, Purple
+    public static final BlockBehaviour.Properties gumdropProperties = Block.Properties.of().strength(0.3F).sound(SoundType.MUD).speedFactor(0.6F);
 
-    public static final Block RED_GUMDROP = registerBlock("red_gumdrop", new BouncyBlock(gumdropProperties));
-    public static final Block ORANGE_GUMDROP = registerBlock("orange_gumdrop", new BouncyBlock(gumdropProperties));
-    public static final Block YELLOW_GUMDROP = registerBlock("yellow_gumdrop", new BouncyBlock(gumdropProperties));
-    public static final Block GREEN_GUMDROP = registerBlock("green_gumdrop", new BouncyBlock(gumdropProperties));
-    public static final Block PURPLE_GUMDROP = registerBlock("purple_gumdrop", new BouncyBlock(gumdropProperties));
+    public static final Block RED_GUMDROP_BLOCK = registerBlock("red_gumdrop_block", new GumdropBlock(gumdropProperties));
+    public static final Block ORANGE_GUMDROP_BLOCK = registerBlock("orange_gumdrop_block", new GumdropBlock(gumdropProperties));
+    public static final Block YELLOW_GUMDROP_BLOCK = registerBlock("yellow_gumdrop_block", new GumdropBlock(gumdropProperties));
+    public static final Block GREEN_GUMDROP_BLOCK = registerBlock("green_gumdrop_block", new GumdropBlock(gumdropProperties));
+    public static final Block PURPLE_GUMDROP_BLOCK = registerBlock("purple_gumdrop_block", new GumdropBlock(gumdropProperties));
+
+    public static final Block RED_GUMDROP_BUTTON = registerBlock("red_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
+    public static final Block ORANGE_GUMDROP_BUTTON = registerBlock("orange_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
+    public static final Block YELLOW_GUMDROP_BUTTON = registerBlock("yellow_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
+    public static final Block GREEN_GUMDROP_BUTTON = registerBlock("green_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
+    public static final Block PURPLE_GUMDROP_BUTTON = registerBlock("purple_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
 
 
     // endregion

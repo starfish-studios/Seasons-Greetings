@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:slime_ball"
+      },
+      {
+        "tag": "c:slime_balls"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:purple_dye"
+      },
+      {
+        "tag": "c:dyes/purple"
+      }
+    ],
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "seasonsgreetings:purple_gumdrop_button",
+    "count": 4
+  },
+  "group": "gumdrop_buttons"
+}
