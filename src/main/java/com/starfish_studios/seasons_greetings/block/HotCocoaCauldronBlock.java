@@ -2,8 +2,10 @@ package com.starfish_studios.seasons_greetings.block;
 
 import com.mojang.serialization.MapCodec;
 import com.starfish_studios.seasons_greetings.registry.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -38,6 +40,7 @@ public class HotCocoaCauldronBlock extends AbstractCauldronBlock {
     protected @NotNull InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         return InteractionResult.PASS;
     }
+
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateDefinition) {
@@ -83,7 +86,14 @@ public class HotCocoaCauldronBlock extends AbstractCauldronBlock {
     }
 
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (itemStack.is(Items.GLASS_BOTTLE)) {
+        if (itemStack.is(Items.BUCKET)) {
+            player.playSound(SoundEvents.ARROW_HIT_PLAYER, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+            player.displayClientMessage(Component.translatable("block.seasons_greetings.hot_cocoa_cauldron.bucket")
+                    .withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC), true);
+            return ItemInteractionResult.SUCCESS;
+        }
+
+        else if (itemStack.is(Items.GLASS_BOTTLE)) {
             if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 1) {
                 level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
                 if (!player.getInventory().add(new ItemStack(SGItems.HOT_COCOA_BOTTLE))) {

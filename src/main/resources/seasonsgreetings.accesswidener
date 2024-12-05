@@ -1,0 +1,5 @@
+accessWidener   v1  named
+accessible method net/minecraft/world/entity/LivingEntity checkTotemDeathProtection (Lnet/minecraft/world/damagesource/DamageSource;)Z
+accessible field net/minecraft/core/Vec3i x I
+accessible field net/minecraft/core/Vec3i y I
+accessible field net/minecraft/core/Vec3i z I

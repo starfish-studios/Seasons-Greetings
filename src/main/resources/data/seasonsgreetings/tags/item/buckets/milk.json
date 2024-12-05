@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:milk_bucket",
+    {
+      "id": "#c:buckets/milk",
+      "required": false
+    }
+  ]
+}

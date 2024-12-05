@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 
 public class SGParticles {
     public static SimpleParticleType COCOA_BUBBLE = register("cocoa_bubble", FabricParticleTypes.simple());
+    public static SimpleParticleType MILK_BUBBLE = register("milk_bubble", FabricParticleTypes.simple());
 
     public static SimpleParticleType register(String id, SimpleParticleType type) {
         return Registry.register(BuiltInRegistries.PARTICLE_TYPE, SeasonsGreetings.id(id), type);

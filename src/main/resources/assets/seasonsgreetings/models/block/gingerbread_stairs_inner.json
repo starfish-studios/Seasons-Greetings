@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "seasonsgreetings:block/gingerbread",
+    "side": "seasonsgreetings:block/gingerbread",
+    "top": "seasonsgreetings:block/gingerbread"
+  }
+}

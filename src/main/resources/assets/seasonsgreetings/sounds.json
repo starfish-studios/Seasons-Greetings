@@ -1,35 +1,52 @@
 {
+  "entity.gingerbread_man.hurt": {
+    "sounds": [
+      "seasonsgreetings:mob/gingerbread_man/hurt1",
+      "seasonsgreetings:mob/gingerbread_man/hurt2",
+      "seasonsgreetings:mob/gingerbread_man/hurt3",
+      "seasonsgreetings:mob/gingerbread_man/hurt4",
+      "seasonsgreetings:mob/gingerbread_man/hurt5"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.entity.gingerbread_man.hurt"
+  },
+
+
   "entity.snowball.hit": {
     "sounds": [
       "entity/snowman/hurt1",
       "entity/snowman/hurt2",
       "entity/snowman/hurt3"
     ],
-    "subtitle": "seasonsgreetings.subtitles.entity.snowball.hit"
+    "subtitle": "subtitles.seasonsgreetings.entity.snowball.hit"
+  },
+  "block.milk_cauldron.bubble": {
+    "sounds": [
+      "seasonsgreetings:block/bubbling1",
+      "seasonsgreetings:block/bubbling2",
+      "seasonsgreetings:block/bubbling3",
+      "seasonsgreetings:block/bubbling4",
+      "seasonsgreetings:block/bubbling5"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.milk_cauldron.bubble"
   },
   "block.cocoa_cauldron.bubble": {
     "sounds": [
-      "seasonsgreetings:block/cocoa_cauldron/bubbling1",
-      "seasonsgreetings:block/cocoa_cauldron/bubbling2",
-      "seasonsgreetings:block/cocoa_cauldron/bubbling3",
-      "seasonsgreetings:block/cocoa_cauldron/bubbling4",
-      "seasonsgreetings:block/cocoa_cauldron/bubbling5"
+      "seasonsgreetings:block/bubbling1",
+      "seasonsgreetings:block/bubbling2",
+      "seasonsgreetings:block/bubbling3",
+      "seasonsgreetings:block/bubbling4",
+      "seasonsgreetings:block/bubbling5"
     ],
-    "subtitle": "seasonsgreetings.subtitles.block.cocoa_cauldron.bubble"
+    "subtitle": "subtitles.seasonsgreetings.block.cocoa_cauldron.bubble"
   },
-  "item.hot_cocoa_bottle.drink": {
+  "subtitles.entity.generic.drink": {
     "sounds": [
-      "item/bottle/drink_honey1",
-      "item/bottle/drink_honey2",
-      {
-        "name": "item/bottle/drink_honey3",
-        "volume": 0.35
-      },
-      {
-        "name": "item/bottle/drink_honey3",
-        "volume": 0.75
-      }
+      "mob/wandering_trader/drink_milk1",
+      "mob/wandering_trader/drink_milk2",
+      "mob/wandering_trader/drink_milk3",
+      "mob/wandering_trader/drink_milk4",
+      "mob/wandering_trader/drink_milk5"
     ],
-    "subtitle": "seasonsgreetings.subtitles.item.hot_cocoa_bottle.drink"
+    "subtitle": "subtitles.seasonsgreetings.entity.generic.drink"
   }
 }

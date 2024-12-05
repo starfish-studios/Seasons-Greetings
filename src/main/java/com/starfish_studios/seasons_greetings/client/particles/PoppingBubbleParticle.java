@@ -5,12 +5,13 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
+import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class CocoaBubbleParticle extends TextureSheetParticle {
+public class PoppingBubbleParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
 
-    CocoaBubbleParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
+    PoppingBubbleParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
         super(level, x, y, z);
         this.sprites = sprites;
         this.lifetime = 4;
@@ -34,7 +35,7 @@ public class CocoaBubbleParticle extends TextureSheetParticle {
         }
     }
 
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
@@ -47,7 +48,7 @@ public class CocoaBubbleParticle extends TextureSheetParticle {
         }
 
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new CocoaBubbleParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.sprites);
+            return new PoppingBubbleParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.sprites);
         }
     }
 }

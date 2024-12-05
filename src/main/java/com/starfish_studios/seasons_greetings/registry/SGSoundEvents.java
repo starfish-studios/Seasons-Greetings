@@ -8,8 +8,14 @@ import net.minecraft.sounds.SoundEvent;
 
 public class SGSoundEvents {
     public static final SoundEvent SNOWBALL_HIT = registerSoundEvent("entity.snowball.hit");
+
+    public static final SoundEvent MILK_BUBBLE = registerSoundEvent("block.milk_cauldron.bubble");
     public static final SoundEvent HOT_COCOA_BUBBLE = registerSoundEvent("block.cocoa_cauldron.bubble");
-    public static final SoundEvent COCOA_DRINK = registerSoundEvent("item.hot_cocoa_bottle.drink");
+    public static final SoundEvent DRINKING = registerSoundEvent("subtitles.entity.generic.drink");
+
+    public static final SoundEvent GINGERBREAD_MAN_IDLE = registerSoundEvent("entity.gingerbread_man.idle");
+    public static final SoundEvent GINGERBREAD_MAN_HURT = registerSoundEvent("entity.gingerbread_man.hurt");
+    public static final SoundEvent GINGERBREAD_MAN_DEATH = registerSoundEvent("entity.gingerbread_man.death");
 
 //    }
 

@@ -1,5 +1,6 @@
 package com.starfish_studios.seasons_greetings.mixin;
 
+import com.starfish_studios.seasons_greetings.registry.SGBlocks;
 import com.starfish_studios.seasons_greetings.registry.SGTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -8,21 +9,45 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractCauldronBlock.class)
 public class AbstractCauldronBlockMixin extends Block {
     public AbstractCauldronBlockMixin(Properties properties) {
         super(properties);
+    }
+
+    @Inject(at = @At("HEAD"), method = "useItemOn", cancellable = true)
+    public void sg$useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<ItemInteractionResult> cir) {
+        if (blockState.is(Blocks.CAULDRON)) {
+            if (itemStack.is(SGTags.SGItemTags.MILK)) {
+                level.setBlockAndUpdate(blockPos, SGBlocks.MILK_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
+                if (!player.isCreative()) {
+                    itemStack.shrink(1);
+                    if (!player.getInventory().add(new ItemStack(Items.BUCKET))) {
+                        player.drop(new ItemStack(Items.BUCKET), false);
+                    }
+                }
+                level.playSound(player, blockPos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                cir.setReturnValue(ItemInteractionResult.sidedSuccess(level.isClientSide));
+            }
+        }
     }
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {

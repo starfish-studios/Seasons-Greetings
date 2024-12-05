@@ -1,5 +1,6 @@
 package com.starfish_studios.seasons_greetings.item;
 
+import com.starfish_studios.seasons_greetings.registry.SGEffects;
 import com.starfish_studios.seasons_greetings.registry.SGSoundEvents;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
@@ -7,6 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -25,12 +27,8 @@ public class HotCocoaBottleItem extends Item {
         if (livingEntity instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
             serverPlayer.awardStat(Stats.ITEM_USED.get(this));
+            serverPlayer.addEffect(new MobEffectInstance(SGEffects.COZY, 3600, 0));
         }
-
-        // TODO: Make the player immune to Freezing
-//        if (!level.isClientSide) {
-//            livingEntity.removeEffect(MobEffects.POISON);
-//        }
 
         if (itemStack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
@@ -57,11 +55,11 @@ public class HotCocoaBottleItem extends Item {
     }
 
     public @NotNull SoundEvent getDrinkingSound() {
-        return SGSoundEvents.COCOA_DRINK;
+        return SGSoundEvents.DRINKING;
     }
 
     public @NotNull SoundEvent getEatingSound() {
-        return SGSoundEvents.COCOA_DRINK;
+        return SGSoundEvents.DRINKING;
     }
 
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {

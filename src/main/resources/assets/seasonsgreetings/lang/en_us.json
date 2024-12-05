@@ -18,15 +18,49 @@
     "block.seasonsgreetings.magenta_gift_box": "Magenta Gift Box",
     "block.seasonsgreetings.pink_gift_box": "Pink Gift Box",
 
+  "block.seasonsgreetings.red_gumdrop": "Red Gumdrop",
+    "block.seasonsgreetings.orange_gumdrop": "Orange Gumdrop",
+    "block.seasonsgreetings.yellow_gumdrop": "Yellow Gumdrop",
+    "block.seasonsgreetings.green_gumdrop": "Green Gumdrop",
+    "block.seasonsgreetings.purple_gumdrop": "Purple Gumdrop",
+
+  "block.seasonsgreetings.peppermint_block": "Peppermint Block",
+    "block.seasonsgreetings.peppermint_stairs": "Peppermint Stairs",
+    "block.seasonsgreetings.peppermint_slab": "Peppermint Slab",
+
+  "block.seasonsgreetings.gingerbread_block": "Gingerbread Block",
+      "block.seasonsgreetings.gingerbread_stairs": "Gingerbread Stairs",
+      "block.seasonsgreetings.gingerbread_slab": "Gingerbread Slab",
+  "block.seasonsgreetings.gingerbread_bricks": "Gingerbread Bricks",
+      "block.seasonsgreetings.gingerbread_brick_stairs": "Gingerbread Brick Stairs",
+      "block.seasonsgreetings.gingerbread_brick_slab": "Gingerbread Brick Slab",
+  "block.seasonsgreetings.gingerbread_shingles": "Gingerbread Shingles",
+      "block.seasonsgreetings.gingerbread_shingle_stairs": "Gingerbread Shingle Stairs",
+      "block.seasonsgreetings.gingerbread_shingle_slab": "Gingerbread Shingle Slab",
+
   "container.giftBox": "Gift Box",
 
-  "block.seasonsgretings.hot_cocoa_cauldron": "Hot Cocoa Cauldron",
+  "effect.seasonsgreetings.cozy": "Cozy",
+
+  "entity.seasonsgreetings.gingerbread_man": "Gingerbread Man",
+
+  "block.seasonsgreetings.hot_cocoa_cauldron": "Hot Cocoa Cauldron",
+  "block.seasons_greetings.hot_cocoa_cauldron.bucket": "[!] You can't fill Buckets with Hot Cocoa, only Bottles!",
+  "block.seasons_greetings.hot_cocoa_cauldron.bucket2": "Sneak + Right Click if you'd like to clear the Cauldron's contents.",
+
   "item.seasonsgreetings.chocolate": "Chocolate",
+  "item.seasonsgreetings.fruitcake": "Fruitcake",
+  "item.seasonsgreetings.gingerbread_cookie": "Gingerbread Cookie",
+  "item.seasonsgreetings.gingerbread_crumbs": "Gingerbread Crumbs",
   "item.seasonsgreetings.hot_cocoa_bottle": "Hot Cocoa Bottle",
+  "item.seasonsgreetings.warm_milk_bottle": "Warm Milk Bottle",
 
   "tooltip.seasons_greetings.bow": "Bow",
 
-  "seasonsgreetings.subtitles.item.hot_cocoa_bottle.drink": "Drinking",
-  "seasonsgreetings.subtitles.block.cocoa_cauldron.bubble": "Hot Cocoa bubbles",
-  "seasonsgreetings.subtitles.entity.snowball.hit": "Snowball hits"
+  "subtitles.seasonsgreetings.entity.gingerbread_man.hurt": "Gingerbread Man hurts",
+
+  "subtitles.seasonsgreetings.block.milk_cauldron.bubble": "Warm Milk bubbles",
+  "subtitles.seasonsgreetings.entity.generic.drink": "Drinking",
+  "subtitles.seasonsgreetings.block.cocoa_cauldron.bubble": "Hot Cocoa bubbles",
+  "subtitles.seasonsgreetings.entity.snowball.hit": "Snowball hits"
 }

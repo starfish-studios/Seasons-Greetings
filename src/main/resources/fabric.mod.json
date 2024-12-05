@@ -22,6 +22,7 @@
 			"com.starfish_studios.seasons_greetings.client.SeasonsGreetingsClient"
 		]
 	},
+	"accessWidener": "seasonsgreetings.accesswidener",
 	"mixins": [
 		"seasonsgreetings.mixins.json"
 	],

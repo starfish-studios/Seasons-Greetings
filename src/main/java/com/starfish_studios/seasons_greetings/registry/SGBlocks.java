@@ -1,25 +1,71 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.block.GiftBoxBlock;
-import com.starfish_studios.seasons_greetings.block.HotCocoaCauldronBlock;
-import com.starfish_studios.seasons_greetings.block.WrappedBlock;
+import com.starfish_studios.seasons_greetings.block.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 public class SGBlocks {
     // WHITE, LIGHT GRAY, GRAY, BLACK, BROWN, RED, ORANGE, YELLOW, LIME, GREEN, CYAN, LIGHT BLUE, BLUE, PURPLE, MAGENTA, PINK
 
 
-    public static final Block.Properties giftBoxProperties = Block.Properties.of().pushReaction(PushReaction.DESTROY).instabreak().noOcclusion();
-
     public static final Block HOT_COCOA_CAULDRON = registerBlock("hot_cocoa_cauldron", new HotCocoaCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
+    public static final Block MILK_CAULDRON = registerBlock("milk_cauldron", new MilkCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
     public static final Block STRING_LIGHTS = registerBlock("string_lights", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
+    public static final Block WREATH = registerBlock("wreath", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
+
+    // region Gingerbread House Blocks
+
+    // Gingerbread Block Set : Gingerbread, Gingerbread Stairs, Gingerbread Slabs, Gingerbread Bricks, Gingerbread Brick Stairs, Gingerbread Brick Slabs,
+    // Gingerbread Shingles, Gingerbread Shingle Stairs, Gingerbread Shingle Slabs, and Gingerbread Doors.
+    public static final Block.Properties gingerbreadProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
+
+    public static final Block GINGERBREAD_BLOCK = registerBlock("gingerbread_block", new Block(gingerbreadProperties));
+    public static final Block GINGERBREAD_STAIRS = registerBlock("gingerbread_stairs", new StairBlock(GINGERBREAD_BLOCK.defaultBlockState(), gingerbreadProperties));
+    public static final Block GINGERBREAD_SLAB = registerBlock("gingerbread_slab", new SlabBlock(gingerbreadProperties));
+    public static final Block GINGERBREAD_BRICKS = registerBlock("gingerbread_bricks", new Block(gingerbreadProperties));
+    public static final Block GINGERBREAD_BRICK_STAIRS = registerBlock("gingerbread_brick_stairs", new StairBlock(GINGERBREAD_BRICKS.defaultBlockState(), gingerbreadProperties));
+    public static final Block GINGERBREAD_BRICK_SLAB = registerBlock("gingerbread_brick_slab", new SlabBlock(gingerbreadProperties));
+    public static final Block GINGERBREAD_SHINGLES = registerBlock("gingerbread_shingles", new Block(gingerbreadProperties));
+    public static final Block GINGERBREAD_SHINGLE_STAIRS = registerBlock("gingerbread_shingle_stairs", new StairBlock(GINGERBREAD_SHINGLES.defaultBlockState(), gingerbreadProperties));
+    public static final Block GINGERBREAD_SHINGLE_SLAB = registerBlock("gingerbread_shingle_slab", new SlabBlock(gingerbreadProperties));
+//    public static final Block GINGERBREAD_DOOR = registerBlock("gingerbread_door", new DoorBlock(null, gingerbreadProperties.noOcclusion().pushReaction(PushReaction.DESTROY)));
+
+    public static final BlockBehaviour.Properties chocolateProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
+    public static final Block CHOCOLATE_BLOCK = registerBlock("chocolate_block", new Block(chocolateProperties));
+    public static final Block CHOCOLATE_STAIRS = registerBlock("chocolate_stairs", new StairBlock(CHOCOLATE_BLOCK.defaultBlockState(), chocolateProperties));
+    public static final Block CHOCOLATE_SLAB = registerBlock("chocolate_slab", new SlabBlock(chocolateProperties));
+
+    // Peppermint Block Set : Peppermint Block, Peppermint Stairs, Peppermint Slabs
+    public static final BlockBehaviour.Properties peppermintProperties = Block.Properties.of().strength(0.5F).sound(SoundType.STONE);
+
+    public static final Block PEPPERMINT_BLOCK = registerBlock("peppermint_block", new RotatedPillarBlock(peppermintProperties));
+    public static final Block PEPPERMINT_STAIRS = registerBlock("peppermint_stairs", new StairBlock(PEPPERMINT_BLOCK.defaultBlockState(), peppermintProperties));
+    public static final Block PEPPERMINT_SLAB = registerBlock("peppermint_slab", new SlabBlock(peppermintProperties));
+
+    // Gumdrops : Red, Orange, Yellow, Green, Purple
+    public static final BlockBehaviour.Properties gumdropProperties = Block.Properties.of().strength(0.3F).sound(SoundType.MUD);
+
+    public static final Block RED_GUMDROP = registerBlock("red_gumdrop", new BouncyBlock(gumdropProperties));
+    public static final Block ORANGE_GUMDROP = registerBlock("orange_gumdrop", new BouncyBlock(gumdropProperties));
+    public static final Block YELLOW_GUMDROP = registerBlock("yellow_gumdrop", new BouncyBlock(gumdropProperties));
+    public static final Block GREEN_GUMDROP = registerBlock("green_gumdrop", new BouncyBlock(gumdropProperties));
+    public static final Block PURPLE_GUMDROP = registerBlock("purple_gumdrop", new BouncyBlock(gumdropProperties));
+
+
+    // endregion
+
+    // region Gifts
+
+    public static final Block.Properties giftBoxProperties = Block.Properties.of().pushReaction(PushReaction.DESTROY).instabreak().noOcclusion();
 
     public static final Block WHITE_GIFT_BOX = registerBlock("white_gift_box", new GiftBoxBlock(DyeColor.WHITE, giftBoxProperties));
     public static final Block LIGHT_GRAY_GIFT_BOX = registerBlock("light_gray_gift_box", new GiftBoxBlock(DyeColor.LIGHT_GRAY, giftBoxProperties));
@@ -40,8 +86,7 @@ public class SGBlocks {
 
     public static final Block[] GIFT_BOXES = new Block[DyeColor.values().length];
 
-
-//    public static final Block GIFT_BOX = registerBlock("gift_box", new GiftBoxBlock(DyeColor.WHITE, Block.Properties.of()));
+    // endregion
 
     // Registry
 

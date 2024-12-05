@@ -13,9 +13,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SnowGolemRenderer.class)
-public class SnowGolemRendererMixin extends MobRenderer<SnowGolem, SnowGolemModel<SnowGolem>> {
+public abstract class SnowGolemRendererMixin extends MobRenderer<SnowGolem, SnowGolemModel<SnowGolem>> {
     public SnowGolemRendererMixin(EntityRendererProvider.Context context, SnowGolemModel<SnowGolem> entityModel, float f) {
         super(context, entityModel, f);
     }
@@ -25,9 +26,7 @@ public class SnowGolemRendererMixin extends MobRenderer<SnowGolem, SnowGolemMode
         this.addLayer((new SnowGolemNosesLayer(this)));
         this.addLayer(new SnowGolemDecorLayer(this));
     }
-
-    @Override
-    public @NotNull ResourceLocation getTextureLocation(SnowGolem entity) {
-        return ResourceLocation.withDefaultNamespace("textures/entity/snow_golem.png");
-    }
 }
+
+
+

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "seasonsgreetings:block/gingerbread_shingles",
+    "side": "seasonsgreetings:block/gingerbread_shingles",
+    "top": "seasonsgreetings:block/gingerbread_shingles"
+  }
+}

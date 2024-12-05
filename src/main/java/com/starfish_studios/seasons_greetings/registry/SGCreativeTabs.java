@@ -19,16 +19,44 @@ public class SGCreativeTabs {
     @SuppressWarnings("unused")
     public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
         output.accept(FRUITCAKE);
+        output.accept(GINGERBREAD_COOKIE);
+        output.accept(GINGERBREAD_CRUMBS);
+
         output.accept(STRING_LIGHTS);
+        output.accept(WREATH);
         output.accept(CHOCOLATE);
+        output.accept(WARM_MILK_BOTTLE);
         output.accept(HOT_COCOA_BOTTLE);
+
+        output.accept(RED_GUMDROP);
+        output.accept(ORANGE_GUMDROP);
+        output.accept(YELLOW_GUMDROP);
+        output.accept(GREEN_GUMDROP);
+        output.accept(PURPLE_GUMDROP);
+
+        output.accept(PEPPERMINT_BLOCK);
+        output.accept(PEPPERMINT_STAIRS);
+        output.accept(PEPPERMINT_SLAB);
+
+        output.accept(CHOCOLATE_BLOCK);
+        output.accept(CHOCOLATE_STAIRS);
+        output.accept(CHOCOLATE_SLAB);
+
+        output.accept(GINGERBREAD_BLOCK);
+        output.accept(GINGERBREAD_STAIRS);
+        output.accept(GINGERBREAD_SLAB);
+        output.accept(GINGERBREAD_BRICKS);
+        output.accept(GINGERBREAD_BRICK_STAIRS);
+        output.accept(GINGERBREAD_BRICK_SLAB);
+        output.accept(GINGERBREAD_SHINGLES);
+        output.accept(GINGERBREAD_SHINGLE_STAIRS);
+        output.accept(GINGERBREAD_SHINGLE_SLAB);
 
         output.accept(WHITE_GIFT_BOX);
         output.accept(LIGHT_GRAY_GIFT_BOX);
         output.accept(GRAY_GIFT_BOX);
         output.accept(BLACK_GIFT_BOX);
         output.accept(BROWN_GIFT_BOX);
-//        output.accept(RED_GIFT_BOX);
         output.accept(RED_GIFT_BOX);
         output.accept(ORANGE_GIFT_BOX);
         output.accept(YELLOW_GIFT_BOX);

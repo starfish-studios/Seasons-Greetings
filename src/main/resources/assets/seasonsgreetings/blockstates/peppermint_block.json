@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "seasonsgreetings:block/peppermint",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "seasonsgreetings:block/peppermint"
+    },
+    "axis=z": {
+      "model": "seasonsgreetings:block/peppermint",
+      "x": 90
+    }
+  }
+}

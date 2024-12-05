@@ -30,6 +30,7 @@ public class SGTags {
 
         public static final TagKey<Item> SNOW_GOLEM_NOSES = of("snow_golem_noses");
         public static final TagKey<Item> ICE = of("ice");
+        public static final TagKey<Item> MILK = of("buckets/milk");
 
 //        public static final TagKey<Item> PEARLESCENT_FLOWERS = of("pearlescent_flowers");
 

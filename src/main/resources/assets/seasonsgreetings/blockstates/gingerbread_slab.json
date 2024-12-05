@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "seasonsgreetings:block/gingerbread_slab"
+    },
+    "type=double": {
+      "model": "seasonsgreetings:block/gingerbread_block"
+    },
+    "type=top": {
+      "model": "seasonsgreetings:block/gingerbread_slab_top"
+    }
+  }
+}

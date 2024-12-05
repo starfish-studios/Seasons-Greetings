@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "seasonsgreetings:block/peppermint_slab"
+    },
+    "type=double": {
+      "model": "seasonsgreetings:block/peppermint"
+    },
+    "type=top": {
+      "model": "seasonsgreetings:block/peppermint_slab_top"
+    }
+  }
+}

@@ -4,6 +4,7 @@ public class SGRegistry {
 
     public static void registerAll() {
 //        SeasonsGreetingsEntityType.registerEntities();
+        SGEffects.registerEffects();
         SGParticles.registerParticles();
         SGBlockEntityType.registerBlockEntities();
         SGMenus.registerMenus();
