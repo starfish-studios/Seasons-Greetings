@@ -105,6 +105,9 @@ public class SGItems {
     public static final Item GINGERBREAD_SHINGLE_STAIRS = registerItem("gingerbread_shingle_stairs", new BlockItem(SGBlocks.GINGERBREAD_SHINGLE_STAIRS, new Item.Properties()));
     public static final Item GINGERBREAD_SHINGLE_SLAB = registerItem("gingerbread_shingle_slab", new BlockItem(SGBlocks.GINGERBREAD_SHINGLE_SLAB, new Item.Properties()));
 
+    // Gingerbread door
+    public static final Item GINGERBREAD_DOOR = registerItem("gingerbread_door", new DoubleHighBlockItem(SGBlocks.GINGERBREAD_DOOR, new Item.Properties()));
+
     // endregion
 
     public static final Item PEPPERMINT_BLOCK = registerItem("peppermint_block", new BlockItem(SGBlocks.PEPPERMINT_BLOCK, new Item.Properties()));

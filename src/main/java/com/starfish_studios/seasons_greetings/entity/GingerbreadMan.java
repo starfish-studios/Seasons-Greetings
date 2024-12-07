@@ -20,6 +20,7 @@ import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -43,6 +44,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.gingerbread_man.idle");
@@ -51,6 +53,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     protected static final RawAnimation ATTACK = RawAnimation.begin().then("animation.gingerbread_man.attack", Animation.LoopType.PLAY_ONCE);
     protected static final RawAnimation ATTACK2 = RawAnimation.begin().thenPlay("animation.gingerbread_man.attack2");
     protected static final RawAnimation DIE = RawAnimation.begin().thenPlayAndHold("animation.gingerbread_man.die");
+    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.gingerbread_man.sit");
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
@@ -86,6 +89,15 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     public @NotNull InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         ItemStack itemStack2 = this.getMainHandItem();
+        InteractionResult interactionResult = super.mobInteract(player, hand);
+
+        if (!interactionResult.consumesAction() && this.isOwnedBy(player)) {
+            this.setOrderedToSit(!this.isOrderedToSit());
+            this.jumping = false;
+            this.navigation.stop();
+            this.setTarget(null);
+            return InteractionResult.SUCCESS_NO_ITEM_USED;
+        }
 
         if (itemStack2.isEmpty() && !itemStack.isEmpty()) {
             ItemStack itemStack3 = itemStack.copyWithCount(1);
@@ -116,8 +128,8 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
         this.populateDefaultEquipmentSlots(random, difficultyInstance);
-        if (mobSpawnType == MobSpawnType.SPAWN_EGG || mobSpawnType == MobSpawnType.COMMAND || mobSpawnType == MobSpawnType.MOB_SUMMONED) {
-            cantCatchMe(false);
+        if (mobSpawnType == MobSpawnType.SPAWN_EGG) {
+            this.setOwnerUUID(Objects.requireNonNull(serverLevelAccessor.getNearestPlayer(this, 8.0D)).getUUID());
         }
         return super.finalizeSpawn(serverLevelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
     }
@@ -139,20 +151,33 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
 
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, true));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
+        this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, true));
 
-        this.goalSelector.addGoal(2, new PanicGoal(this, 1.25));
-        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 1.25, 10.0F, 2.0F));
-        this.goalSelector.addGoal(4, new AvoidEatingPlayerGoal(this, 8.0, 1.0, 1.2));
+        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.25, 10.0F, 2.0F));
+        this.goalSelector.addGoal(5, new AvoidEatingPlayerGoal(this, 8.0, 1.0, 1.2));
 
-        this.goalSelector.addGoal(5, new TemptGoal(this, 1.2, (itemStack) -> itemStack.is(Items.COOKIE), false));
-        this.goalSelector.addGoal(6, new CopyOwnerBreakGoal(this, 1.0));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new TemptGoal(this, 1.2, (itemStack) -> itemStack.is(Items.COOKIE), false));
+        this.goalSelector.addGoal(7, new CopyOwnerBreakGoal(this, 1.0));
+        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+    }
+
+    public boolean hurt(DamageSource damageSource, float f) {
+        if (this.isInvulnerableTo(damageSource)) {
+            return false;
+        } else {
+            if (!this.level().isClientSide) {
+                this.setOrderedToSit(false);
+            }
+
+            return super.hurt(damageSource, f);
+        }
     }
 
     // region GeckoLib
@@ -177,7 +202,9 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     }
 
     private <E extends GingerbreadMan> PlayState predicate(final AnimationState<E> event) {
-        if (event.isMoving()) {
+        if (this.isOrderedToSit()) {
+            event.setAnimation(SIT);
+        } else if (event.isMoving()) {
             if (this.getAttributeValue(Attributes.MOVEMENT_SPEED) == 0.25 * 1.25) {
                 event.setControllerSpeed(1.25F);
             } else {

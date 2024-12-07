@@ -35,7 +35,7 @@ public class SGBlocks {
     public static final Block GINGERBREAD_SHINGLES = registerBlock("gingerbread_shingles", new Block(gingerbreadProperties));
     public static final Block GINGERBREAD_SHINGLE_STAIRS = registerBlock("gingerbread_shingle_stairs", new StairBlock(GINGERBREAD_SHINGLES.defaultBlockState(), gingerbreadProperties));
     public static final Block GINGERBREAD_SHINGLE_SLAB = registerBlock("gingerbread_shingle_slab", new SlabBlock(gingerbreadProperties));
-//    public static final Block GINGERBREAD_DOOR = registerBlock("gingerbread_door", new DoorBlock(null, gingerbreadProperties.noOcclusion().pushReaction(PushReaction.DESTROY)));
+    public static final Block GINGERBREAD_DOOR = registerBlock("gingerbread_door", new DoorBlock(BlockSetType.OAK, gingerbreadProperties.noOcclusion().pushReaction(PushReaction.DESTROY)));
 
     public static final BlockBehaviour.Properties chocolateProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
     public static final Block CHOCOLATE_BLOCK = registerBlock("chocolate_block", new Block(chocolateProperties));

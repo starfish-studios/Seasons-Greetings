@@ -78,6 +78,7 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
 
             SGBlocks.STRING_LIGHTS,
             SGBlocks.WREATH,
+            SGBlocks.GINGERBREAD_DOOR,
 
             SGBlocks.WHITE_GIFT_BOX,
             SGBlocks.LIGHT_GRAY_GIFT_BOX,

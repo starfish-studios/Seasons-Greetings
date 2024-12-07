@@ -48,6 +48,7 @@ public class SGCreativeTabs {
         output.accept(CHOCOLATE_STAIRS);
         output.accept(CHOCOLATE_SLAB);
 
+        output.accept(GINGERBREAD_DOOR);
         output.accept(GINGERBREAD_BLOCK);
         output.accept(GINGERBREAD_STAIRS);
         output.accept(GINGERBREAD_SLAB);
@@ -57,6 +58,7 @@ public class SGCreativeTabs {
         output.accept(GINGERBREAD_SHINGLES);
         output.accept(GINGERBREAD_SHINGLE_STAIRS);
         output.accept(GINGERBREAD_SHINGLE_SLAB);
+
 
         output.accept(WHITE_GIFT_BOX);
         output.accept(LIGHT_GRAY_GIFT_BOX);
