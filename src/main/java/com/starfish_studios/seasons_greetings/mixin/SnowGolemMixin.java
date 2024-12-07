@@ -95,6 +95,7 @@ public class SnowGolemMixin extends AbstractGolem {
         if (itemStack.is(SGTags.SGItemTags.SNOW_GOLEM_NOSES) && !snowGolem.hasPumpkin() && snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
             snowSound(SoundEvents.SNOW_PLACE);
             snowGolem.setItemSlot(EquipmentSlot.HEAD, new ItemStack(itemStack.getItem()));
+            itemStack.shrink(1);
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
 
@@ -102,6 +103,7 @@ public class SnowGolemMixin extends AbstractGolem {
         if (itemStack.is(Items.CARVED_PUMPKIN) && !snowGolem.hasPumpkin() && snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
             snowSound(SoundEvents.SNOW_PLACE);
             snowGolem.setPumpkin(true);
+            itemStack.shrink(1);
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
 
@@ -124,6 +126,7 @@ public class SnowGolemMixin extends AbstractGolem {
 
         if (itemStack.is(ItemTags.WOOL_CARPETS) && snowGolem.getItemBySlot(EquipmentSlot.BODY).isEmpty()) {
             snowGolem.setItemSlot(EquipmentSlot.BODY, new ItemStack(itemStack.getItem()));
+            itemStack.shrink(1);
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
     }

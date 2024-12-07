@@ -44,11 +44,11 @@ public class GingerbreadManRenderer extends GeoEntityRenderer<GingerbreadMan> {
             @Override
             protected void renderStackForBone(PoseStack poseStack, GeoBone bone, ItemStack stack, GingerbreadMan animatable, MultiBufferSource bufferSource, float partialTick, int packedLight, int packedOverlay) {
 
-                poseStack.mulPose(Axis.XP.rotationDegrees(-75));
+                poseStack.mulPose(Axis.XP.rotationDegrees(-60));
                 poseStack.mulPose(Axis.YP.rotationDegrees(0));
                 poseStack.mulPose(Axis.ZP.rotationDegrees(0));
-                poseStack.scale(0.8F, 0.8F, 0.8F);
-                poseStack.translate(0.0D, -0.1D, -0.125D);
+                poseStack.scale(0.7F, 0.7F, 0.7F);
+                poseStack.translate(0.0D, 0.1D, -0.15D);
 
                 super.renderStackForBone(poseStack, bone, stack, animatable, bufferSource, partialTick, packedLight,
                         packedOverlay);

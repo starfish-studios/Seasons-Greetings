@@ -28,15 +28,12 @@ public abstract class SnowGolemModelMixin<T extends Entity> extends Hierarchical
     private final ModelPart leftArm;
     @Unique
     private final ModelPart rightArm;
-    @Unique
-    private final ModelPart nose;
 
     public SnowGolemModelMixin(ModelPart modelPart) {
         this.head = modelPart.getChild("head");
         this.leftArm = modelPart.getChild("left_arm");
         this.rightArm = modelPart.getChild("right_arm");
         this.upperBody = modelPart.getChild("upper_body");
-        this.nose = modelPart.getChild("carrot_nose");
     }
 
 

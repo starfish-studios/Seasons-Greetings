@@ -1,6 +1,7 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
+import com.starfish_studios.seasons_greetings.item.ChristmasHatItem;
 import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
 import com.starfish_studios.seasons_greetings.item.HotCocoaBottleItem;
 import net.minecraft.core.Registry;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 
 public class SGItems {
+    public static final Item CHRISTMAS_HAT = registerItem("christmas_hat", new ChristmasHatItem(ArmorMaterials.LEATHER, ArmorItem.Type.HELMET, new Item.Properties()));
 
     // region Edible Items
 
@@ -22,8 +24,6 @@ public class SGItems {
                     .nutrition(2)
                     .saturationModifier(0.1f)
             .build())));
-
-    // Gingerbread Crumbs should drop 2-3 when broken, and 3-4 Crumbs with Fortune 3.
 
     public static final Item GINGERBREAD_CRUMBS = registerItem("gingerbread_crumbs", new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
@@ -54,6 +54,12 @@ public class SGItems {
 
     public static final Item STRING_LIGHTS = registerItem("string_lights", new BlockItem(SGBlocks.STRING_LIGHTS, new Item.Properties()));
     public static final Item WREATH = registerItem("wreath", new BlockItem(SGBlocks.WREATH, new Item.Properties()));
+
+    public static final Item PACKED_SNOW = registerItem("packed_snow", new BlockItem(SGBlocks.PACKED_SNOW, new Item.Properties()));
+    public static final Item SNOW_BRICKS = registerItem("snow_bricks", new BlockItem(SGBlocks.SNOW_BRICKS, new Item.Properties()));
+    public static final Item SNOW_BRICK_STAIRS = registerItem("snow_brick_stairs", new BlockItem(SGBlocks.SNOW_BRICK_STAIRS, new Item.Properties()));
+    public static final Item SNOW_BRICK_SLAB = registerItem("snow_brick_slab", new BlockItem(SGBlocks.SNOW_BRICK_SLAB, new Item.Properties()));
+    public static final Item CHISELED_SNOW = registerItem("chiseled_snow", new BlockItem(SGBlocks.CHISELED_SNOW, new Item.Properties()));
 
     // region Gifts
 

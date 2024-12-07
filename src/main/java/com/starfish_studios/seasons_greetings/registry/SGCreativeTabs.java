@@ -11,13 +11,18 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+
+import java.util.Objects;
 
 import static com.starfish_studios.seasons_greetings.registry.SGItems.*;
 
 public class SGCreativeTabs {
     @SuppressWarnings("unused")
     public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
+        output.accept(CHRISTMAS_HAT);
+
         output.accept(FRUITCAKE);
         output.accept(GINGERBREAD_COOKIE);
         output.accept(GINGERBREAD_CRUMBS);
@@ -27,6 +32,12 @@ public class SGCreativeTabs {
         output.accept(CHOCOLATE);
         output.accept(WARM_MILK_BOTTLE);
         output.accept(HOT_COCOA_BOTTLE);
+
+        output.accept(PACKED_SNOW);
+        output.accept(SNOW_BRICKS);
+        output.accept(SNOW_BRICK_STAIRS);
+        output.accept(SNOW_BRICK_SLAB);
+        output.accept(CHISELED_SNOW);
 
         output.accept(RED_GUMDROP_BLOCK);
         output.accept(ORANGE_GUMDROP_BLOCK);

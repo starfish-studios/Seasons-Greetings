@@ -2,6 +2,7 @@ package com.starfish_studios.seasons_greetings.block;
 
 import com.mojang.serialization.MapCodec;
 import com.starfish_studios.seasons_greetings.registry.*;
+import net.fabricmc.fabric.api.block.BlockPickInteractionAware;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvents;
@@ -13,6 +14,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
@@ -21,9 +23,12 @@ import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class MilkCauldronBlock extends AbstractCauldronBlock {
+import javax.swing.text.html.BlockView;
+
+public class MilkCauldronBlock extends AbstractCauldronBlock implements BlockPickInteractionAware {
 
     @Override
     protected MapCodec<? extends AbstractCauldronBlock> codec() {
@@ -42,6 +47,11 @@ public class MilkCauldronBlock extends AbstractCauldronBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateDefinition) {
         stateDefinition.add(LayeredCauldronBlock.LEVEL);
+    }
+
+    @Override
+    public ItemStack getPickedStack(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Player player, HitResult hitResult) {
+        return new ItemStack((Items.CAULDRON));
     }
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
@@ -120,4 +130,5 @@ public class MilkCauldronBlock extends AbstractCauldronBlock {
     public boolean isFull(BlockState blockState) {
         return true;
     }
+
 }

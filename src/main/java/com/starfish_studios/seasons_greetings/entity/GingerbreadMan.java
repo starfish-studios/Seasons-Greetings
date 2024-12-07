@@ -1,14 +1,21 @@
 package com.starfish_studios.seasons_greetings.entity;
 
 import com.starfish_studios.seasons_greetings.registry.SGSoundEvents;
-import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.RandomSource;
+import net.minecraft.util.TimeUtil;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,37 +23,42 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.*;
+import net.minecraft.world.entity.animal.WolfVariant;
+import net.minecraft.world.entity.animal.WolfVariants;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.decoration.ArmorStand;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.pathfinder.PathType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 
-public class GingerbreadMan extends TamableAnimal implements GeoEntity {
+public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralMob {
+
+    private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(GingerbreadMan.class, EntityDataSerializers.INT);
+    private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
+    @Nullable
+    private UUID persistentAngerTarget;
+
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.gingerbread_man.idle");
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.gingerbread_man.walk");
     protected static final RawAnimation WALK_ITEM = RawAnimation.begin().thenLoop("animation.gingerbread_man.walk_item");
@@ -65,33 +77,50 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
         this.setPathfindingMalus(PathType.DANGER_POWDER_SNOW, -1.0F);
     }
 
-//    @Override
-//    public boolean canPickUpLoot() {
-//        return true;
-//    }
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_REMAINING_ANGER_TIME, 0);
+    }
 
-//    @Override
-//    public void onItemPickup(ItemEntity itemEntity) {
-//        ItemStack itemStack = itemEntity.getItem();
-//        if (this.getMainHandItem().isEmpty()) {
-//            this.setItemInHand(InteractionHand.MAIN_HAND, itemStack.copy());
-//            itemEntity.discard();
-//        }
-//        super.onItemPickup(itemEntity);
-//    }
+    public void addAdditionalSaveData(CompoundTag compoundTag) {
+        super.addAdditionalSaveData(compoundTag);
+        if (this.persistentAngerTarget != null) {
+            compoundTag.putUUID("AngerTarget", this.persistentAngerTarget);
+        }
+        compoundTag.putInt("AngerTime", this.getRemainingPersistentAngerTime());
+    }
+
+    public void readAdditionalSaveData(CompoundTag compoundTag) {
+        super.readAdditionalSaveData(compoundTag);
+        this.persistentAngerTarget = compoundTag.hasUUID("AngerTarget") ? compoundTag.getUUID("AngerTarget") : null;
+        if (compoundTag.contains("AngerTime")) {
+            this.setRemainingPersistentAngerTime(compoundTag.getInt("AngerTime"));
+        }
+    }
 
     private void removeInteractionItem(Player player, ItemStack itemStack) {
         itemStack.consume(1, player);
     }
 
-    // mobInteract
+    @Override
+    public void aiStep() {
+        if (!this.level().isClientSide) {
+            if (this.isOrderedToSit()) {
+                this.setDeltaMovement(0.0D, 0.0D, 0.0D);
+                this.navigation.stop();
+                this.setTarget(null);
+            }
+        }
+        super.aiStep();
+    }
+
     @Override
     public @NotNull InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         ItemStack itemStack2 = this.getMainHandItem();
         InteractionResult interactionResult = super.mobInteract(player, hand);
 
-        if (!interactionResult.consumesAction() && this.isOwnedBy(player)) {
+        if (!interactionResult.consumesAction() && player.isCrouching() || !interactionResult.consumesAction() && !player.isCrouching() && itemStack2.isEmpty() && itemStack.isEmpty()) {
             this.setOrderedToSit(!this.isOrderedToSit());
             this.jumping = false;
             this.navigation.stop();
@@ -99,19 +128,42 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
             return InteractionResult.SUCCESS_NO_ITEM_USED;
         }
 
-        if (itemStack2.isEmpty() && !itemStack.isEmpty()) {
-            ItemStack itemStack3 = itemStack.copyWithCount(1);
-            this.setItemInHand(InteractionHand.MAIN_HAND, itemStack3);
-            this.removeInteractionItem(player, itemStack);
-            this.level().playSound(player, this, SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 2.0F, 1.0F);
-            return InteractionResult.SUCCESS;
-        } else if (!itemStack2.isEmpty() && hand == InteractionHand.MAIN_HAND && itemStack.isEmpty()) {
-            this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-            this.level().playSound(player, this, SoundEvents.ITEM_PICKUP, SoundSource.NEUTRAL, 2.0F, 1.0F);
-            player.addItem(itemStack2);
-            return InteractionResult.SUCCESS;
+        if (this.isOwnedBy(player)) {
+            if (itemStack2.isEmpty() && !itemStack.isEmpty()) {
+                ItemStack itemStack3 = itemStack.copyWithCount(1);
+                this.setItemInHand(InteractionHand.MAIN_HAND, itemStack3);
+                this.removeInteractionItem(player, itemStack);
+                this.level().playSound(player, this, SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 2.0F, 1.0F);
+                return InteractionResult.sidedSuccess(this.level().isClientSide());
+            } else if (!itemStack2.isEmpty() && hand == InteractionHand.MAIN_HAND && itemStack.isEmpty()) {
+                this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                this.level().playSound(player, this, SoundEvents.ITEM_PICKUP, SoundSource.NEUTRAL, 2.0F, 1.0F);
+                player.addItem(itemStack2);
+                return InteractionResult.sidedSuccess(this.level().isClientSide());
+            }
         }
-        return InteractionResult.PASS;
+        return interactionResult;
+    }
+
+    public int getRemainingPersistentAngerTime() {
+        return this.entityData.get(DATA_REMAINING_ANGER_TIME);
+    }
+
+    public void setRemainingPersistentAngerTime(int i) {
+        this.entityData.set(DATA_REMAINING_ANGER_TIME, i);
+    }
+
+    public void startPersistentAngerTimer() {
+        this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+    }
+
+    @Nullable
+    public UUID getPersistentAngerTarget() {
+        return this.persistentAngerTarget;
+    }
+
+    public void setPersistentAngerTarget(@Nullable UUID uUID) {
+        this.persistentAngerTarget = uUID;
     }
 
 
@@ -149,23 +201,24 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity {
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(1.5));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, true));
-
-        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.25, 10.0F, 2.0F));
-        this.goalSelector.addGoal(5, new AvoidEatingPlayerGoal(this, 8.0, 1.0, 1.2));
-
-        this.goalSelector.addGoal(6, new TemptGoal(this, 1.2, (itemStack) -> itemStack.is(Items.COOKIE), false));
-        this.goalSelector.addGoal(7, new CopyOwnerBreakGoal(this, 1.0));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new AvoidEatingPlayerGoal(this, 8.0, 1.0, 1.2));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 1.2, (itemStack) -> itemStack.is(Items.COOKIE), false));
+        this.goalSelector.addGoal(5, new CopyOwnerBreakGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
+        this.goalSelector.addGoal(8, new LeapAtTargetGoal(this, 0.3F));
+        this.goalSelector.addGoal(9, new MeleeAttackGoal(this, 1.0, true));
+        this.goalSelector.addGoal(11, new WaterAvoidingRandomStrollGoal(this, 0.8, 1.0000001E-5F));
+        this.goalSelector.addGoal(12, new LookAtPlayerGoal(this, Player.class, 10.0F));
+        this.goalSelector.addGoal(13, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
+        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
     public boolean hurt(DamageSource damageSource, float f) {

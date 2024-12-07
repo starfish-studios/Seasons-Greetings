@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "seasonsgreetings:block/snow_brick_slab"
+    },
+    "type=double": {
+      "model": "seasonsgreetings:block/snow_bricks"
+    },
+    "type=top": {
+      "model": "seasonsgreetings:block/snow_brick_slab_top"
+    }
+  }
+}

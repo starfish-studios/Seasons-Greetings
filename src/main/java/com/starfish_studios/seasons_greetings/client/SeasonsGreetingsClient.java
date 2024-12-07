@@ -10,6 +10,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
@@ -17,7 +18,11 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Blocks;
+import software.bernie.geckolib.util.Color;
+
+import static com.starfish_studios.seasons_greetings.SeasonsGreetings.getColor;
 
 @Environment(EnvType.CLIENT)
 public class SeasonsGreetingsClient  implements ClientModInitializer {
@@ -27,6 +32,12 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
         registerScreens();
         registerParticles();
         registerEntityModelLayers();
+
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) ->
+                        tintIndex > 0 ? -1 : DyedItemColor.getOrDefault(stack, getColor(Color.WHITE.argbInt())),
+                SGItems.CHRISTMAS_HAT
+        );
+
 
         ItemProperties.register(SGItems.RED_GIFT_BOX, SeasonsGreetings.id("bow_color"), (stack, world, entity, num) -> {
             CustomData customData = stack.get(DataComponents.BLOCK_ENTITY_DATA);

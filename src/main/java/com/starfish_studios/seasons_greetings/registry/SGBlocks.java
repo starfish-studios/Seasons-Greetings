@@ -20,6 +20,16 @@ public class SGBlocks {
     public static final Block STRING_LIGHTS = registerBlock("string_lights", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
     public static final Block WREATH = registerBlock("wreath", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
 
+    // Snow Block Set : Packed Snow, Snow Bricks, Snow Brick Stairs, Snow Brick Slabs
+    public static final BlockBehaviour.Properties snowProperties = Block.Properties.of().strength(0.2F).sound(SoundType.SNOW);
+
+    public static final Block PACKED_SNOW = registerBlock("packed_snow", new Block(snowProperties));
+    public static final Block SNOW_BRICKS = registerBlock("snow_bricks", new Block(snowProperties));
+    public static final Block SNOW_BRICK_STAIRS = registerBlock("snow_brick_stairs", new StairBlock(SNOW_BRICKS.defaultBlockState(), snowProperties));
+    public static final Block SNOW_BRICK_SLAB = registerBlock("snow_brick_slab", new SlabBlock(snowProperties));
+    public static final Block CHISELED_SNOW = registerBlock("chiseled_snow", new Block(snowProperties));
+
+
     // region Gingerbread House Blocks
 
     // Gingerbread Block Set : Gingerbread, Gingerbread Stairs, Gingerbread Slabs, Gingerbread Bricks, Gingerbread Brick Stairs, Gingerbread Brick Slabs,

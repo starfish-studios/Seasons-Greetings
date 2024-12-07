@@ -17,6 +17,11 @@ public class SeasonsGreetings implements ModInitializer {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
 	}
 
+
+	public static int getColor(int rgb) {
+		return (255 << 24) | rgb;
+	}
+
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override

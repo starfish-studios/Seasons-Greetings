@@ -5,15 +5,15 @@ import com.starfish_studios.seasons_greetings.client.renderer.layers.SnowGolemNo
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.SnowGolemRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.world.entity.animal.SnowGolem;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SnowGolemRenderer.class)
 public abstract class SnowGolemRendererMixin extends MobRenderer<SnowGolem, SnowGolemModel<SnowGolem>> {
@@ -23,9 +23,10 @@ public abstract class SnowGolemRendererMixin extends MobRenderer<SnowGolem, Snow
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addDecorLayer(EntityRendererProvider.Context context, CallbackInfo ci) {
-        this.addLayer((new SnowGolemNosesLayer(this)));
+        this.addLayer(new SnowGolemNosesLayer(this));
         this.addLayer(new SnowGolemDecorLayer(this));
     }
+
 }
 
 

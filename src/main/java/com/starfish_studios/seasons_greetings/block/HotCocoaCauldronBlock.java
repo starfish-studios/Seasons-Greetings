@@ -2,6 +2,7 @@ package com.starfish_studios.seasons_greetings.block;
 
 import com.mojang.serialization.MapCodec;
 import com.starfish_studios.seasons_greetings.registry.*;
+import net.fabricmc.fabric.api.block.BlockPickInteractionAware;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -15,6 +16,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
@@ -23,9 +25,10 @@ import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class HotCocoaCauldronBlock extends AbstractCauldronBlock {
+public class HotCocoaCauldronBlock extends AbstractCauldronBlock implements BlockPickInteractionAware {
 
     @Override
     protected MapCodec<? extends AbstractCauldronBlock> codec() {
@@ -41,6 +44,10 @@ public class HotCocoaCauldronBlock extends AbstractCauldronBlock {
         return InteractionResult.PASS;
     }
 
+    @Override
+    public ItemStack getPickedStack(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Player player, HitResult hitResult) {
+        return new ItemStack((Items.CAULDRON));
+    }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateDefinition) {

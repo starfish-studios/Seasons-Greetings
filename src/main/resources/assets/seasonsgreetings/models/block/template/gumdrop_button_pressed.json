@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"all": "seasonsgreetings:block/red_gumdrop_block_button"
+		"all": "seasonsgreetings:block/red_gumdrop_block_button",
+		"particle": "#all"
 	},
 	"elements": [
 		{

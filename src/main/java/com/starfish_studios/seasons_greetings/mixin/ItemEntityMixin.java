@@ -77,7 +77,7 @@ public class ItemEntityMixin {
 
         if (level.getBlockState(blockPos).is(SGBlocks.MILK_CAULDRON) && level.getBlockState(blockPos).getValue(LayeredCauldronBlock.LEVEL) == 3) {
 
-            if (level.getBlockState(blockPos.below()).is(Blocks.FIRE) || level.getBlockState(blockPos.below()).is(Blocks.LAVA)) {
+            if (level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
 
                 if (itemStack.is(SGItems.CHOCOLATE)) {
                     level.setBlockAndUpdate(blockPos, SGBlocks.HOT_COCOA_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
