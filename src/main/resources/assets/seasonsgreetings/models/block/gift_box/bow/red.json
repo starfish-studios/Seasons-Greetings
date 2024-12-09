@@ -4,7 +4,7 @@
         "bow": "seasonsgreetings:block/template/red_bow",
         "bow_bottom": "seasonsgreetings:block/template/red_bow_bottom",
         "bow_geo": "seasonsgreetings:block/template/red_bow_geo",
-        "particle": "seasonsgreetings:block/template/red_bow_top",
+        "particle": "block/red_wool",
         "bow_top": "seasonsgreetings:block/template/red_bow_top"
     }
 }

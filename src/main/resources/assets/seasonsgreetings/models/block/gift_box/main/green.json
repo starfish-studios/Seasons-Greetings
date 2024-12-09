@@ -1,6 +1,7 @@
 {
     "parent": "seasonsgreetings:block/template/gift_box_main",
     "textures": {
+        "particle": "block/green_wool",
         "gift_sides": "seasonsgreetings:block/template/green_gift",
         "gift_bottom": "seasonsgreetings:block/template/green_gift_bottom",
         "gift_top": "seasonsgreetings:block/template/green_gift_top"

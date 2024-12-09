@@ -4,7 +4,7 @@
         "bow": "seasonsgreetings:block/template/gray_bow",
         "bow_bottom": "seasonsgreetings:block/template/gray_bow_bottom",
         "bow_geo": "seasonsgreetings:block/template/gray_bow_geo",
-        "particle": "seasonsgreetings:block/template/gray_bow_top",
+        "particle": "block/gray_wool",
         "bow_top": "seasonsgreetings:block/template/gray_bow_top"
     }
 }

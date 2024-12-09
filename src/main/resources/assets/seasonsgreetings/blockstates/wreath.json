@@ -2,103 +2,817 @@
   "multipart": [
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath"
+        "model": "seasonsgreetings:block/wreath/wreath"
       },
       "when": {
-        "north": "true"
+        "facing": "north"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath"
-      },
-      "when": {
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "west": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
+        "model": "seasonsgreetings:block/wreath/wreath",
         "y": 90
       },
       "when": {
-        "east": "true"
+        "facing": "east"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
+        "model": "seasonsgreetings:block/wreath/wreath",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/wreath",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bell"
+      },
+      "when": {
+        "facing": "north",
+        "bell": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bell",
         "y": 90
       },
       "when": {
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "west": "false"
+        "facing": "east",
+        "bell": "true"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
+        "model": "seasonsgreetings:block/wreath/bell",
         "y": 180
       },
       "when": {
-        "south": "true"
+        "facing": "south",
+        "bell": "true"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
+        "model": "seasonsgreetings:block/wreath/bell",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bell": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/sweet_berries"
+      },
+      "when": {
+        "facing": "north",
+        "garland": "sweet_berries"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/sweet_berries",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "garland": "sweet_berries"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/sweet_berries",
         "y": 180
       },
       "when": {
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "west": "false"
+        "facing": "south",
+        "garland": "sweet_berries"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
+        "model": "seasonsgreetings:block/wreath/sweet_berries",
         "y": 270
       },
       "when": {
-        "west": "true"
+        "facing": "west",
+        "garland": "sweet_berries"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
+        "model": "seasonsgreetings:block/wreath/glow_berries"
+      },
+      "when": {
+        "facing": "north",
+        "garland": "glow_berries"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/glow_berries",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "garland": "glow_berries"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/glow_berries",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "garland": "glow_berries"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/glow_berries",
         "y": 270
       },
       "when": {
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "west": "false"
+        "facing": "west",
+        "garland": "glow_berries"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath",
-        "uvlock": true,
-        "x": 270
+        "model": "seasonsgreetings:block/wreath/multicolor_lights"
       },
       "when": {
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "west": "false"
+        "facing": "north",
+        "garland": "multicolor_lights"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/multicolor_lights",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "garland": "multicolor_lights"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/multicolor_lights",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "garland": "multicolor_lights"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/multicolor_lights",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "garland": "multicolor_lights"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/white_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/white_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/white_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/white_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_gray_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "light_gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_gray_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "light_gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_gray_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "light_gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_gray_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "light_gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/gray_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/gray_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/gray_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/gray_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/black_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "black"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/black_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "black"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/black_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "black"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/black_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "black"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/brown_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "brown"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/brown_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "brown"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/brown_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "brown"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/brown_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "brown"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/red_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/red_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/red_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/red_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/orange_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/orange_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/orange_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/orange_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/yellow_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/yellow_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/yellow_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/yellow_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/lime_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "lime"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/lime_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "lime"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/lime_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "lime"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/lime_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "lime"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/green_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/green_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/green_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/green_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/cyan_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "cyan"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/cyan_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "cyan"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/cyan_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "cyan"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/cyan_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "cyan"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_blue_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "light_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_blue_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "light_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_blue_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "light_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/light_blue_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "light_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/blue_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/blue_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/blue_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/blue_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/purple_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/purple_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/purple_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/purple_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/magenta_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "magenta"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/magenta_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "magenta"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/magenta_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "magenta"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/magenta_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "magenta"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/pink_bow"
+      },
+      "when": {
+        "facing": "north",
+        "bow": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/pink_bow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "bow": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/pink_bow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "bow": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/wreath/bow/pink_bow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "bow": "pink"
       }
     }
   ]

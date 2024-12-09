@@ -1,14 +1,18 @@
 package com.starfish_studios.seasons_greetings.block.entity;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 import com.starfish_studios.seasons_greetings.block.GiftBoxBlock;
 import com.starfish_studios.seasons_greetings.inventory.GiftBoxMenu;
+import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
 import com.starfish_studios.seasons_greetings.registry.SGBlockEntityType;
+import com.starfish_studios.seasons_greetings.registry.SGSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -41,14 +45,14 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
     public GiftBoxBlockEntity(@Nullable DyeColor dyeColor, BlockPos blockPos, BlockState blockState) {
         super(SGBlockEntityType.GIFT_BOX, blockPos, blockState);
         this.itemStacks = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
-        this.animationStatus = GiftBoxBlockEntity.AnimationStatus.CLOSED;
+        this.animationStatus = AnimationStatus.CLOSED;
         this.color = dyeColor;
     }
 
     public GiftBoxBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SGBlockEntityType.GIFT_BOX, blockPos, blockState);
         this.itemStacks = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
-        this.animationStatus = GiftBoxBlockEntity.AnimationStatus.CLOSED;
+        this.animationStatus = AnimationStatus.CLOSED;
         this.color = GiftBoxBlock.getColorFromBlock(blockState.getBlock());
     }
 
@@ -69,7 +73,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
                 }
 
                 if (this.progress >= 1.0F) {
-                    this.animationStatus = GiftBoxBlockEntity.AnimationStatus.OPENED;
+                    this.animationStatus = AnimationStatus.OPENED;
                     this.progress = 1.0F;
                     doNeighborUpdates(level, blockPos, blockState);
                 }
@@ -84,7 +88,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
                 }
 
                 if (this.progress <= 0.0F) {
-                    this.animationStatus = GiftBoxBlockEntity.AnimationStatus.CLOSED;
+                    this.animationStatus = AnimationStatus.CLOSED;
                     this.progress = 0.0F;
                     doNeighborUpdates(level, blockPos, blockState);
                 }
@@ -100,11 +104,11 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
         if (i == 1) {
             this.openCount = j;
             if (j == 0) {
-                this.animationStatus = GiftBoxBlockEntity.AnimationStatus.CLOSING;
+                this.animationStatus = AnimationStatus.CLOSING;
             }
 
             if (j == 1) {
-                this.animationStatus = GiftBoxBlockEntity.AnimationStatus.OPENING;
+                this.animationStatus = AnimationStatus.OPENING;
             }
 
             return true;
@@ -129,7 +133,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
             this.level.blockEvent(this.worldPosition, this.getBlockState().getBlock(), 1, this.openCount);
             if (this.openCount == 1) {
                 this.level.gameEvent(player, GameEvent.CONTAINER_OPEN, this.worldPosition);
-                this.level.playSound(null, this.worldPosition, SoundEvents.SHULKER_BOX_OPEN, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+                this.level.playSound(null, this.worldPosition, SGSoundEvents.GIFT_BOX_OPEN, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
             }
         }
 
@@ -142,7 +146,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
             this.level.blockEvent(this.worldPosition, this.getBlockState().getBlock(), 1, this.openCount);
             if (this.openCount <= 0) {
                 this.level.gameEvent(player, GameEvent.CONTAINER_CLOSE, this.worldPosition);
-                this.level.playSound(null, this.worldPosition, SoundEvents.SHULKER_BOX_CLOSE, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+                this.level.playSound(null, this.worldPosition, SGSoundEvents.GIFT_BOX_CLOSE, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
             }
         }
 
@@ -158,24 +162,13 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
         super.loadAdditional(compoundTag, provider);
         this.loadFromTag(compoundTag, provider);
 
-        if (compoundTag.contains("bow")) {
-            assert this.level != null;
-            this.level.setBlock(this.worldPosition, this.getBlockState()
-                    .setValue(GiftBoxBlock.BOW, DyeColor.byName(compoundTag.getString("bow"), DyeColor.WHITE)), 3);
-        }
     }
-
 
     protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
         super.saveAdditional(compoundTag, provider);
         if (!this.trySaveLootTable(compoundTag)) {
             ContainerHelper.saveAllItems(compoundTag, this.itemStacks, false, provider);
         }
-
-        if (this.getBlockState().getBlock().defaultBlockState().hasProperty(GiftBoxBlock.BOW)) {
-            compoundTag.putString("bow", this.getBlockState().getValue(GiftBoxBlock.BOW).getName());
-        }
-
     }
 
     public void loadFromTag(CompoundTag compoundTag, HolderLookup.Provider provider) {
@@ -216,7 +209,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
     }
 
     public boolean isClosed() {
-        return this.animationStatus == GiftBoxBlockEntity.AnimationStatus.CLOSED;
+        return this.animationStatus == AnimationStatus.CLOSED;
     }
 
     public static enum AnimationStatus {

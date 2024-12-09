@@ -27,17 +27,12 @@ public class GiftBoxItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        CustomData data = stack.get(DataComponents.BLOCK_ENTITY_DATA);
-        if (data != null && !data.isEmpty()) {
-            CompoundTag tag = data.copyTag();
-
-            if (tag.contains("bow")) {
-                tooltip.add(
-                        Component.translatable("color.minecraft." + tag.getString("bow"))
-                                .withStyle(ChatFormatting.GRAY)
-                                .append(" ")
-                                .append(Component.translatable("tooltip.seasons_greetings.bow")));
-            }
+        if (stack.has(DataComponents.BASE_COLOR)) {
+            tooltip.add(Component.translatable("color.minecraft." + Objects.requireNonNull(stack.get(DataComponents.BASE_COLOR)).getName())
+                    .withStyle(ChatFormatting.GRAY)
+                    .append(" ")
+                    .append(Component.translatable("tooltip.seasons_greetings.bow")));
         }
+        tooltip.add(Component.translatable("item.dyeable").withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
     }
 }

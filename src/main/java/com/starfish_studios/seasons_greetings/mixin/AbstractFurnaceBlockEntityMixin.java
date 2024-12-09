@@ -51,7 +51,7 @@ public class AbstractFurnaceBlockEntityMixin {
             assert gingerbreadMan != null;
             gingerbreadMan.setPos(spawnVec.add(pos.getCenter()));
             gingerbreadMan.setDeltaMovement(spawnVec.scale(0.25F).add(0.2, 0.2, 0));
-            gingerbreadMan.cantCatchMe(true);
+            gingerbreadMan.setCantCatchMe(true);
             level.addFreshEntity(gingerbreadMan);
             
             level.playSound(null, pos, SoundEvents.EVOKER_CAST_SPELL, gingerbreadMan.getSoundSource(), 1.0F, 1.0F);

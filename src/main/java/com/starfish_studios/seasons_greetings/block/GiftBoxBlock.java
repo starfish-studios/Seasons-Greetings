@@ -82,7 +82,7 @@ public class GiftBoxBlock extends BaseEntityBlock {
     @Nullable
     private final DyeColor color;
 
-    public MapCodec<GiftBoxBlock> codec() {
+    public @NotNull MapCodec<GiftBoxBlock> codec() {
         return CODEC;
     }
 
@@ -124,8 +124,16 @@ public class GiftBoxBlock extends BaseEntityBlock {
             return InteractionResult.CONSUME;
         } else {
             if (itemStack.getItem() instanceof DyeItem dyeItem) {
+                BlockEntity blockEntity = level.getBlockEntity(blockPos);
                 DyeColor dyeColor = dyeItem.getDyeColor();
                 if (dyeColor != blockState.getValue(BOW)) {
+
+                    ItemStack giftBoxItem = getColoredItemStack(dyeColor);
+
+                    giftBoxItem.set(DataComponents.BASE_COLOR, dyeColor);
+                    assert blockEntity != null;
+                    blockEntity.applyComponentsFromItemStack(giftBoxItem);
+
                     level.setBlock(blockPos, blockState.setValue(BOW, dyeColor), 3);
                     if (!player.isCreative()) {
                         itemStack.shrink(1);
@@ -135,6 +143,7 @@ public class GiftBoxBlock extends BaseEntityBlock {
             } else {
                 BlockEntity blockEntity = level.getBlockEntity(blockPos);
                 if (blockEntity instanceof GiftBoxBlockEntity giftBoxBlockEntity) {
+
                     if (canOpen(blockState, level, blockPos, giftBoxBlockEntity)) {
                         player.openMenu(giftBoxBlockEntity);
                         player.awardStat(Stats.OPEN_SHULKER_BOX);
@@ -155,6 +164,10 @@ public class GiftBoxBlock extends BaseEntityBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+        if (blockPlaceContext.getItemInHand().has(DataComponents.BASE_COLOR)) {
+            return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite()).setValue(BOW, blockPlaceContext.getItemInHand().get(DataComponents.BASE_COLOR));
+        }
+
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
     }
 
@@ -179,8 +192,8 @@ public class GiftBoxBlock extends BaseEntityBlock {
         return super.playerWillDestroy(level, blockPos, blockState, player);
     }
 
-    protected List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
-        BlockEntity blockEntity = (BlockEntity) builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+    protected @NotNull List<ItemStack> getDrops(BlockState blockState, LootParams.Builder builder) {
+        BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
         if (blockEntity instanceof GiftBoxBlockEntity giftBoxBlockEntity) {
             builder = builder.withDynamicDrop(CONTENTS, (consumer) -> {
                 for (int i = 0; i < giftBoxBlockEntity.getContainerSize(); ++i) {
@@ -214,37 +227,34 @@ public class GiftBoxBlock extends BaseEntityBlock {
 
         int i = 0;
         int j = 0;
-        Iterator var7 = ((ItemContainerContents) itemStack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY)).nonEmptyItems().iterator();
 
-        while (var7.hasNext()) {
-            ItemStack itemStack2 = (ItemStack) var7.next();
+        for (ItemStack itemStack2 : itemStack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).nonEmptyItems()) {
             ++j;
             if (i <= 4) {
                 ++i;
-                list.add(Component.translatable("container.giftBox.itemCount", new Object[]{itemStack2.getHoverName(), itemStack2.getCount()}));
+                list.add(Component.translatable("container.giftBox.itemCount", itemStack2.getHoverName(), itemStack2.getCount()));
             }
         }
 
         if (j - i > 0) {
-            list.add(Component.translatable("container.giftBox.more", new Object[]{j - i}).withStyle(ChatFormatting.ITALIC));
+            list.add(Component.translatable("container.giftBox.more", j - i).withStyle(ChatFormatting.ITALIC));
         }
 
     }
 
-    protected VoxelShape getBlockSupportShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+    protected @NotNull VoxelShape getBlockSupportShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
         BlockEntity blockEntity = blockGetter.getBlockEntity(blockPos);
         if (blockEntity instanceof GiftBoxBlockEntity giftBoxBlockEntity) {
             if (!giftBoxBlockEntity.isClosed()) {
-                return (VoxelShape) OPEN_SHAPE_BY_DIRECTION.get(((Direction) blockState.getValue(FACING)).getOpposite());
+                return (VoxelShape) OPEN_SHAPE_BY_DIRECTION.get(blockState.getValue(FACING).getOpposite());
             }
         }
 
         return Shapes.block();
     }
 
-    protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+    protected @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
         return Shapes.block();
-//        return blockEntity instanceof GiftBoxBlockEntity ? Shapes.create(((GiftBoxBlockEntity) blockEntity).getBoundingBox(blockState)) : Shapes.block();
     }
 
     protected boolean propagatesSkylightDown(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
@@ -262,16 +272,11 @@ public class GiftBoxBlock extends BaseEntityBlock {
     public @NotNull ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         ItemStack itemStack = super.getCloneItemStack(levelReader, blockPos, blockState);
         levelReader.getBlockEntity(blockPos, SGBlockEntityType.GIFT_BOX).ifPresent((giftBoxBlockEntity) -> {
+            itemStack.set(DataComponents.BASE_COLOR, DyeColor.byName(blockState.getValue(BOW).getName(), DyeColor.WHITE));
+
             giftBoxBlockEntity.saveToItem(itemStack, levelReader.registryAccess());
         });
         return itemStack;
-    }
-
-
-
-    @Nullable
-    public static DyeColor getColorFromItem(Item item) {
-        return getColorFromBlock(Block.byItem(item));
     }
 
     @Nullable

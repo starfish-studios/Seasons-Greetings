@@ -17,6 +17,9 @@ public class SGSoundEvents {
     public static final SoundEvent GINGERBREAD_MAN_HURT = registerSoundEvent("entity.gingerbread_man.hurt");
     public static final SoundEvent GINGERBREAD_MAN_DEATH = registerSoundEvent("entity.gingerbread_man.death");
 
+    public static final SoundEvent GIFT_BOX_OPEN = registerSoundEvent("block.gift_box.open");
+    public static final SoundEvent GIFT_BOX_CLOSE = registerSoundEvent("block.gift_box.close");
+
 //    }
 
     public static void registerSoundEvents() {

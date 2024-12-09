@@ -13,14 +13,14 @@ public class CantCatchMeGoal extends Goal {
     private double posY;
     private double posZ;
 
-    public CantCatchMeGoal(GingerbreadMan gingerbreadMan1, double d) {
-        this.gingerbreadMan = gingerbreadMan1;
-        this.speedModifier = d;
+    public CantCatchMeGoal(GingerbreadMan gingerbreadMan, double speedModifier) {
+        this.gingerbreadMan = gingerbreadMan;
+        this.speedModifier = speedModifier;
         this.setFlags(EnumSet.of(Flag.MOVE));
     }
 
     public boolean canUse() {
-        if (this.gingerbreadMan.cantCatchMe(true)) {
+        if (this.gingerbreadMan.isCantCatchMe(true)) {
             Vec3 vec3 = DefaultRandomPos.getPos(this.gingerbreadMan, 5, 4);
             if (vec3 == null) {
                 return false;

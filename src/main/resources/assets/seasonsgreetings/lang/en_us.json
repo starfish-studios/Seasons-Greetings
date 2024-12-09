@@ -62,7 +62,9 @@
   "block.seasons_greetings.hot_cocoa_cauldron.bucket": "[!] You can't fill Buckets with Hot Cocoa, only Bottles!",
   "block.seasons_greetings.hot_cocoa_cauldron.bucket2": "Sneak + Right Click if you'd like to clear the Cauldron's contents.",
 
+  "item.dyeable": "Dyeable",
   "item.seasonsgreetings.chocolate": "Chocolate",
+  "item.seasonsgreetings.christmas_hat": "Christmas Hat",
   "item.seasonsgreetings.fruitcake": "Fruitcake",
   "item.seasonsgreetings.gingerbread_cookie": "Gingerbread Cookie",
   "item.seasonsgreetings.gingerbread_crumbs": "Gingerbread Crumbs",
@@ -73,6 +75,9 @@
   "tooltip.seasons_greetings.bow": "Bow",
 
   "subtitles.seasonsgreetings.entity.gingerbread_man.hurt": "Gingerbread Man hurts",
+
+  "subtitles.seasonsgreetings.block.gift_box.open": "Gift Box opens",
+  "subtitles.seasonsgreetings.block.gift_box.close": "Gift Box closes",
 
   "subtitles.seasonsgreetings.block.milk_cauldron.bubble": "Warm Milk bubbles",
   "subtitles.seasonsgreetings.entity.generic.drink": "Drinking",

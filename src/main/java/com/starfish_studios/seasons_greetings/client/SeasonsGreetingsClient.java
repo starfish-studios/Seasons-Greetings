@@ -4,6 +4,7 @@ import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.client.gui.screens.GiftBoxScreen;
 import com.starfish_studios.seasons_greetings.client.particles.PoppingBubbleParticle;
 import com.starfish_studios.seasons_greetings.client.renderer.GingerbreadManRenderer;
+import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
 import com.starfish_studios.seasons_greetings.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -17,10 +18,17 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Blocks;
 import software.bernie.geckolib.util.Color;
+
+import java.util.Objects;
 
 import static com.starfish_studios.seasons_greetings.SeasonsGreetings.getColor;
 
@@ -38,36 +46,38 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
                 SGItems.CHRISTMAS_HAT
         );
 
+        registerAllGiftBoxProperties();
+    }
 
-        ItemProperties.register(SGItems.RED_GIFT_BOX, SeasonsGreetings.id("bow_color"), (stack, world, entity, num) -> {
-            CustomData customData = stack.get(DataComponents.BLOCK_ENTITY_DATA);
-            String variantString = "bow";
-            if (customData != null) {
-            CompoundTag tag = customData.copyTag();
-            return tag.contains(variantString) ? switch (tag.getString(variantString)) {
-                case "white" -> 0.0625F;
-                case "orange" -> 0.125F;
-                case "magenta" -> 0.1875F;
-                case "light_blue" -> 0.25F;
-                case "yellow" -> 0.3125F;
-                case "lime" -> 0.375F;
-                case "pink" -> 0.4375F;
-                case "gray" -> 0.5F;
-                case "light_gray" -> 0.5625F;
-                case "cyan" -> 0.625F;
-                case "purple" -> 0.6875F;
-                case "blue" -> 0.75F;
-                case "brown" -> 0.8125F;
-                case "green" -> 0.875F;
-                case "red" -> 0.9375F;
-                case "black" -> 1.0F;
-                default -> 0.0F;
-            } : 0.0F;
-        } else {
-            return 0.0F;
+    private static void registerGiftBoxProperties(Item item) {
+        for (int i = 0; i < 16; i++) {
+            ItemProperties.register(item, ResourceLocation.fromNamespaceAndPath(SeasonsGreetings.MOD_ID, "bow_color"), (stack, world, entity, num) -> {
+                if (stack.has(DataComponents.BASE_COLOR)) {
+                    return (float) Objects.requireNonNull(stack.get(DataComponents.BASE_COLOR)).getId() / 15;
+                }
+                return 0;
+            });
         }
-    });
-        }
+    }
+
+    private static void registerAllGiftBoxProperties() {
+        registerGiftBoxProperties(SGItems.WHITE_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.LIGHT_GRAY_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.GRAY_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.BLACK_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.BROWN_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.RED_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.ORANGE_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.YELLOW_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.LIME_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.GREEN_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.CYAN_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.LIGHT_BLUE_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.BLUE_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.PURPLE_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.MAGENTA_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.PINK_GIFT_BOX);
+    }
 
     private static void registerEntityModelLayers() {
         EntityRendererRegistry.register(SGEntityType.GINGERBREAD_MAN, GingerbreadManRenderer::new);

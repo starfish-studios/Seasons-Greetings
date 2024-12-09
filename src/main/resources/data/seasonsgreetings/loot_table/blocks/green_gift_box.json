@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "bonus_rolls": 0,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "functions": [
+                        {
+                            "function": "minecraft:copy_components",
+                            "include": [
+                                "minecraft:custom_name",
+                                "minecraft:container",
+                                "minecraft:lock",
+                                "minecraft:container_loot",
+                                "minecraft:base_color"
+                            ],
+                            "source": "block_entity"
+                        }
+                    ],
+                    "name": "seasonsgreetings:green_gift_box"
+                }
+            ],
+            "rolls": 1
+        }
+    ]
+}

@@ -18,7 +18,7 @@ public class SGBlocks {
     public static final Block MILK_CAULDRON = registerBlock("milk_cauldron", new MilkCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
     public static final Block STRING_LIGHTS = registerBlock("string_lights", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
-    public static final Block WREATH = registerBlock("wreath", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
+    public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
 
     // Snow Block Set : Packed Snow, Snow Bricks, Snow Brick Stairs, Snow Brick Slabs
     public static final BlockBehaviour.Properties snowProperties = Block.Properties.of().strength(0.2F).sound(SoundType.SNOW);

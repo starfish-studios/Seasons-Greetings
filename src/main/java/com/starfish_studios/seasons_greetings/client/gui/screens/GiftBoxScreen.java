@@ -21,7 +21,6 @@ public class GiftBoxScreen extends AbstractContainerScreen<GiftBoxMenu> {
     protected void init() {
         super.init();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
-        // Move the label down by 16 pixels.
         this.titleLabelY += 16;
     }
 

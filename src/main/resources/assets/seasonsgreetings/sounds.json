@@ -10,6 +10,19 @@
     "subtitle": "subtitles.seasonsgreetings.entity.gingerbread_man.hurt"
   },
 
+  "block.gift_box.close": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box_close"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.gift_box.close"
+  },
+  "block.gift_box.open": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box_open"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.gift_box.open"
+  },
+
 
   "entity.snowball.hit": {
     "sounds": [

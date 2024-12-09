@@ -9,10 +9,8 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.DyedItemColor;
 
 import java.util.Objects;
 
@@ -21,7 +19,12 @@ import static com.starfish_studios.seasons_greetings.registry.SGItems.*;
 public class SGCreativeTabs {
     @SuppressWarnings("unused")
     public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
-        output.accept(CHRISTMAS_HAT);
+        ItemStack stack = new ItemStack(CHRISTMAS_HAT);
+        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(0xFF0000, true));
+
+        output.accept(stack);
+
+//        output.accept(CHRISTMAS_HAT);
 
         output.accept(FRUITCAKE);
         output.accept(GINGERBREAD_COOKIE);
@@ -87,6 +90,7 @@ public class SGCreativeTabs {
         output.accept(PURPLE_GIFT_BOX);
         output.accept(MAGENTA_GIFT_BOX);
         output.accept(PINK_GIFT_BOX);
+
 
         output.accept(GINGERBREAD_MAN_SPAWN_EGG);
 

@@ -1,11 +1,7 @@
 package com.starfish_studios.seasons_greetings.entity;
 
+import com.starfish_studios.seasons_greetings.registry.SGItems;
 import com.starfish_studios.seasons_greetings.registry.SGSoundEvents;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -25,18 +21,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
-import net.minecraft.world.entity.animal.WolfVariant;
-import net.minecraft.world.entity.animal.WolfVariants;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.PathType;
@@ -49,7 +40,6 @@ import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.UUID;
 
 public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralMob {
@@ -58,6 +48,8 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
     private UUID persistentAngerTarget;
+    private static final EntityDataAccessor<Boolean> CANT_CATCH_ME =
+            SynchedEntityData.defineId(GingerbreadMan.class, EntityDataSerializers.BOOLEAN);
 
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.gingerbread_man.idle");
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.gingerbread_man.walk");
@@ -80,6 +72,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_REMAINING_ANGER_TIME, 0);
+        builder.define(CANT_CATCH_ME, false);
     }
 
     public void addAdditionalSaveData(CompoundTag compoundTag) {
@@ -88,6 +81,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
             compoundTag.putUUID("AngerTarget", this.persistentAngerTarget);
         }
         compoundTag.putInt("AngerTime", this.getRemainingPersistentAngerTime());
+        compoundTag.putBoolean("CantCatchMe", this.isCantCatchMe(false));
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -96,6 +90,15 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         if (compoundTag.contains("AngerTime")) {
             this.setRemainingPersistentAngerTime(compoundTag.getInt("AngerTime"));
         }
+        this.isCantCatchMe(compoundTag.getBoolean("CantCatchMe"));
+    }
+
+    public boolean isCantCatchMe(boolean truefalse) {
+        return this.entityData.get(CANT_CATCH_ME);
+    }
+
+    public void setCantCatchMe(boolean value) {
+        this.entityData.set(CANT_CATCH_ME, value);
     }
 
     private void removeInteractionItem(Player player, ItemStack itemStack) {
@@ -118,7 +121,21 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     public @NotNull InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         ItemStack itemStack2 = this.getMainHandItem();
+        ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), new ItemStack(SGItems.GINGERBREAD_COOKIE));
+
         InteractionResult interactionResult = super.mobInteract(player, hand);
+
+        if (isCantCatchMe(false)) {
+            if (!level().isClientSide) {
+                ItemStack cookie = new ItemStack(SGItems.GINGERBREAD_COOKIE);
+                itemEntity.setPos(this.getX(), this.getY(), this.getZ());
+                itemEntity.setItem(cookie);
+                itemEntity.setDeltaMovement(0.0D, 0.2D, 0.0D);
+                level().addFreshEntity(itemEntity);
+                this.discard();
+            }
+            return InteractionResult.sidedSuccess(level().isClientSide);
+        }
 
         if (!interactionResult.consumesAction() && player.isCrouching() || !interactionResult.consumesAction() && !player.isCrouching() && itemStack2.isEmpty() && itemStack.isEmpty()) {
             this.setOrderedToSit(!this.isOrderedToSit());
@@ -172,11 +189,6 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         return SGSoundEvents.GINGERBREAD_MAN_HURT;
     }
 
-
-    public boolean cantCatchMe(boolean b) {
-        return b;
-    }
-
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor serverLevelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
         this.populateDefaultEquipmentSlots(random, difficultyInstance);
@@ -202,6 +214,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new CantCatchMeGoal(this, 2.5));
         this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(1.5));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(3, new AvoidEatingPlayerGoal(this, 8.0, 1.0, 1.2));
@@ -258,14 +271,10 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         if (this.isOrderedToSit()) {
             event.setAnimation(SIT);
         } else if (event.isMoving()) {
-            if (this.getAttributeValue(Attributes.MOVEMENT_SPEED) == 0.25 * 1.25) {
-                event.setControllerSpeed(1.25F);
+            if (this.getMainHandItem().isEmpty()) {
+                event.setAnimation(WALK);
             } else {
-                if (this.getMainHandItem().isEmpty()) {
-                    event.setAnimation(WALK);
-                } else {
-                    event.setAnimation(WALK_ITEM);
-                }
+                event.setAnimation(WALK_ITEM);
             }
         } else {
             event.setAnimation(IDLE);

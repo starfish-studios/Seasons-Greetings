@@ -35,7 +35,7 @@ public class SnowGolemNosesLayer extends RenderLayer<SnowGolem, SnowGolemModel<S
     }
 
     public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, SnowGolem snowGolem, float f, float g, float h, float j, float k, float l) {
-        ItemStack itemStack = snowGolem.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack itemStack = snowGolem.getItemBySlot(EquipmentSlot.LEGS);
         if (TEXTURE_LOCATION.containsKey(itemStack.getItem())) {
             VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutout(TEXTURE_LOCATION.get(itemStack.getItem())));
             this.getParentModel().renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);

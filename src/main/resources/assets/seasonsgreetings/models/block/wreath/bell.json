@@ -1,0 +1,72 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"decor": "seasonsgreetings:block/wreath/wreath_decor"
+	},
+	"elements": [
+		{
+			"from": [6, 7, 11],
+			"to": [10, 11, 15],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 10.75, 13]},
+			"faces": {
+				"north": {"uv": [6, 2, 8, 4], "texture": "#decor"},
+				"east": {"uv": [6, 2, 8, 4], "texture": "#decor"},
+				"south": {"uv": [6, 2, 8, 4], "texture": "#decor"},
+				"west": {"uv": [6, 2, 8, 4], "texture": "#decor"},
+				"up": {"uv": [6, 0, 8, 2], "texture": "#decor"}
+			}
+		},
+		{
+			"from": [5, 5, 10],
+			"to": [11, 7, 16],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 10.75, 13]},
+			"faces": {
+				"north": {"uv": [5, 7, 8, 8], "texture": "#decor"},
+				"east": {"uv": [5, 7, 8, 8], "texture": "#decor"},
+				"south": {"uv": [5, 7, 8, 8], "texture": "#decor"},
+				"west": {"uv": [5, 7, 8, 8], "texture": "#decor"},
+				"up": {"uv": [3, 4, 6, 7], "texture": "#decor"},
+				"down": {"uv": [3, 4, 6, 7], "texture": "#decor"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [-1.75, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [-1.75, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [-43.11, 85.42, 64.52],
+			"translation": [0, 3.25, 0.25],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-43.11, 85.42, 64.52],
+			"translation": [0, 3.25, 0.25],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, -1.25],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [2.5, -1.5, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"rotation": [90, 0, 180],
+			"translation": [0, 13.5, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}
