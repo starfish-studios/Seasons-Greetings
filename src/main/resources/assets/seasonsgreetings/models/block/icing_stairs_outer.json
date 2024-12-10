@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "seasonsgreetings:block/icing_block",
+    "side": "seasonsgreetings:block/icing_block",
+    "top": "seasonsgreetings:block/icing_block"
+  }
+}

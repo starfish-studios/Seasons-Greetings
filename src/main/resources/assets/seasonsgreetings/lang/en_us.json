@@ -4,6 +4,16 @@
   "advancements.adventure.gumdrop_buttons.title": "The Muffin Man",
   "advancements.adventure.gumdrop_buttons.description": "Not my Gumdrop Buttons!",
 
+  "block.seasonsgreetings.wreath": "Wreath",
+  "block.seasonsgreetings.white_lights": "White Lights",
+  "block.seasonsgreetings.red_lights": "Red Lights",
+  "block.seasonsgreetings.orange_lights": "Orange Lights",
+  "block.seasonsgreetings.yellow_lights": "Yellow Lights",
+  "block.seasonsgreetings.green_lights": "Green Lights",
+  "block.seasonsgreetings.blue_lights": "Blue Lights",
+  "block.seasonsgreetings.purple_lights": "Purple Lights",
+  "block.seasonsgreetings.multicolor_lights": "Multicolor Lights",
+
   "block.seasonsgreetings.white_gift_box": "White Gift Box",
   "block.seasonsgreetings.light_gray_gift_box": "Light Gray Gift Box",
   "block.seasonsgreetings.gray_gift_box": "Gray Gift Box",
@@ -20,6 +30,11 @@
   "block.seasonsgreetings.purple_gift_box": "Purple Gift Box",
   "block.seasonsgreetings.magenta_gift_box": "Magenta Gift Box",
   "block.seasonsgreetings.pink_gift_box": "Pink Gift Box",
+
+  "block.seasonsgreetings.icing": "Icing",
+  "block.seasonsgreetings.icing_block": "Icing Block",
+  "block.seasonsgreetings.icing_stairs": "Icing Stairs",
+  "block.seasonsgreetings.icing_slab": "Icing Slab",
 
   "block.seasonsgreetings.red_gumdrop_button": "Red Gumdrop Button",
   "block.seasonsgreetings.red_gumdrop_block": "Red Gumdrop Block",
@@ -42,6 +57,11 @@
   "block.seasonsgreetings.peppermint_stairs": "Peppermint Stairs",
   "block.seasonsgreetings.peppermint_slab": "Peppermint Slab",
 
+  "block.seasonsgreetings.chocolate_block": "Chocolate Block",
+  "block.seasonsgreetings.chocolate_stairs": "Chocolate Stairs",
+  "block.seasonsgreetings.chocolate_slab": "Chocolate Slab",
+
+  "block.seasonsgreetings.gingerbread_door": "Gingerbread Door",
   "block.seasonsgreetings.gingerbread_block": "Gingerbread Block",
   "block.seasonsgreetings.gingerbread_stairs": "Gingerbread Stairs",
   "block.seasonsgreetings.gingerbread_slab": "Gingerbread Slab",

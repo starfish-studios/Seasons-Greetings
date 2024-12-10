@@ -1,0 +1,33 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "seasonsgreetings:block/icing_overlay",
+		"particle": "seasonsgreetings:block/icing_block",
+		"texture": "seasonsgreetings:block/icing_block"
+	},
+	"elements": [
+		{
+			"from": [-0.2, -0.2, -0.2],
+			"to": [16.2, 16.2, 16.2],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#texture"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#texture", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-0.2, -8.6, -0.2],
+			"to": [16.2, -0.2, 16.2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -4.4, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 8], "texture": "#1", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 8], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 8], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 8], "texture": "#1", "cullface": "west"}
+			}
+		}
+	]
+}

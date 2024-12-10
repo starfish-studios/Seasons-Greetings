@@ -2,17 +2,12 @@ package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.DyedItemColor;
-
-import java.util.Objects;
 
 import static com.starfish_studios.seasons_greetings.registry.SGItems.*;
 
@@ -31,10 +26,23 @@ public class SGCreativeTabs {
         output.accept(GINGERBREAD_CRUMBS);
 
 //        output.accept(STRING_LIGHTS);
-//        output.accept(WREATH);
+
+
+
         output.accept(CHOCOLATE);
         output.accept(WARM_MILK_BOTTLE);
         output.accept(HOT_COCOA_BOTTLE);
+
+
+        output.accept(WREATH);
+        output.accept(WHITE_LIGHTS);
+        output.accept(RED_LIGHTS);
+        output.accept(ORANGE_LIGHTS);
+        output.accept(YELLOW_LIGHTS);
+        output.accept(GREEN_LIGHTS);
+        output.accept(BLUE_LIGHTS);
+        output.accept(PURPLE_LIGHTS);
+        output.accept(MULTICOLOR_LIGHTS);
 
         output.accept(PACKED_SNOW);
         output.accept(SNOW_BRICKS);
@@ -61,6 +69,12 @@ public class SGCreativeTabs {
         output.accept(CHOCOLATE_BLOCK);
         output.accept(CHOCOLATE_STAIRS);
         output.accept(CHOCOLATE_SLAB);
+
+        output.accept(ICING);
+        output.accept(ICING_BLOCK);
+        output.accept(ICING_STAIRS);
+        output.accept(ICING_SLAB);
+
 
         output.accept(GINGERBREAD_DOOR);
         output.accept(GINGERBREAD_BLOCK);

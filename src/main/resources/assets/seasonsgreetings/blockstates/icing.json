@@ -1,0 +1,87 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_drip"
+      },
+      "when": {
+        "face": "ceiling"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_swirl"
+      },
+      "when": {
+        "facing": "south",
+        "face": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_swirl",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "face": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_swirl",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "face": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_swirl",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "face": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_height4"
+      },
+      "when": {
+        "face": "floor",
+        "layers": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_height8"
+      },
+      "when": {
+        "face": "floor",
+        "layers": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_height12"
+      },
+      "when": {
+        "face": "floor",
+        "layers": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "seasonsgreetings:block/icing_height16"
+      },
+      "when": {
+        "face": "floor",
+        "layers": "4"
+      }
+    }
+  ]
+}

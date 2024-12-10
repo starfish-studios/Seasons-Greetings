@@ -2,23 +2,36 @@ package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.block.*;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 public class SGBlocks {
     // WHITE, LIGHT GRAY, GRAY, BLACK, BROWN, RED, ORANGE, YELLOW, LIME, GREEN, CYAN, LIGHT BLUE, BLUE, PURPLE, MAGENTA, PINK
 
 
+    public static final Block EGGNOG_CAULDRON = registerBlock("eggnog_cauldron", new EggnogCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
     public static final Block HOT_COCOA_CAULDRON = registerBlock("hot_cocoa_cauldron", new HotCocoaCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
     public static final Block MILK_CAULDRON = registerBlock("milk_cauldron", new MilkCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
     public static final Block STRING_LIGHTS = registerBlock("string_lights", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
-    public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
+    public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES)));
+
+    public static final BlockBehaviour.Properties lightProperties = Block.Properties.of().sound(SoundType.WOOL).instabreak().noCollission().noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(GlowLichenBlock.emission(10));
+    public static final Block WHITE_LIGHTS = registerBlock("white_lights", new WrappedBlock(lightProperties));
+    public static final Block RED_LIGHTS = registerBlock("red_lights", new WrappedBlock(lightProperties));
+    public static final Block ORANGE_LIGHTS = registerBlock("orange_lights", new WrappedBlock(lightProperties));
+    public static final Block YELLOW_LIGHTS = registerBlock("yellow_lights", new WrappedBlock(lightProperties));
+    public static final Block GREEN_LIGHTS = registerBlock("green_lights", new WrappedBlock(lightProperties));
+    public static final Block BLUE_LIGHTS = registerBlock("blue_lights", new WrappedBlock(lightProperties));
+    public static final Block PURPLE_LIGHTS = registerBlock("purple_lights", new WrappedBlock(lightProperties));
+    public static final Block MULTICOLOR_LIGHTS = registerBlock("multicolor_lights", new WrappedBlock(lightProperties));
 
     // Snow Block Set : Packed Snow, Snow Bricks, Snow Brick Stairs, Snow Brick Slabs
     public static final BlockBehaviour.Properties snowProperties = Block.Properties.of().strength(0.2F).sound(SoundType.SNOW);
@@ -46,6 +59,12 @@ public class SGBlocks {
     public static final Block GINGERBREAD_SHINGLE_STAIRS = registerBlock("gingerbread_shingle_stairs", new StairBlock(GINGERBREAD_SHINGLES.defaultBlockState(), gingerbreadProperties));
     public static final Block GINGERBREAD_SHINGLE_SLAB = registerBlock("gingerbread_shingle_slab", new SlabBlock(gingerbreadProperties));
     public static final Block GINGERBREAD_DOOR = registerBlock("gingerbread_door", new DoorBlock(BlockSetType.OAK, gingerbreadProperties.noOcclusion().pushReaction(PushReaction.DESTROY)));
+
+    public static final BlockBehaviour.Properties icingProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
+    public static final Block ICING_BLOCK = registerBlock("icing_block", new Block(icingProperties));
+    public static final Block ICING_STAIRS = registerBlock("icing_stairs", new StairBlock(ICING_BLOCK.defaultBlockState(), icingProperties));
+    public static final Block ICING_SLAB = registerBlock("icing_slab", new SlabBlock(icingProperties));
+    public static final Block ICING = registerBlock("icing", new IcingBlock(icingProperties.noOcclusion()));
 
     public static final BlockBehaviour.Properties chocolateProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
     public static final Block CHOCOLATE_BLOCK = registerBlock("chocolate_block", new Block(chocolateProperties));

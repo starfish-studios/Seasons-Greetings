@@ -1,13 +1,13 @@
 {
     "parent": "seasonsgreetings:block/template/gift_box",
     "textures": {
-        "gift_sides": "seasonsgreetings:block/template/black_gift",
-        "gift_bottom": "seasonsgreetings:block/template/black_gift_bottom",
-        "gift_top": "seasonsgreetings:block/template/black_gift_top",
-        "bow": "seasonsgreetings:block/template/white_bow",
-        "bow_bottom": "seasonsgreetings:block/template/white_bow_bottom",
-        "bow_geo": "seasonsgreetings:block/template/white_bow_geo",
-        "particle": "seasonsgreetings:block/template/white_bow_top",
-        "bow_top": "seasonsgreetings:block/template/white_bow_top"
+        "gift_sides": "seasonsgreetings:block/gift/black_gift",
+        "gift_bottom": "seasonsgreetings:block/gift/black_gift_bottom",
+        "gift_top": "seasonsgreetings:block/gift/black_gift_top",
+        "bow": "seasonsgreetings:block/gift/white_bow",
+        "bow_bottom": "seasonsgreetings:block/gift/white_bow_bottom",
+        "bow_geo": "seasonsgreetings:block/gift/white_bow_geo",
+        "particle": "seasonsgreetings:block/gift/white_bow_top",
+        "bow_top": "seasonsgreetings:block/gift/white_bow_top"
     }
 }

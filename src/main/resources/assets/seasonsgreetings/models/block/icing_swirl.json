@@ -1,0 +1,16 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "seasonsgreetings:block/icing_swirl",
+    "icing_swirl": "seasonsgreetings:block/icing_swirl"
+  },
+  "elements": [
+    {   "from": [ 0, 0, 0.1 ],
+      "to": [ 16, 16, 0.1 ],
+      "faces": {
+        "north": { "uv": [ 16, 0, 0, 16 ], "texture": "#icing_swirl" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#icing_swirl" }
+      }
+    }
+  ]
+}

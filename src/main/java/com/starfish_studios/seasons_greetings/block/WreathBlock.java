@@ -15,6 +15,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
@@ -26,6 +27,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -36,6 +39,11 @@ public class WreathBlock extends Block {
     public static final EnumProperty<WreathGarland> GARLAND = EnumProperty.create("garland", WreathGarland.class);
     public static final EnumProperty<WreathBowColors> BOW = EnumProperty.create("bow", WreathBowColors.class);
     public static final BooleanProperty BELL = BooleanProperty.create("bell");
+
+    public static final VoxelShape NORTH_AABB = Block.box(2, 2, 12, 14, 14, 16);
+    public static final VoxelShape SOUTH_AABB = Block.box(2, 2, 0, 14, 14, 4);
+    public static final VoxelShape EAST_AABB = Block.box(0, 2, 2, 4, 14, 14);
+    public static final VoxelShape WEST_AABB = Block.box(12, 2, 2, 16, 14, 14);
 
     public WreathBlock(Properties properties) {
         super(properties);
@@ -53,6 +61,16 @@ public class WreathBlock extends Block {
 
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    protected @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+        return switch (blockState.getValue(FACING)) {
+            case SOUTH -> SOUTH_AABB;
+            case EAST -> EAST_AABB;
+            case WEST -> WEST_AABB;
+            default -> NORTH_AABB;
+        };
     }
 
     public static double dyeHeight() {

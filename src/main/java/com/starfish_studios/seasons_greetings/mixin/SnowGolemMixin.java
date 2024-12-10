@@ -144,6 +144,8 @@ public class SnowGolemMixin extends AbstractGolem {
             else if (itemStack.getItem() instanceof ShearsItem) {
                 if (snowGolem.hasPumpkin()) {
                     snowGolem.setPumpkin(false);
+                    ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY() + 1.5, this.getZ(), new ItemStack(Items.CARVED_PUMPKIN));
+                    this.level().addFreshEntity(itemEntity);
                     this.shearSnowGolem(player, interactionHand);
                     cir.setReturnValue(InteractionResult.SUCCESS);
                 } else if (!snowGolem.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {

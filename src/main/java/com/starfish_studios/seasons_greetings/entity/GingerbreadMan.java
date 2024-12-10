@@ -138,11 +138,13 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         }
 
         if (!interactionResult.consumesAction() && player.isCrouching() || !interactionResult.consumesAction() && !player.isCrouching() && itemStack2.isEmpty() && itemStack.isEmpty()) {
-            this.setOrderedToSit(!this.isOrderedToSit());
-            this.jumping = false;
-            this.navigation.stop();
-            this.setTarget(null);
-            return InteractionResult.SUCCESS_NO_ITEM_USED;
+            if (this.isOwnedBy(player)) {
+                this.setOrderedToSit(!this.isOrderedToSit());
+                this.jumping = false;
+                this.navigation.stop();
+                this.setTarget(null);
+                return InteractionResult.SUCCESS_NO_ITEM_USED;
+            }
         }
 
         if (this.isOwnedBy(player)) {

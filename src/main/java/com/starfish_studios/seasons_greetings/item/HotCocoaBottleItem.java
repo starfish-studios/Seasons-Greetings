@@ -2,7 +2,9 @@ package com.starfish_studios.seasons_greetings.item;
 
 import com.starfish_studios.seasons_greetings.registry.SGEffects;
 import com.starfish_studios.seasons_greetings.registry.SGSoundEvents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.stats.Stats;
@@ -15,12 +17,21 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class HotCocoaBottleItem extends Item {
     public HotCocoaBottleItem(Properties properties) {
         super(properties);
     }
 
     private static final int DRINK_DURATION = 40;
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("effect.seasonsgreetings.cozy")
+                        .append(" (03:00)")
+                .withStyle(ChatFormatting.BLUE));
+    }
 
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(itemStack, level, livingEntity);

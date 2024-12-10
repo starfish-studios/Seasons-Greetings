@@ -1,0 +1,7 @@
+{
+  "parent": "seasonsgreetings:block/lights/white_lights",
+  "textures": {
+    "particle": "seasonsgreetings:block/multicolor_lights",
+    "lights": "seasonsgreetings:block/multicolor_lights"
+  }
+}

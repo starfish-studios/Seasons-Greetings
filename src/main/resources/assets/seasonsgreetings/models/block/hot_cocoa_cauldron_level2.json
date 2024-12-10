@@ -2,7 +2,7 @@
   "parent": "minecraft:block/template_cauldron_level2",
   "textures": {
     "bottom": "block/cauldron_bottom",
-    "content": "seasonsgreetings:block/hot_cocoa_sheet",
+    "content": "seasonsgreetings:block/hot_cocoa",
     "inside": "block/cauldron_inner",
     "particle": "block/cauldron_side",
     "side": "block/cauldron_side",

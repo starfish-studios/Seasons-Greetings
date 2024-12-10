@@ -21,6 +21,8 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO: Add sound breaking during their block breaking progress - was having issues with it earlier so I just removed it
+
 public class CopyOwnerBreakGoal extends Goal {
     private final GingerbreadMan gingerbreadMan;
     private final double speed;

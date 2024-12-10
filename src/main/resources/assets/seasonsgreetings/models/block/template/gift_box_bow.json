@@ -3,11 +3,11 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"bow": "seasonsgreetings:block/template/purple_bow",
-		"bow_bottom": "seasonsgreetings:block/template/purple_bow_bottom",
-		"bow_geo": "seasonsgreetings:block/template/purple_bow_geo",
-		"particle": "seasonsgreetings:block/template/purple_bow_top",
-		"bow_top": "seasonsgreetings:block/template/purple_bow_top"
+		"bow": "seasonsgreetings:block/gift/purple_bow",
+		"bow_bottom": "seasonsgreetings:block/gift/purple_bow_bottom",
+		"bow_geo": "seasonsgreetings:block/gift/purple_bow_geo",
+		"particle": "seasonsgreetings:block/gift/purple_bow_top",
+		"bow_top": "seasonsgreetings:block/gift/purple_bow_top"
 	},
 	"elements": [
 		{

@@ -1,10 +1,10 @@
 {
     "parent": "seasonsgreetings:block/template/gift_box_bow",
     "textures": {
-        "bow": "seasonsgreetings:block/template/lime_bow",
-        "bow_bottom": "seasonsgreetings:block/template/lime_bow_bottom",
-        "bow_geo": "seasonsgreetings:block/template/lime_bow_geo",
+        "bow": "seasonsgreetings:block/gift/lime_bow",
+        "bow_bottom": "seasonsgreetings:block/gift/lime_bow_bottom",
+        "bow_geo": "seasonsgreetings:block/gift/lime_bow_geo",
         "particle": "block/lime_wool",
-        "bow_top": "seasonsgreetings:block/template/lime_bow_top"
+        "bow_top": "seasonsgreetings:block/gift/lime_bow_top"
     }
 }

@@ -1,16 +1,11 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.item.ChristmasHatItem;
-import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
-import com.starfish_studios.seasons_greetings.item.HotCocoaBottleItem;
+import com.starfish_studios.seasons_greetings.item.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
 
 public class SGItems {
     public static final Item CHRISTMAS_HAT = registerItem("christmas_hat", new ChristmasHatItem(ArmorMaterials.LEATHER, ArmorItem.Type.HELMET, new Item.Properties()));
@@ -19,7 +14,7 @@ public class SGItems {
 
     public static final Item FRUITCAKE = registerItem("fruitcake", new Item(new Item.Properties()));
 
-    public static final Item GINGERBREAD_COOKIE = registerItem("gingerbread_cookie", new Item(new Item.Properties()
+    public static final Item GINGERBREAD_COOKIE = registerItem("gingerbread_cookie", new GingerbreadCookieItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(2)
                     .saturationModifier(0.1f)
@@ -38,7 +33,7 @@ public class SGItems {
                     .saturationModifier(0.1f)
             .build())));
 
-    public static final Item WARM_MILK_BOTTLE = registerItem("warm_milk_bottle", new HotCocoaBottleItem(new Item.Properties()
+    public static final Item WARM_MILK_BOTTLE = registerItem("warm_milk_bottle", new WarmMilkBottleItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
@@ -52,7 +47,6 @@ public class SGItems {
 
     // endregion
 
-    public static final Item STRING_LIGHTS = registerItem("string_lights", new BlockItem(SGBlocks.STRING_LIGHTS, new Item.Properties()));
     public static final Item WREATH = registerItem("wreath", new BlockItem(SGBlocks.WREATH, new Item.Properties()));
 
     public static final Item PACKED_SNOW = registerItem("packed_snow", new BlockItem(SGBlocks.PACKED_SNOW, new Item.Properties()));
@@ -60,6 +54,17 @@ public class SGItems {
     public static final Item SNOW_BRICK_STAIRS = registerItem("snow_brick_stairs", new BlockItem(SGBlocks.SNOW_BRICK_STAIRS, new Item.Properties()));
     public static final Item SNOW_BRICK_SLAB = registerItem("snow_brick_slab", new BlockItem(SGBlocks.SNOW_BRICK_SLAB, new Item.Properties()));
     public static final Item CHISELED_SNOW = registerItem("chiseled_snow", new BlockItem(SGBlocks.CHISELED_SNOW, new Item.Properties()));
+
+    // region Lights
+    public static final Item WHITE_LIGHTS = registerItem("white_lights", new BlockItem(SGBlocks.WHITE_LIGHTS, new Item.Properties()));
+    public static final Item RED_LIGHTS = registerItem("red_lights", new BlockItem(SGBlocks.RED_LIGHTS, new Item.Properties()));
+    public static final Item ORANGE_LIGHTS = registerItem("orange_lights", new BlockItem(SGBlocks.ORANGE_LIGHTS, new Item.Properties()));
+    public static final Item YELLOW_LIGHTS = registerItem("yellow_lights", new BlockItem(SGBlocks.YELLOW_LIGHTS, new Item.Properties()));
+    public static final Item GREEN_LIGHTS = registerItem("green_lights", new BlockItem(SGBlocks.GREEN_LIGHTS, new Item.Properties()));
+    public static final Item BLUE_LIGHTS = registerItem("blue_lights", new BlockItem(SGBlocks.BLUE_LIGHTS, new Item.Properties()));
+    public static final Item PURPLE_LIGHTS = registerItem("purple_lights", new BlockItem(SGBlocks.PURPLE_LIGHTS, new Item.Properties()));
+    public static final Item MULTICOLOR_LIGHTS = registerItem("multicolor_lights", new BlockItem(SGBlocks.MULTICOLOR_LIGHTS, new Item.Properties()));
+    // endregion
 
     // region Gifts
 
@@ -89,7 +94,7 @@ public class SGItems {
     public static final Item YELLOW_GUMDROP_BLOCK = registerItem("yellow_gumdrop_block", new BlockItem(SGBlocks.YELLOW_GUMDROP_BLOCK, new Item.Properties()));
     public static final Item GREEN_GUMDROP_BLOCK = registerItem("green_gumdrop_block", new BlockItem(SGBlocks.GREEN_GUMDROP_BLOCK, new Item.Properties()));
     public static final Item PURPLE_GUMDROP_BLOCK = registerItem("purple_gumdrop_block", new BlockItem(SGBlocks.PURPLE_GUMDROP_BLOCK, new Item.Properties()));
-    
+
     public static final Item RED_GUMDROP_BUTTON = registerItem("red_gumdrop_button", new BlockItem(SGBlocks.RED_GUMDROP_BUTTON, new Item.Properties()));
     public static final Item ORANGE_GUMDROP_BUTTON = registerItem("orange_gumdrop_button", new BlockItem(SGBlocks.ORANGE_GUMDROP_BUTTON, new Item.Properties()));
     public static final Item YELLOW_GUMDROP_BUTTON = registerItem("yellow_gumdrop_button", new BlockItem(SGBlocks.YELLOW_GUMDROP_BUTTON, new Item.Properties()));
@@ -115,6 +120,11 @@ public class SGItems {
     public static final Item GINGERBREAD_DOOR = registerItem("gingerbread_door", new DoubleHighBlockItem(SGBlocks.GINGERBREAD_DOOR, new Item.Properties()));
 
     // endregion
+
+    public static final Item ICING = registerItem("icing", new BlockItem(SGBlocks.ICING, new Item.Properties()));
+    public static final Item ICING_BLOCK = registerItem("icing_block", new BlockItem(SGBlocks.ICING_BLOCK, new Item.Properties()));
+    public static final Item ICING_STAIRS = registerItem("icing_stairs", new BlockItem(SGBlocks.ICING_STAIRS, new Item.Properties()));
+    public static final Item ICING_SLAB = registerItem("icing_slab", new BlockItem(SGBlocks.ICING_SLAB, new Item.Properties()));
 
     public static final Item PEPPERMINT_BLOCK = registerItem("peppermint_block", new BlockItem(SGBlocks.PEPPERMINT_BLOCK, new Item.Properties()));
     public static final Item PEPPERMINT_STAIRS = registerItem("peppermint_stairs", new BlockItem(SGBlocks.PEPPERMINT_STAIRS, new Item.Properties()));

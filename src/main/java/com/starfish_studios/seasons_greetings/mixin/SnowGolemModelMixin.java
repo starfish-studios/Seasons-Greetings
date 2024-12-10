@@ -1,17 +1,11 @@
 package com.starfish_studios.seasons_greetings.mixin;
 
-import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.animal.SnowGolem;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

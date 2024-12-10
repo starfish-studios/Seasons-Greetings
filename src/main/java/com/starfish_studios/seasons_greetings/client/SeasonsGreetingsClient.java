@@ -4,38 +4,38 @@ import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.client.gui.screens.GiftBoxScreen;
 import com.starfish_studios.seasons_greetings.client.particles.PoppingBubbleParticle;
 import com.starfish_studios.seasons_greetings.client.renderer.GingerbreadManRenderer;
-import com.starfish_studios.seasons_greetings.item.GiftBoxItem;
 import com.starfish_studios.seasons_greetings.registry.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
 import software.bernie.geckolib.util.Color;
 
 import java.util.Objects;
 
 import static com.starfish_studios.seasons_greetings.SeasonsGreetings.getColor;
+import static com.starfish_studios.seasons_greetings.SeasonsGreetings.id;
 
 @Environment(EnvType.CLIENT)
 public class SeasonsGreetingsClient  implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+
         registerRenderers();
         registerScreens();
         registerParticles();
@@ -48,6 +48,7 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
 
         registerAllGiftBoxProperties();
     }
+
 
     private static void registerGiftBoxProperties(Item item) {
         for (int i = 0; i < 16; i++) {
@@ -97,9 +98,18 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
             Blocks.SNOW,
 
-            SGBlocks.STRING_LIGHTS,
+            SGBlocks.WHITE_LIGHTS,
+            SGBlocks.RED_LIGHTS,
+            SGBlocks.ORANGE_LIGHTS,
+            SGBlocks.YELLOW_LIGHTS,
+            SGBlocks.GREEN_LIGHTS,
+            SGBlocks.BLUE_LIGHTS,
+            SGBlocks.PURPLE_LIGHTS,
+            SGBlocks.MULTICOLOR_LIGHTS,
+
             SGBlocks.WREATH,
             SGBlocks.GINGERBREAD_DOOR,
+            SGBlocks.ICING,
 
             SGBlocks.WHITE_GIFT_BOX,
             SGBlocks.LIGHT_GRAY_GIFT_BOX,

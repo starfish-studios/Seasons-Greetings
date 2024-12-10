@@ -7,10 +7,12 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -38,115 +40,153 @@ public class WreathInteractions implements UseBlockCallback {
     }
 
 
+    private static void shearDamageSound(Level level, BlockPos pos, Player player, InteractionHand hand) {
+        level.playSound(null, pos, SoundEvents.SNOW_GOLEM_SHEAR, player.getSoundSource(), 1.0F, 1.0F);
+        player.getItemInHand(hand).hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+    }
+
     @Override
     public InteractionResult interact(Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
         BlockPos pos = hitResult.getBlockPos();
         BlockState blockState = level.getBlockState(pos);
-        Block block = blockState.getBlock();
         ItemStack itemStack = player.getItemInHand(hand);
         Item item = itemStack.getItem();
 
+        if (!(blockState.getBlock() instanceof WreathBlock)) {
+            return InteractionResult.PASS;
+        }
 
-        if (item instanceof ShearsItem && block instanceof WreathBlock) {
-            if (blockState.getValue(WreathBlock.BELL)) {
-                level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BELL, false));
-                level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, new ItemStack(Items.BELL, 1)));
-                return InteractionResult.SUCCESS;
-            }
-            else if (blockState.getValue(WreathBlock.BOW) != WreathBlock.WreathBowColors.EMPTY) {
-                WreathBlock.WreathBowColors cushion = blockState.getValue(WreathBlock.BOW);
-                Item carpet = SHEAR_MAP.get(cushion);
-                if (carpet != null) {
-                    level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BOW, WreathBlock.WreathBowColors.EMPTY));
-                    level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, new ItemStack(carpet, 1)));
-                    return InteractionResult.SUCCESS;
-                }
-            }
-            else if (blockState.getValue(WreathBlock.GARLAND) != WreathBlock.WreathGarland.EMPTY) {
-                WreathBlock.WreathGarland garland = blockState.getValue(WreathBlock.GARLAND);
-                Item garlandItem = GARLAND_SHEAR_MAP.get(garland);
-                if (garlandItem != null) {
-                    level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.GARLAND, WreathBlock.WreathGarland.EMPTY));
-                    level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, new ItemStack(garlandItem, 1)));
-                    return InteractionResult.SUCCESS;
-                }
-            }
-
-            if (InteractionResult.SUCCESS.equals(interact(player, level, hand, hitResult))) {
-                level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, player.getSoundSource(), 1.0F, 1.0F);
+        // Shears interaction
+        if (item instanceof ShearsItem) {
+            InteractionResult result = handleShearsInteraction(level, pos, blockState, player, hand);
+            if (result.consumesAction()) {
+                return result;
             }
         }
-        else if (GARLAND_MAP.containsKey(item) && block instanceof WreathBlock && blockState.getValue(WreathBlock.GARLAND) == WreathBlock.WreathGarland.EMPTY) {
+
+        // Garland Interactions (Sweet Berries, Glow Berries, Lights, etc.)
+        if (GARLAND_MAP.containsKey(item) && blockState.getValue(WreathBlock.GARLAND) == WreathBlock.WreathGarland.EMPTY) {
             BlockState newState = getBlockstateForGarland(item, blockState);
             level.setBlockAndUpdate(pos, newState);
-            level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1.0F, 1.0F);
-            if (!player.isCreative()) {
-                itemStack.shrink(1);
-            }
+            playSound(level, pos, SoundEvents.WOOL_PLACE, player);
+            consumeItemIfNotCreative(player, itemStack);
             return InteractionResult.SUCCESS;
         }
 
+        // Bell Interaction
         if (item == Items.BELL && !blockState.getValue(WreathBlock.BELL)) {
             level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BELL, true));
-            level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1.0F, 1.0F);
-            if (!player.isCreative()) {
-                itemStack.shrink(1);
-            }
+            playSound(level, pos, SoundEvents.WOOL_PLACE, player);
+            consumeItemIfNotCreative(player, itemStack);
             return InteractionResult.SUCCESS;
         }
 
-        else
+        // Dye Interaction
+        if (item instanceof DyeItem) {
+            InteractionResult result = handleDyeInteraction(level, pos, blockState, player, itemStack);
+            if (result.consumesAction()) {
+                return result;
+            }
+        }
 
-        if (item instanceof ShearsItem && block instanceof WreathBlock && blockState.getValue(WreathBlock.GARLAND) != WreathBlock.WreathGarland.EMPTY) {
+        // Carpets -> Bows
+        if (itemStack.is(ItemTags.WOOL_CARPETS) && blockState.getValue(WreathBlock.BOW) == WreathBlock.WreathBowColors.EMPTY) {
+            BlockState newState = getBlockstateForCarpet(item, blockState)
+                    .setValue(BlockStateProperties.HORIZONTAL_FACING, blockState.getValue(BlockStateProperties.HORIZONTAL_FACING));
+            level.setBlockAndUpdate(pos, newState);
+            playSound(level, pos, SoundEvents.WOOL_PLACE, player);
+            consumeItemIfNotCreative(player, itemStack);
+            return InteractionResult.SUCCESS;
+        }
+
+        return InteractionResult.FAIL;
+    }
+
+
+    private InteractionResult handleShearsInteraction(Level level, BlockPos pos, BlockState blockState, Player player, InteractionHand hand) {
+        if (blockState.getValue(WreathBlock.BELL)) {
+            level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BELL, false));
+            dropItem(level, pos, new ItemStack(Items.BELL));
+            shearDamageSound(level, pos, player, hand);
+            return InteractionResult.SUCCESS;
+        }
+
+        if (blockState.getValue(WreathBlock.BOW) != WreathBlock.WreathBowColors.EMPTY) {
+            WreathBlock.WreathBowColors bowColor = blockState.getValue(WreathBlock.BOW);
+            Item bowItem = SHEAR_MAP.get(bowColor);
+            if (bowItem != null) {
+                level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BOW, WreathBlock.WreathBowColors.EMPTY));
+                dropItem(level, pos, new ItemStack(bowItem));
+                shearDamageSound(level, pos, player, hand);
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        if (blockState.getValue(WreathBlock.GARLAND) != WreathBlock.WreathGarland.EMPTY) {
             WreathBlock.WreathGarland garland = blockState.getValue(WreathBlock.GARLAND);
             Item garlandItem = GARLAND_SHEAR_MAP.get(garland);
             if (garlandItem != null) {
                 level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.GARLAND, WreathBlock.WreathGarland.EMPTY));
-                level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, new ItemStack(garlandItem, 1)));
+                dropItem(level, pos, new ItemStack(garlandItem));
+                shearDamageSound(level, pos, player, hand);
                 return InteractionResult.SUCCESS;
             }
         }
 
-        else if (item instanceof DyeItem && block instanceof WreathBlock && blockState.getValue(WreathBlock.BOW) != WreathBlock.WreathBowColors.EMPTY) {
-            BlockState newState = getBlockstateForDye(item, blockState);
-            level.setBlockAndUpdate(pos, newState);
-            DyeColor color = ((DyeItem) item).getDyeColor();
-            level.playSound(null, pos, SoundEvents.DYE_USE, player.getSoundSource(), 1.0F, 1.0F);
-            for (int j = 0; j < 5; ++j) {
-                double g = level.random.nextGaussian() * 0.2;
-                double h = level.random.nextGaussian() * 0.1;
-                double i = level.random.nextGaussian() * 0.2;
-
-                DustParticleOptions dustParticleOptions = new DustParticleOptions(Vec3.fromRGB24(color.getTextColor()).toVector3f(), 1.0F);
-
-                if (!level.isClientSide) {
-                    ServerLevel serverLevel = (ServerLevel) level;
-                    serverLevel.sendParticles(dustParticleOptions, (double) pos.getX() + 0.5, WreathBlock.dyeHeight(), (double) pos.getZ() + 0.5, 1, g, h, i, 0.0D);
-                }
-            }
-
-            return InteractionResult.SUCCESS;
-        } else if (itemStack.is(ItemTags.WOOL_CARPETS) && block instanceof WreathBlock && blockState.getValue(WreathBlock.BOW) == WreathBlock.WreathBowColors.EMPTY) {
-            BlockState newState = getBlockstateForCarpet(item, blockState);
-            level.setBlockAndUpdate(pos, newState.setValue(BlockStateProperties.HORIZONTAL_FACING, blockState.getValue(BlockStateProperties.HORIZONTAL_FACING)));
-            level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1.0F, 1.0F);
-            if (!player.isCreative()) {
-                itemStack.shrink(1);
-            }
-            return InteractionResult.SUCCESS;
-        }
         return InteractionResult.PASS;
     }
 
+    private InteractionResult handleDyeInteraction(Level level, BlockPos pos, BlockState blockState, Player player, ItemStack itemStack) {
+        DyeItem dye = (DyeItem) itemStack.getItem();
+        WreathBlock.WreathBowColors currentBow = blockState.getValue(WreathBlock.BOW);
+        WreathBlock.WreathBowColors newBow = DYE_MAP.get(dye);
+
+        if (newBow == null || currentBow == newBow) {
+            return InteractionResult.PASS;
+        }
+
+        BlockState newState = getBlockstateForDye(dye, blockState);
+        level.setBlockAndUpdate(pos, newState);
+        playSound(level, pos, SoundEvents.DYE_USE, player);
+        spawnDyeParticles(level, pos, dye.getDyeColor());
+        return InteractionResult.SUCCESS;
+    }
+
+
+    private void playSound(Level level, BlockPos pos, SoundEvent sound, Player player) {
+        level.playSound(null, pos, sound, player.getSoundSource(), 1.0F, 1.0F);
+    }
+
+    private void consumeItemIfNotCreative(Player player, ItemStack itemStack) {
+        if (!player.isCreative()) {
+            itemStack.shrink(1);
+        }
+    }
+
+    private void dropItem(Level level, BlockPos pos, ItemStack itemStack) {
+        level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, itemStack));
+    }
+
+    private void spawnDyeParticles(Level level, BlockPos pos, DyeColor color) {
+        DustParticleOptions particleOptions = new DustParticleOptions(Vec3.fromRGB24(color.getTextColor()).toVector3f(), 1.0F);
+        for (int i = 0; i < 5; ++i) {
+            double offsetX = level.random.nextGaussian() * 0.2;
+            double offsetY = level.random.nextGaussian() * 0.1;
+            double offsetZ = level.random.nextGaussian() * 0.2;
+            level.addParticle(particleOptions, pos.getX() + 0.5, WreathBlock.dyeHeight(), pos.getX() + 0.5, offsetX, offsetY, offsetZ);
+        }
+    }
+
+
     private static final Map<WreathBlock.WreathGarland, Item> GARLAND_SHEAR_MAP = Util.make(new HashMap<>(), (map) -> {
         map.put(WreathBlock.WreathGarland.EMPTY, Items.AIR);
-        map.put(WreathBlock.WreathGarland.MULTICOLOR_LIGHTS, SGItems.STRING_LIGHTS);
+        map.put(WreathBlock.WreathGarland.MULTICOLOR_LIGHTS, SGItems.MULTICOLOR_LIGHTS);
         map.put(WreathBlock.WreathGarland.GLOW_BERRIES, Items.GLOW_BERRIES);
         map.put(WreathBlock.WreathGarland.SWEET_BERRIES, Items.SWEET_BERRIES);
     });
     private static final Map<Item, WreathBlock.WreathGarland> GARLAND_MAP = Util.make(new HashMap<>(), (map) -> {
         map.put(Items.AIR, WreathBlock.WreathGarland.EMPTY);
-        map.put(SGItems.STRING_LIGHTS, WreathBlock.WreathGarland.MULTICOLOR_LIGHTS);
+        map.put(SGItems.MULTICOLOR_LIGHTS, WreathBlock.WreathGarland.MULTICOLOR_LIGHTS);
         map.put(Items.GLOW_BERRIES, WreathBlock.WreathGarland.GLOW_BERRIES);
         map.put(Items.SWEET_BERRIES, WreathBlock.WreathGarland.SWEET_BERRIES);
     });
