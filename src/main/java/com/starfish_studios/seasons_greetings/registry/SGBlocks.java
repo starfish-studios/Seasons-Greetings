@@ -125,6 +125,7 @@ public class SGBlocks {
 
     @SuppressWarnings("all")
     private static Block registerBlock(String id, Block block) {
+        System.out.println(SeasonsGreetings.id(id));
         return Registry.register(BuiltInRegistries.BLOCK, SeasonsGreetings.id(id), block);
     }
 
