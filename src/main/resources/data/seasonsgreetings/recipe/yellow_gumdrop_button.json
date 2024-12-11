@@ -1,9 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
   "ingredients": [
     [
       {
         "item": "minecraft:slime_ball"
+      },
+      {
+        "item": "minecraft:honey_bottle"
       },
       {
         "tag": "c:slime_balls"
@@ -19,20 +23,11 @@
     ],
     {
       "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:sugar"
     }
   ],
   "result": {
     "id": "seasonsgreetings:yellow_gumdrop_button",
-    "count": 4
+    "count": 2
   },
   "group": "gumdrop_buttons"
 }

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "seasonsgreetings/lights",
+  "key": {
+    "#": {
+      "tag": "seasonsgreetings:string_lights"
+    },
+    "X": [
+      {
+        "item": "minecraft:orange_dye"
+      },
+      {
+        "tag": "c:dyes/orange"
+      }
+    ]
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "seasonsgreetings:orange_lights"
+  }
+}

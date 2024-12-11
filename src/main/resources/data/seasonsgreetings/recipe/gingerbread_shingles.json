@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "seasonsgreetings:gingerbread_bricks"
+    }
+  },
+  "result": {
+    "id": "seasonsgreetings:gingerbread_shingles",
+    "count": 4
+  }
+}

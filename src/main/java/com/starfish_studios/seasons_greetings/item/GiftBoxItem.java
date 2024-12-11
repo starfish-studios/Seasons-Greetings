@@ -26,6 +26,11 @@ public class GiftBoxItem extends BlockItem {
     }
 
     @Override
+    public boolean canFitInsideContainerItems() {
+        return false;
+    }
+
+    @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         if (stack.has(DataComponents.BASE_COLOR)) {
             tooltip.add(Component.translatable("color.minecraft." + Objects.requireNonNull(stack.get(DataComponents.BASE_COLOR)).getName())

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:sugar"
+    },
+    "X":  [
+      {
+        "item": "minecraft:red_dye"
+      },
+      {
+        "tag": "c:dyes/red"
+      }
+    ]
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "seasonsgreetings:peppermint_block"
+  }
+}

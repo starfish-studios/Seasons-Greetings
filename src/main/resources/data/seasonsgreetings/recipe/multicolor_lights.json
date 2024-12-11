@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "seasonsgreetings/lights",
+  "category": "misc",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "tag": "seasonsgreetings:string_lights"
+    }
+  },
+  "result": {
+    "id": "seasonsgreetings:multicolor_lights",
+    "count": 4
+  }
+}

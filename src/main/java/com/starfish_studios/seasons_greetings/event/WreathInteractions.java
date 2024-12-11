@@ -104,13 +104,6 @@ public class WreathInteractions implements UseBlockCallback {
 
 
     private InteractionResult handleShearsInteraction(Level level, BlockPos pos, BlockState blockState, Player player, InteractionHand hand) {
-        if (blockState.getValue(WreathBlock.BELL)) {
-            level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BELL, false));
-            dropItem(level, pos, new ItemStack(Items.BELL));
-            shearDamageSound(level, pos, player, hand);
-            return InteractionResult.SUCCESS;
-        }
-
         if (blockState.getValue(WreathBlock.BOW) != WreathBlock.WreathBowColors.EMPTY) {
             WreathBlock.WreathBowColors bowColor = blockState.getValue(WreathBlock.BOW);
             Item bowItem = SHEAR_MAP.get(bowColor);
@@ -120,6 +113,13 @@ public class WreathInteractions implements UseBlockCallback {
                 shearDamageSound(level, pos, player, hand);
                 return InteractionResult.SUCCESS;
             }
+        }
+
+        if (blockState.getValue(WreathBlock.BELL)) {
+            level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BELL, false));
+            dropItem(level, pos, new ItemStack(Items.BELL));
+            shearDamageSound(level, pos, player, hand);
+            return InteractionResult.SUCCESS;
         }
 
         if (blockState.getValue(WreathBlock.GARLAND) != WreathBlock.WreathGarland.EMPTY) {

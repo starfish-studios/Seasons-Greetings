@@ -8,10 +8,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class GiftBoxMenu extends AbstractContainerMenu {
-    private static final int SLOT_COUNT = 5;
-    private final Container mailbox;
+    private final Container gitBox;
 
     public GiftBoxMenu(int i, Inventory inventory) {
         this(i, inventory, new SimpleContainer(5));
@@ -19,19 +19,19 @@ public class GiftBoxMenu extends AbstractContainerMenu {
 
 
     public Container getContainer() {
-        return this.mailbox;
+        return this.gitBox;
     }
 
     public GiftBoxMenu(int i, Inventory inventory, Container container) {
         super(SGMenus.GIFT_BOX, i);
         checkContainerSize(container, 5);
-        this.mailbox = container;
+        this.gitBox = container;
         container.startOpen(inventory.player);
         int j;
         int k;
         for(j = 0; j < 1; ++j) {
             for(k = 0; k < 5; ++k) {
-                this.addSlot(new Slot(container, k + j * 5, 44 + k * 18, 35 + j * 18));
+                this.addSlot(new GiftBoxSlot(container, k + j * 5, 44 + k * 18, 35 + j * 18));
             }
         }
 
@@ -48,10 +48,10 @@ public class GiftBoxMenu extends AbstractContainerMenu {
     }
 
     public boolean stillValid(Player player) {
-        return this.mailbox.stillValid(player);
+        return this.gitBox.stillValid(player);
     }
 
-    public ItemStack quickMoveStack(Player player, int i) {
+    public @NotNull ItemStack quickMoveStack(Player player, int i) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(i);
         if (slot.hasItem()) {
@@ -83,6 +83,6 @@ public class GiftBoxMenu extends AbstractContainerMenu {
 
     public void removed(Player player) {
         super.removed(player);
-        this.mailbox.stopOpen(player);
+        this.gitBox.stopOpen(player);
     }
 }

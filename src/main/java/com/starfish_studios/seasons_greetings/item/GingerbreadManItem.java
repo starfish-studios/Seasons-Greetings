@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class GingerbreadCookieItem extends Item {
-    public GingerbreadCookieItem(Properties properties) {
+public class GingerbreadManItem extends Item {
+    public GingerbreadManItem(Properties properties) {
         super(properties);
     }
 

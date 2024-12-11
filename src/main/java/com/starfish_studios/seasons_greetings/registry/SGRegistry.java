@@ -1,9 +1,11 @@
 package com.starfish_studios.seasons_greetings.registry;
 
+import com.starfish_studios.seasons_greetings.crafting.SGRecipeSerializer;
+
 public class SGRegistry {
 
     public static void registerAll() {
-//        SeasonsGreetingsEntityType.registerEntities();
+        SGRecipeSerializer.registerCustomRecipes();
         SGEffects.registerEffects();
         SGParticles.registerParticles();
         SGBlockEntityType.registerBlockEntities();

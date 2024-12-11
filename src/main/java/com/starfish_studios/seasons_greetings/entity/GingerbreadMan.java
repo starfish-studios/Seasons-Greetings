@@ -270,7 +270,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     }
 
     private <E extends GingerbreadMan> PlayState predicate(final AnimationState<E> event) {
-        if (this.isOrderedToSit()) {
+        if (this.isInSittingPose()) {
             event.setAnimation(SIT);
         } else if (event.isMoving()) {
             if (this.getMainHandItem().isEmpty()) {

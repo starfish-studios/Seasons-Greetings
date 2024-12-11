@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "seasonsgreetings/lights",
+  "key": {
+    "#": {
+      "tag": "seasonsgreetings:string_lights"
+    },
+    "X": [
+      {
+        "item": "minecraft:white_dye"
+      },
+      {
+        "tag": "c:dyes/white"
+      }
+    ]
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "seasonsgreetings:white_lights"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " L ",
+    "L L"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:white_wool"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "id": "seasonsgreetings:christmas_hat",
+    "components": {
+      "minecraft:dyed_color": {
+        "rgb": 10511680,
+        "show_in_tooltip": false
+      }
+    },
+    "count": 1
+  }
+}

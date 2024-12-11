@@ -15,7 +15,7 @@ public class SGCreativeTabs {
     @SuppressWarnings("unused")
     public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
         ItemStack stack = new ItemStack(CHRISTMAS_HAT);
-        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(0xFF0000, true));
+        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(0xA06540, false));
 
         output.accept(stack);
 
