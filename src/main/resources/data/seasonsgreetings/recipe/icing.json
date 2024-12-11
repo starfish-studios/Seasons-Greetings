@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:sugar"
+    },
+    "X":  [
+      {
+        "item": "minecraft:milk"
+      },
+      {
+        "tag": "c:buckets/milk"
+      }
+    ]
+  },
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "seasonsgreetings:icing"
+  }
+}

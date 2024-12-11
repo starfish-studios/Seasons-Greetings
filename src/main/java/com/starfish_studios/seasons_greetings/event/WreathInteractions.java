@@ -83,9 +83,17 @@ public class WreathInteractions implements UseBlockCallback {
 
         // Dye Interaction
         if (item instanceof DyeItem) {
-            InteractionResult result = handleDyeInteraction(level, pos, blockState, player, itemStack);
-            if (result.consumesAction()) {
-                return result;
+            DyeItem dye = (DyeItem) itemStack.getItem();
+            WreathBlock.WreathBowColors currentBow = blockState.getValue(WreathBlock.BOW);
+            WreathBlock.WreathBowColors newBow = DYE_MAP.get(dye);
+
+            if (newBow != null && currentBow != newBow && currentBow != WreathBlock.WreathBowColors.EMPTY) {
+                BlockState newState = getBlockstateForDye(dye, blockState);
+                level.setBlockAndUpdate(pos, newState);
+                playSound(level, pos, SoundEvents.DYE_USE, player);
+                spawnDyeParticles(level, pos, dye.getDyeColor());
+                consumeItemIfNotCreative(player, itemStack);
+                return InteractionResult.SUCCESS;
             }
         }
 

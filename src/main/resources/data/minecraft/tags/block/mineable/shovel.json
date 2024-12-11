@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "seasonsgreetings:packed_snow",
+    "seasonsgreetings:snow_bricks",
+    "seasonsgreetings:snow_brick_stairs",
+    "seasonsgreetings:snow_brick_slab",
+    "seasonsgreetings:chiseled_snow"
+  ]
+}

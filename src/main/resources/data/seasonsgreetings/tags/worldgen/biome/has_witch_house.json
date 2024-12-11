@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "minecraft:dark_forest",
+      "required": false
+    },
+    {
+      "id": "minecraft:grove",
+      "required": false
+    },
+    {
+      "id": "minecraft:snowy_taiga",
+      "required": false
+    }
+  ]
+}

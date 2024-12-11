@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "seasonsgreetings:white_gift_box",
+    "seasonsgreetings:light_gray_gift_box",
+    "seasonsgreetings:gray_gift_box",
+    "seasonsgreetings:black_gift_box",
+    "seasonsgreetings:brown_gift_box",
+    "seasonsgreetings:red_gift_box",
+    "seasonsgreetings:orange_gift_box",
+    "seasonsgreetings:yellow_gift_box",
+    "seasonsgreetings:lime_gift_box",
+    "seasonsgreetings:green_gift_box",
+    "seasonsgreetings:cyan_gift_box",
+    "seasonsgreetings:light_blue_gift_box",
+    "seasonsgreetings:blue_gift_box",
+    "seasonsgreetings:purple_gift_box",
+    "seasonsgreetings:magenta_gift_box",
+    "seasonsgreetings:pink_gift_box",
+    "seasonsgreetings:gingerbread_block",
+    "seasonsgreetings:gingerbread_door",
+    "seasonsgreetings:gingerbread_stairs",
+    "seasonsgreetings:gingerbread_slab",
+    "seasonsgreetings:gingerbread_bricks",
+    "seasonsgreetings:gingerbread_brick_stairs",
+    "seasonsgreetings:gingerbread_brick_slab",
+    "seasonsgreetings:gingerbread_shingles",
+    "seasonsgreetings:gingerbread_shingle_stairs",
+    "seasonsgreetings:gingerbread_shingle_slab"
+    ]
+}

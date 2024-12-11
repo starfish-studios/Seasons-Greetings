@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "seasonsgreetings/gingerbread_block",
   "pattern": [
     "###",
     "#S#",

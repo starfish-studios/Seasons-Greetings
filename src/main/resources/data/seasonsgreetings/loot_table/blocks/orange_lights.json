@@ -2,19 +2,120 @@
     "type": "minecraft:block",
     "pools": [
         {
-            "bonus_rolls": 0.0,
-            "conditions": [
-                {
-                    "condition": "minecraft:survives_explosion"
-                }
-            ],
+            "bonus_rolls": 0,
             "entries": [
                 {
                     "type": "minecraft:item",
+                    "conditions": [],
+                    "functions": [
+                        {
+                            "add": true,
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:orange_lights",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "down": "true"
+                                    }
+                                },
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+
+                            ],
+                            "count": 1,
+                            "function": "minecraft:set_count"
+                        },
+                        {
+                            "add": true,
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:orange_lights",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "up": "true"
+                                    }
+                                },
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+                            ],
+                            "count": 1,
+                            "function": "minecraft:set_count"
+                        },
+                        {
+                            "add": true,
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:orange_lights",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "north": "true"
+                                    }
+                                },
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+                            ],
+                            "count": 1,
+                            "function": "minecraft:set_count"
+                        },
+                        {
+                            "add": true,
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:orange_lights",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "south": "true"
+                                    }
+                                },
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+                            ],
+                            "count": 1,
+                            "function": "minecraft:set_count"
+                        },
+                        {
+                            "add": true,
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:orange_lights",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "west": "true"
+                                    }
+                                },
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+                            ],
+                            "count": 1,
+                            "function": "minecraft:set_count"
+                        },
+                        {
+                            "add": true,
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:orange_lights",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "east": "true"
+                                    }
+                                },
+                                {
+                                    "condition": "minecraft:survives_explosion"
+                                }
+                            ],
+                            "count": 1,
+                            "function": "minecraft:set_count"
+                        }
+                    ],
                     "name": "seasonsgreetings:orange_lights"
                 }
             ],
-            "rolls": 1.0
+            "rolls": 1
         }
     ]
 }

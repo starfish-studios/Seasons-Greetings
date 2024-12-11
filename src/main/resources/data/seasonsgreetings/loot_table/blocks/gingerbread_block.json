@@ -3,41 +3,66 @@
   "pools": [
     {
       "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "components": {
+              "minecraft:enchantments": {
+                "levels": {
+                  "minecraft:silk_touch": 1
+                }
+              }
+            }
+          }
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "seasonsgreetings:gingerbread_block",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {}
-            }
-          ]
-        },
+          "name": "seasonsgreetings:gingerbread_block"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "seasonsgreetings:gingerbread_crumbs",
-              "functions": [
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "uniform_bonus_count",
-                  "parameters": {
-                    "bonusMultiplier": 1
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "components": {
+                "minecraft:enchantments": {
+                  "levels": {
+                    "minecraft:silk_touch": 1
                   }
-                },
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "min": 2,
-                    "max": 3
-                  },
-                  "add": false
                 }
-              ]
+              }
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "seasonsgreetings:gingerbread_crumbs",
+          "functions": [
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "uniform_bonus_count",
+              "parameters": {
+                "bonusMultiplier": 1
+              }
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 3
+              },
+              "add": false
             }
           ]
         }

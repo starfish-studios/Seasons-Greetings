@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "seasonsgreetings:chocolate_block",
+    "seasonsgreetings:chocolate_stairs",
+    "seasonsgreetings:chocolate_slab",
+    "seasonsgreetings:peppermint_block",
+    "seasonsgreetings:peppermint_stairs",
+    "seasonsgreetings:peppermint_slab"
+    ]
+}

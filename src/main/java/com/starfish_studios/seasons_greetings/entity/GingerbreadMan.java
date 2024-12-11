@@ -44,6 +44,7 @@ import java.util.UUID;
 
 public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralMob {
 
+    private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(GingerbreadMan.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(GingerbreadMan.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
@@ -73,6 +74,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         super.defineSynchedData(builder);
         builder.define(DATA_REMAINING_ANGER_TIME, 0);
         builder.define(CANT_CATCH_ME, false);
+        builder.define(SITTING, false);
     }
 
     public void addAdditionalSaveData(CompoundTag compoundTag) {
@@ -82,6 +84,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         }
         compoundTag.putInt("AngerTime", this.getRemainingPersistentAngerTime());
         compoundTag.putBoolean("CantCatchMe", this.isCantCatchMe(false));
+        compoundTag.putBoolean("Sitting", this.isSitting());
     }
 
     public void readAdditionalSaveData(CompoundTag compoundTag) {
@@ -91,6 +94,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
             this.setRemainingPersistentAngerTime(compoundTag.getInt("AngerTime"));
         }
         this.isCantCatchMe(compoundTag.getBoolean("CantCatchMe"));
+        this.setSitting(compoundTag.getBoolean("Sitting"));
     }
 
     public boolean isCantCatchMe(boolean truefalse) {
@@ -101,6 +105,14 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
         this.entityData.set(CANT_CATCH_ME, value);
     }
 
+    public boolean isSitting() {
+        return this.entityData.get(SITTING);
+    }
+
+    public void setSitting(boolean sitting) {
+        this.entityData.set(SITTING, sitting);
+    }
+
     private void removeInteractionItem(Player player, ItemStack itemStack) {
         itemStack.consume(1, player);
     }
@@ -108,13 +120,23 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     @Override
     public void aiStep() {
         if (!this.level().isClientSide) {
-            if (this.isOrderedToSit()) {
-                this.setDeltaMovement(0.0D, 0.0D, 0.0D);
+            if (this.isSitting()) {
                 this.navigation.stop();
                 this.setTarget(null);
             }
         }
         super.aiStep();
+    }
+
+    protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource damageSource, boolean bl) {
+        super.dropCustomDeathLoot(serverLevel, damageSource, bl);
+        for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
+            ItemStack itemStack = this.getItemBySlot(equipmentSlot);
+            if (!itemStack.isEmpty()) {
+                this.spawnAtLocation(itemStack);
+                this.setItemSlot(equipmentSlot, ItemStack.EMPTY);
+            }
+        }
     }
 
     @Override
@@ -139,10 +161,16 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
 
         if (!interactionResult.consumesAction() && player.isCrouching() || !interactionResult.consumesAction() && !player.isCrouching() && itemStack2.isEmpty() && itemStack.isEmpty()) {
             if (this.isOwnedBy(player)) {
-                this.setOrderedToSit(!this.isOrderedToSit());
-                this.jumping = false;
-                this.navigation.stop();
-                this.setTarget(null);
+                if (this.isSitting()) {
+                    this.setSitting(false);
+                    this.setOrderedToSit(false);
+                } else if (!this.isSitting()) {
+                    this.setSitting(true);
+                    this.setOrderedToSit(true);
+                    this.jumping = false;
+                    this.navigation.stop();
+                    this.setTarget(null);
+                }
                 return InteractionResult.SUCCESS_NO_ITEM_USED;
             }
         }
@@ -270,7 +298,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     }
 
     private <E extends GingerbreadMan> PlayState predicate(final AnimationState<E> event) {
-        if (this.isInSittingPose()) {
+        if (this.isSitting()) {
             event.setAnimation(SIT);
         } else if (event.isMoving()) {
             if (this.getMainHandItem().isEmpty()) {

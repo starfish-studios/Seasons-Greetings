@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "seasonsgreetings:icing_block",
+    "seasonsgreetings:icing_stairs",
+    "seasonsgreetings:icing_slab",
+    "seasonsgreetings:wreath",
+    "seasonsgreetings:red_gumdrop_block",
+    "seasonsgreetings:orange_gumdrop_block",
+    "seasonsgreetings:yellow_gumdrop_block",
+    "seasonsgreetings:green_gumdrop_block",
+    "seasonsgreetings:purple_gumdrop_block"
+    ]
+}

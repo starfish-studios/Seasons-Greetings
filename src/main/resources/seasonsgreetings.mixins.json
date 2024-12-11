@@ -7,6 +7,7 @@
     "AbstractFurnaceBlockEntityMixin",
     "ItemEntityMixin",
     "LivingEntityMixin",
+    "ServerGamePacketListenerImplMixin",
     "SnowballMixin",
     "SnowGolemMixin"
   ],

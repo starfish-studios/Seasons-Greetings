@@ -93,7 +93,19 @@ public class MilkCauldronBlock extends AbstractCauldronBlock implements BlockPic
     }
 
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (itemStack.is(Items.BUCKET)) {
+        if (itemStack.is(Items.MILK_BUCKET) && blockState.getValue(LayeredCauldronBlock.LEVEL) < 3) {
+            level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, 3));
+            if (!player.isCreative()) {
+                itemStack.shrink(1);
+                if (!player.getInventory().add(new ItemStack(Items.BUCKET))) {
+                    player.drop(new ItemStack(Items.BUCKET), false);
+                }
+            }
+            player.playSound(SoundEvents.BUCKET_EMPTY, 1.0F, 1.0F);
+            return ItemInteractionResult.SUCCESS;
+        }
+
+        else if (itemStack.is(Items.BUCKET)) {
             level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
             if (!player.isCreative()) {
                 itemStack.shrink(1);

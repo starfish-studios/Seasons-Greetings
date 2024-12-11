@@ -20,7 +20,6 @@ public class SGBlocks {
     public static final Block HOT_COCOA_CAULDRON = registerBlock("hot_cocoa_cauldron", new HotCocoaCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
     public static final Block MILK_CAULDRON = registerBlock("milk_cauldron", new MilkCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
-    public static final Block STRING_LIGHTS = registerBlock("string_lights", new WrappedBlock(Block.Properties.of().instabreak().noCollission().noOcclusion()));
     public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES)));
 
     public static final BlockBehaviour.Properties lightProperties = Block.Properties.of().sound(SoundType.WOOL).instabreak().noCollission().noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(GlowLichenBlock.emission(10));
@@ -64,7 +63,7 @@ public class SGBlocks {
     public static final Block ICING_BLOCK = registerBlock("icing_block", new Block(icingProperties));
     public static final Block ICING_STAIRS = registerBlock("icing_stairs", new StairBlock(ICING_BLOCK.defaultBlockState(), icingProperties));
     public static final Block ICING_SLAB = registerBlock("icing_slab", new SlabBlock(icingProperties));
-    public static final Block ICING = registerBlock("icing", new IcingBlock(icingProperties.noOcclusion()));
+    public static final Block ICING = registerBlock("icing", new IcingBlock(icingProperties.noOcclusion().instabreak()));
 
     public static final BlockBehaviour.Properties chocolateProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
     public static final Block CHOCOLATE_BLOCK = registerBlock("chocolate_block", new Block(chocolateProperties));
@@ -87,11 +86,11 @@ public class SGBlocks {
     public static final Block GREEN_GUMDROP_BLOCK = registerBlock("green_gumdrop_block", new GumdropBlock(gumdropProperties));
     public static final Block PURPLE_GUMDROP_BLOCK = registerBlock("purple_gumdrop_block", new GumdropBlock(gumdropProperties));
 
-    public static final Block RED_GUMDROP_BUTTON = registerBlock("red_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
-    public static final Block ORANGE_GUMDROP_BUTTON = registerBlock("orange_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
-    public static final Block YELLOW_GUMDROP_BUTTON = registerBlock("yellow_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
-    public static final Block GREEN_GUMDROP_BUTTON = registerBlock("green_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
-    public static final Block PURPLE_GUMDROP_BUTTON = registerBlock("purple_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties));
+    public static final Block RED_GUMDROP_BUTTON = registerBlock("red_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties.instabreak()));
+    public static final Block ORANGE_GUMDROP_BUTTON = registerBlock("orange_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties.instabreak()));
+    public static final Block YELLOW_GUMDROP_BUTTON = registerBlock("yellow_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties.instabreak()));
+    public static final Block GREEN_GUMDROP_BUTTON = registerBlock("green_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties.instabreak()));
+    public static final Block PURPLE_GUMDROP_BUTTON = registerBlock("purple_gumdrop_button", new GumdropButtonBlock(BlockSetType.OAK, 60, gumdropProperties.instabreak()));
 
 
     // endregion
