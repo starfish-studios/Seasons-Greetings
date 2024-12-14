@@ -1,8 +1,7 @@
 package com.starfish_studios.seasons_greetings.client.model;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.entity.GingerbreadMan;
-import com.starfish_studios.seasons_greetings.registry.SGBlocks;
+import com.starfish_studios.seasons_greetings.common.entity.GingerbreadMan;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.resources.ResourceLocation;
@@ -39,10 +38,6 @@ public class GingerbreadManModel extends DefaultedEntityGeoModel<GingerbreadMan>
         if (animationState == null) return;
 
         GeoBone root = this.getAnimationProcessor().getBone("rootRot");
-
-        if (gingerbreadMan.getInBlockState().is(SGBlocks.MILK_CAULDRON)) {
-            root.setRotZ((float) Math.sin(System.currentTimeMillis() * 0.05D) * 0.1F);
-        }
 
     }
 }

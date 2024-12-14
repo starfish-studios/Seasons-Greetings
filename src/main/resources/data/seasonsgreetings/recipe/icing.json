@@ -1,4 +1,11 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "icing"
+    }
+  ],
+
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
@@ -7,7 +14,7 @@
     },
     "X":  [
       {
-        "item": "minecraft:milk"
+        "item": "minecraft:milk_bucket"
       },
       {
         "tag": "c:buckets/milk"

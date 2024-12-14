@@ -2,7 +2,7 @@ package com.starfish_studios.seasons_greetings.client.renderer;
 
 import com.starfish_studios.seasons_greetings.client.model.ChristmasHatModel;
 import com.starfish_studios.seasons_greetings.client.renderer.layers.ChristmasHatOverlay;
-import com.starfish_studios.seasons_greetings.item.ChristmasHatItem;
+import com.starfish_studios.seasons_greetings.common.item.ChristmasHatItem;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.cache.object.GeoBone;

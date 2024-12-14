@@ -10,5 +10,10 @@
         "processors": "minecraft:empty"
       }
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:witch_house_enabled"
+    }
   ]
 }

@@ -1,7 +1,7 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.item.*;
+import com.starfish_studios.seasons_greetings.common.item.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,7 +14,11 @@ public class SGItems {
 
     // region Edible Items
 
-    public static final Item FRUITCAKE = registerItem("fruitcake", new Item(new Item.Properties()));
+    public static final Item FRUITCAKE = registerItem("fruitcake", new Item(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .nutrition(10)
+                    .saturationModifier(0.3f)
+            .build())));
 
     public static final Item GINGERBREAD_COOKIE = registerItem("gingerbread_cookie", new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
@@ -22,7 +26,13 @@ public class SGItems {
                     .saturationModifier(0.1f)
             .build())));
 
-    public static final Item GINGERBREAD_MAN = registerItem("gingerbread_man", new GingerbreadManItem(new Item.Properties()));
+    public static final Item BROKEN_GINGERBREAD_MAN = registerItem("broken_gingerbread_man", new Item(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .nutrition(1)
+                    .saturationModifier(0.1f)
+            .build())));
+
+    public static final Item GINGERBREAD_MAN = registerItem("gingerbread_man", new GingerbreadManItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     public static final Item GINGERBREAD_CRUMBS = registerItem("gingerbread_crumbs", new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
@@ -37,13 +47,19 @@ public class SGItems {
                     .saturationModifier(0.1f)
             .build())));
 
-    public static final Item WARM_MILK_BOTTLE = registerItem("warm_milk_bottle", new WarmMilkBottleItem(new Item.Properties()
+    public static final Item WARM_MILK = registerItem("warm_milk", new WarmMilkItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
             .build())));
 
-    public static  final Item HOT_COCOA_BOTTLE = registerItem("hot_cocoa_bottle", new HotCocoaBottleItem(new Item.Properties()
+    public static  final Item HOT_COCOA = registerItem("hot_cocoa", new HotCocoaItem(new Item.Properties()
+            .food(new FoodProperties.Builder()
+                    .nutrition(4)
+                    .saturationModifier(0.3f)
+            .build())));
+
+    public static final Item EGGNOG = registerItem("eggnog", new EggnogItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
@@ -58,6 +74,8 @@ public class SGItems {
     public static final Item SNOW_BRICK_STAIRS = registerItem("snow_brick_stairs", new BlockItem(SGBlocks.SNOW_BRICK_STAIRS, new Item.Properties()));
     public static final Item SNOW_BRICK_SLAB = registerItem("snow_brick_slab", new BlockItem(SGBlocks.SNOW_BRICK_SLAB, new Item.Properties()));
     public static final Item CHISELED_SNOW = registerItem("chiseled_snow", new BlockItem(SGBlocks.CHISELED_SNOW, new Item.Properties()));
+
+    public static final Item ICICLE = registerItem("icicle", new BlockItem(SGBlocks.ICICLE, new Item.Properties()));
 
     // region Lights
     public static final Item WHITE_LIGHTS = registerItem("white_lights", new BlockItem(SGBlocks.WHITE_LIGHTS, new Item.Properties()));

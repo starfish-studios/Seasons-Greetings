@@ -5,6 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
 
 @SuppressWarnings("unused")
@@ -39,7 +40,7 @@ public class SGSoundEvents {
 
     // region Item Sounds
 
-    public static final SoundEvent WARM_MILK_DRINK = registerSoundEvent("item.warm_milk.drink");
+    public static final SoundEvent DRINK = registerSoundEvent("entity.generic.drink");
 
     // endregion
 
@@ -56,7 +57,7 @@ public class SGSoundEvents {
     // region Block Sound Groups
 
     public static final SoundType PACKED_SNOW = new SoundType(1.0F, 1.0F,
-        SGSoundEvents.PACKED_SNOW_BREAK, SGSoundEvents.PACKED_SNOW_STEP, SGSoundEvents.PACKED_SNOW_PLACE, SGSoundEvents.PACKED_SNOW_HIT, SGSoundEvents.PACKED_SNOW_FALL
+        SoundEvents.SNOW_BREAK, SGSoundEvents.PACKED_SNOW_STEP, SoundEvents.SNOW_PLACE, SGSoundEvents.PACKED_SNOW_HIT, SGSoundEvents.PACKED_SNOW_FALL
     );
 
     public static final SoundType CANDY_BLOCK = new SoundType(1.0F, 1.0F,

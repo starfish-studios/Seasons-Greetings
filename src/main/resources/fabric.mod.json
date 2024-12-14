@@ -3,15 +3,16 @@
 	"id": "seasonsgreetings",
 	"version": "${version}",
 	"name": "Season's Greetings",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A mod that adds features related to holidays!",
 	"authors": [
-		"Me!"
+		"§cStarfish Studios"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://curseforge.com/minecraft/mc-mods/seasons-greetings",
+		"sources": "https://github.com/starfish-studios/Seasons-Greetings",
+		"issues": "https://github.com/starfish-studios/Seasons-Greetings/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "ARR & MIT Combined License - see details at our source.",
 	"icon": "assets/seasonsgreetings/icon.png",
 	"environment": "*",
 	"entrypoints": {

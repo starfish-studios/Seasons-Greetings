@@ -1,4 +1,11 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "gifts"
+    }
+  ],
+
   "type": "seasonsgreetings:gift_box_coloring",
   "category": "misc"
 }

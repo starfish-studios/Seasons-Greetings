@@ -11,7 +11,13 @@
         "item": "minecraft:purple_dye"
       },
       {
+        "item": "minecraft:magenta_dye"
+      },
+      {
         "tag": "c:dyes/purple"
+      },
+      {
+        "tag": "c:dyes/magenta"
       }
     ]
   },

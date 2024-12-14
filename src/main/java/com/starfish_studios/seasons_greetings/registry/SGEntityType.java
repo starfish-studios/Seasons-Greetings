@@ -1,7 +1,7 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.entity.GingerbreadMan;
+import com.starfish_studios.seasons_greetings.common.entity.GingerbreadMan;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,7 +19,7 @@ public class SGEntityType {
                     .entityFactory(GingerbreadMan::new)
                     .defaultAttributes(GingerbreadMan::createAttributes)
                     .spawnGroup(MobCategory.CREATURE)
-                    .dimensions(EntityDimensions.scalable(0.5F, 0.5F))
+                    .dimensions(EntityDimensions.scalable(0.6F, 0.8F))
                     .trackRangeChunks(10)
     );
 

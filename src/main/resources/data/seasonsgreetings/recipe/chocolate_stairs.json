@@ -1,4 +1,11 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "chocolate"
+    }
+  ],
+
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {

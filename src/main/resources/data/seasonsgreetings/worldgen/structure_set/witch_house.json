@@ -10,5 +10,10 @@
       "structure": "seasonsgreetings:witch_house",
       "weight": 1
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:witch_house_enabled"
+    }
   ]
 }

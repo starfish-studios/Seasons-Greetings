@@ -1,0 +1,34 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "chocolate"
+    }
+  ],
+
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    [
+      {
+        "item": "minecraft:milk_bucket"
+      },
+      {
+        "tag": "c:buckets/milk"
+      }
+    ],
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "seasonsgreetings:chocolate",
+    "count": 1
+  }
+}

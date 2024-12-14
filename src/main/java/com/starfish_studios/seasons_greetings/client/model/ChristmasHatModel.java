@@ -1,7 +1,7 @@
 package com.starfish_studios.seasons_greetings.client.model;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.item.ChristmasHatItem;
+import com.starfish_studios.seasons_greetings.common.item.ChristmasHatItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;

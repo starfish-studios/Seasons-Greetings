@@ -1,0 +1,45 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "gingerbreadBlocks"
+    }
+  ],
+
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:gingerbread_crumbs"
+    },
+    {
+      "item": "seasonsgreetings:broken_gingerbread_man"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "seasonsgreetings:gingerbread_man"
+  }
+}
+

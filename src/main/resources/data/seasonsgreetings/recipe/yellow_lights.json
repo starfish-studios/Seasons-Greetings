@@ -1,4 +1,11 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "stringLights"
+    }
+  ],
+
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [

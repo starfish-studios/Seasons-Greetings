@@ -1,8 +1,12 @@
 {
+
+
   "itemGroup.seasonsgreetings.tab": "Season's Greetings",
 
   "advancements.adventure.gumdrop_buttons.title": "The Muffin Man",
   "advancements.adventure.gumdrop_buttons.description": "Not my Gumdrop Buttons!",
+
+  "block.seasonsgreetings.icicle": "Icicle",
 
   "block.seasonsgreetings.wreath": "Wreath",
   "block.seasonsgreetings.white_lights": "White Lights",
@@ -87,10 +91,16 @@
   "item.seasonsgreetings.christmas_hat": "Christmas Hat",
   "item.seasonsgreetings.fruitcake": "Fruitcake",
   "item.seasonsgreetings.gingerbread_cookie": "Gingerbread Cookie",
+  "item.seasonsgreetings.gingerbread_man": "Gingerbread Man",
+  "item.seasonsgreetings.broken_gingerbread_man": "Broken Gingerbread Man",
   "item.seasonsgreetings.gingerbread_crumbs": "Gingerbread Crumbs",
   "item.seasonsgreetings.gingerbread_man_spawn_egg": "Gingerbread Man Spawn Egg",
-  "item.seasonsgreetings.hot_cocoa_bottle": "Hot Cocoa Bottle",
-  "item.seasonsgreetings.warm_milk_bottle": "Warm Milk Bottle",
+  "item.seasonsgreetings.hot_cocoa": "Hot Cocoa",
+  "item.seasonsgreetings.warm_milk": "Warm Milk",
+  "item.seasonsgreetings.eggnog": "Eggnog",
+
+  "painting.seasonsgreetings.revontulet.title": "Revontulet",
+  "painting.seasonsgreetings.revontulet.author": "crispytwig",
 
   "tooltip.seasons_greetings.bow": "Bow",
 
@@ -103,5 +113,63 @@
   "subtitles.seasonsgreetings.item.warm_milk.drink": "Drinking",
 
   "subtitles.seasonsgreetings.entity.gingerbread_man.hurt": "Gingerbread Man hurts",
-  "subtitles.seasonsgreetings.entity.snowball.hit": "Snowball hits"
+  "subtitles.seasonsgreetings.entity.snowball.hit": "Snowball hits",
+  "subtitles.seasonsgreetings.entity.generic.drink": "Drinking",
+
+
+  "seasonsgreetings.midnightconfig.title": "Season's Greetings Config",
+  "seasonsgreetings.midnightconfig.category.main": "Main",
+  "seasonsgreetings.midnightconfig.category.content_toggles": "Content Toggles",
+
+  "seasonsgreetings.midnightconfig.itemsMisc": "§9Items & Misc.",
+  "seasonsgreetings.midnightconfig.snowGolems": "§9Snow Golems",
+
+
+  "seasonsgreetings.midnightconfig.eggnogEffects": "§7Eggnog Effects",
+  "seasonsgreetings.midnightconfig.eggnogEffects.tooltip": "§8§o[?]§7§o If Eggnog should give any effects.",
+  "seasonsgreetings.midnightconfig.negativeEggnogEffects": "§7Negative Eggnog Effects",
+  "seasonsgreetings.midnightconfig.negativeEggnogEffects.tooltip": "§8§o[?]§7§o If Eggnog should give Weakness. Keeps Strength.",
+
+  "seasonsgreetings.midnightconfig.crazyGingerbreadMen": "§7Cookie → Gingerbread Man Spawning",
+  "seasonsgreetings.midnightconfig.crazyGingerbreadMen.tooltip": "§8§o[?]§7§o If Gingerbread Men should spawn from a Gingerbread Cookie being cooked.",
+  "seasonsgreetings.midnightconfig.gingerbreadManCopyBreak": "§7Gingerbread Men target block their owner is breaking",
+  "seasonsgreetings.midnightconfig.gingerbreadManCopyBreak.tooltip": "§8§o[?]§7§o If Gingerbread Men should copy their owner's block break target if they have a valid tool.",
+
+  "seasonsgreetings.midnightconfig.snowGolemsEquippable": "§7Snow Golems can be equipped with items",
+  "seasonsgreetings.midnightconfig.snowGolemsEquippable.tooltip": "§8§o[?]§7§o If Snow Golems should be able to be equipped with items.",
+  "seasonsgreetings.midnightconfig.snowGolemItemHats": "§7Snow Golems can have items placed on their heads",
+  "seasonsgreetings.midnightconfig.snowGolemItemHats.tooltip": "§8§o[?]§7§o If Snow Golems should be able to have items placed on their heads - not only blocks.",
+  "seasonsgreetings.midnightconfig.stationarySnowGolems": "§7Snow Golem right-click stationary interaction",
+  "seasonsgreetings.midnightconfig.stationarySnowGolems.tooltip": "§8§o[?]§7§o If Snow Golems can be 'sat' by right-clicking them.",
+  "seasonsgreetings.midnightconfig.meltedSnowGolems": "§7Snow Golems can be 'melted' with Flint & Steel",
+  "seasonsgreetings.midnightconfig.meltedSnowGolems.tooltip": "§8§o[?]§7§o If Snow Golems can be 'melted' to prevent them from leaving Snow trails.",
+
+
+  "seasonsgreetings.midnightconfig.configReload": "§c§l[!] §7§oToggling any of the following will require you to §c§l§orestart your world§7§o to take effect.",
+
+  "seasonsgreetings.midnightconfig.witchHouse": "§7Enable Witch House",
+  "seasonsgreetings.midnightconfig.witchHouse.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, Witch Houses will not spawn in the world.",
+
+  "seasonsgreetings.midnightconfig.gingerbreadBlocks": "§7Enable Gingerbread Blocks",
+  "seasonsgreetings.midnightconfig.gingerbreadBlocks.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.stringLights": "§7Enable String Lights",
+  "seasonsgreetings.midnightconfig.stringLights.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.snowBlocks": "§7Enable Snow Blocks",
+  "seasonsgreetings.midnightconfig.snowBlocks.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.wreathBlock": "§7Enable Wreath Block",
+  "seasonsgreetings.midnightconfig.wreathBlock.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.icicle": "§7Enable Icicle",
+  "seasonsgreetings.midnightconfig.icicle.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.peppermint": "§7Enable Peppermint",
+  "seasonsgreetings.midnightconfig.peppermint.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.chocolate": "§7Enable Chocolate",
+  "seasonsgreetings.midnightconfig.chocolate.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.icing": "§7Enable Icing",
+  "seasonsgreetings.midnightconfig.icing.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.gumdrops": "§7Enable Gumdrops",
+  "seasonsgreetings.midnightconfig.gumdrops.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed.",
+  "seasonsgreetings.midnightconfig.gifts": "§7Enable Gift Boxes",
+  "seasonsgreetings.midnightconfig.gifts.tooltip": "§8§o[?]§7§o If §c§o'No'§7§o, creative tab entries and recipes will be removed."
+
+
 }

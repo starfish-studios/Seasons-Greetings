@@ -197,7 +197,7 @@
     "subtitle": "subtitles.seasonsgreetings.block.gift_box.close"
   },
 
-  "item.warm_milk.drink": {
+  "entity.generic.drink": {
     "sounds": [
       "minecraft:mob/wandering_trader/drink_milk1",
       "minecraft:mob/wandering_trader/drink_milk2",
@@ -205,7 +205,7 @@
       "minecraft:mob/wandering_trader/drink_milk4",
       "minecraft:mob/wandering_trader/drink_milk5"
     ],
-    "subtitle": "subtitles.seasonsgreetings.item.warm_milk.drink"
+    "subtitle": "subtitles.seasonsgreetings.entity.generic.drink"
   },
 
   "entity.gingerbread_man.hurt": {

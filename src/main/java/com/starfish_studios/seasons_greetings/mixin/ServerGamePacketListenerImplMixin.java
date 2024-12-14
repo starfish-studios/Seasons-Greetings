@@ -1,6 +1,6 @@
 package com.starfish_studios.seasons_greetings.mixin;
 
-import com.starfish_studios.seasons_greetings.entity.PlayerMiningTracker;
+import com.starfish_studios.seasons_greetings.common.entity.PlayerMiningTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.server.level.ServerPlayer;

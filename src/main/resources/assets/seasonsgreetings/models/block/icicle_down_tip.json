@@ -1,0 +1,6 @@
+{
+  "parent": "seasonsgreetings:block/icicle",
+  "textures": {
+    "cross": "seasonsgreetings:block/icicle_down_tip"
+  }
+}

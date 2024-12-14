@@ -1,13 +1,14 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.block.*;
+import com.starfish_studios.seasons_greetings.common.block.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 public class SGBlocks {
@@ -20,7 +21,7 @@ public class SGBlocks {
 
     public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES)));
 
-    public static final BlockBehaviour.Properties lightProperties = Block.Properties.of().sound(SoundType.WOOL).instabreak().noCollission().noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(GlowLichenBlock.emission(10));
+    public static final BlockBehaviour.Properties lightProperties = Block.Properties.of().sound(SoundType.STONE).instabreak().noCollission().noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(WrappedBlock.emission(10));
     public static final Block WHITE_LIGHTS = registerBlock("white_lights", new WrappedBlock(lightProperties));
     public static final Block RED_LIGHTS = registerBlock("red_lights", new WrappedBlock(lightProperties));
     public static final Block ORANGE_LIGHTS = registerBlock("orange_lights", new WrappedBlock(lightProperties));
@@ -39,12 +40,24 @@ public class SGBlocks {
     public static final Block SNOW_BRICK_SLAB = registerBlock("snow_brick_slab", new SlabBlock(snowProperties));
     public static final Block CHISELED_SNOW = registerBlock("chiseled_snow", new Block(snowProperties));
 
+    public static final Block ICICLE = registerBlock("icicle", new IcicleBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.ICE)
+            .noOcclusion()
+            .sound(SoundType.GLASS)
+            .randomTicks()
+            .strength(1.5F, 3.0F)
+            .dynamicShape()
+            .offsetType(BlockBehaviour.OffsetType.XZ)
+            .pushReaction(PushReaction.DESTROY)
+            .isRedstoneConductor(Blocks::never)));
+
+
     // region Gingerbread House Blocks
 
     // Gingerbread Block Set: Gingerbread, Gingerbread Stairs, Gingerbread Slabs, Gingerbread Bricks, Gingerbread Brick Stairs, Gingerbread Brick Slabs,
     // Gingerbread Shingles, Gingerbread Shingle Stairs, Gingerbread Shingle Slabs, and Gingerbread Doors.
 
-    public static final Block.Properties gingerbreadProperties = Block.Properties.of().strength(0.3F).sound(SGSoundEvents.CANDY_BLOCK);
+    public static final Block.Properties gingerbreadProperties = Block.Properties.of().strength(0.3F).sound(SoundType.WOOL);
     public static final Block GINGERBREAD_BLOCK = registerBlock("gingerbread_block", new Block(gingerbreadProperties));
     public static final Block GINGERBREAD_STAIRS = registerBlock("gingerbread_stairs", new StairBlock(GINGERBREAD_BLOCK.defaultBlockState(), gingerbreadProperties));
     public static final Block GINGERBREAD_SLAB = registerBlock("gingerbread_slab", new SlabBlock(gingerbreadProperties));
@@ -69,7 +82,7 @@ public class SGBlocks {
 
     // Peppermint Block Set: Peppermint Block, Peppermint Stairs, Peppermint Slabs
 
-    public static final BlockBehaviour.Properties peppermintProperties = Block.Properties.of().strength(0.5F).sound(SGSoundEvents.CANDY_BLOCK);
+    public static final BlockBehaviour.Properties peppermintProperties = Block.Properties.of().strength(0.5F).sound(SoundType.STONE);
     public static final Block PEPPERMINT_BLOCK = registerBlock("peppermint_block", new RotatedPillarBlock(peppermintProperties));
     public static final Block PEPPERMINT_STAIRS = registerBlock("peppermint_stairs", new StairBlock(PEPPERMINT_BLOCK.defaultBlockState(), peppermintProperties));
     public static final Block PEPPERMINT_SLAB = registerBlock("peppermint_slab", new SlabBlock(peppermintProperties));
@@ -117,7 +130,7 @@ public class SGBlocks {
 
     @SuppressWarnings("all")
     private static Block registerBlock(String id, Block block) {
-        System.out.println(SeasonsGreetings.id(id));
+//        System.out.println(SeasonsGreetings.id(id));
         return Registry.register(BuiltInRegistries.BLOCK, SeasonsGreetings.id(id), block);
     }
 }

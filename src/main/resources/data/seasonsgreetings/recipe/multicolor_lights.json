@@ -1,5 +1,12 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "stringLights"
+    }
+  ],
+
+  "type": "seasonsgreetings:multicolor_lights_recipe",
   "group": "seasonsgreetings/lights",
   "category": "misc",
   "pattern": [

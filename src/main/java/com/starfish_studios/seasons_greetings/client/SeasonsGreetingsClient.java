@@ -10,31 +10,32 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluid;
 import software.bernie.geckolib.util.Color;
 
 import java.util.Objects;
 
 import static com.starfish_studios.seasons_greetings.SeasonsGreetings.getColor;
-import static com.starfish_studios.seasons_greetings.SeasonsGreetings.id;
 
 @Environment(EnvType.CLIENT)
 public class SeasonsGreetingsClient  implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        addResourcePacks();
 
         registerRenderers();
         registerScreens();
@@ -47,6 +48,12 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
         );
 
         registerAllGiftBoxProperties();
+    }
+
+
+    public static void addResourcePacks() {
+        ModContainer modContainer = FabricLoader.getInstance().getModContainer(SeasonsGreetings.MOD_ID).orElseThrow(() -> new IllegalStateException("Season's Greetings' ModContainer couldn't be found!"));
+        ResourceManagerHelper.registerBuiltinResourcePack(SeasonsGreetings.id("snowier_snow"), modContainer, Component.literal("§b§o❆ §9§oSnowier Snow §b§o❆"), ResourcePackActivationType.DEFAULT_ENABLED);
     }
 
 
@@ -97,6 +104,7 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     public static void registerRenderers() {
     BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
             Blocks.SNOW,
+            SGBlocks.ICICLE,
 
             SGBlocks.WHITE_LIGHTS,
             SGBlocks.RED_LIGHTS,

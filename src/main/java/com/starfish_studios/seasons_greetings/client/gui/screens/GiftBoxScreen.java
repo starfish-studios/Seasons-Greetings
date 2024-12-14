@@ -1,7 +1,7 @@
 package com.starfish_studios.seasons_greetings.client.gui.screens;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.inventory.GiftBoxMenu;
+import com.starfish_studios.seasons_greetings.common.inventory.GiftBoxMenu;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;

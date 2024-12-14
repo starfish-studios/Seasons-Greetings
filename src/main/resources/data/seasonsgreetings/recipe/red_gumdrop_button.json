@@ -1,4 +1,11 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:block_enabled",
+      "block_enabled": "gumdrops"
+    }
+  ],
+
   "type": "minecraft:crafting_shapeless",
   "category": "redstone",
   "ingredients": [

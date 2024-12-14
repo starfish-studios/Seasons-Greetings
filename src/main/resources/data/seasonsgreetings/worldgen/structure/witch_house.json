@@ -1,6 +1,11 @@
 {
   "type": "minecraft:jigsaw",
   "biomes": "#seasonsgreetings:has_witch_house",
+  "fabric:load_conditions": [
+    {
+      "condition": "seasonsgreetings:witch_house_enabled"
+    }
+  ],
   "step": "surface_structures",
   "spawn_overrides": {},
   "terrain_adaptation": "beard_thin",

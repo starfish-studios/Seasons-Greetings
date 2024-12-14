@@ -15,102 +15,13 @@
                     "type": "minecraft:alternatives",
                     "children": [
                         {
-                            "type": "minecraft:alternatives",
-                            "children": [
-                                {
-                                    "type": "minecraft:item",
-                                    "conditions": [
-                                        {
-                                            "block": "seasonsgreetings:icing",
-                                            "condition": "minecraft:block_state_property",
-                                            "properties": {
-                                                "layers": "1"
-                                            }
-                                        }
-                                    ],
-                                    "functions": [
-                                        {
-                                            "add": false,
-                                            "count": 1,
-                                            "function": "minecraft:set_count"
-                                        }
-                                    ],
-                                    "name": "seasonsgreetings:icing"
-                                },
-                                {
-                                    "type": "minecraft:item",
-                                    "conditions": [
-                                        {
-                                            "block": "seasonsgreetings:icing",
-                                            "condition": "minecraft:block_state_property",
-                                            "properties": {
-                                                "layers": "2"
-                                            }
-                                        }
-                                    ],
-                                    "functions": [
-                                        {
-                                            "add": false,
-                                            "count": 2,
-                                            "function": "minecraft:set_count"
-                                        }
-                                    ],
-                                    "name": "seasonsgreetings:icing"
-                                },
-                                {
-                                    "type": "minecraft:item",
-                                    "conditions": [
-                                        {
-                                            "block": "seasonsgreetings:icing",
-                                            "condition": "minecraft:block_state_property",
-                                            "properties": {
-                                                "layers": "3"
-                                            }
-                                        }
-                                    ],
-                                    "functions": [
-                                        {
-                                            "add": false,
-                                            "count": 3,
-                                            "function": "minecraft:set_count"
-                                        }
-                                    ],
-                                    "name": "seasonsgreetings:icing"
-                                },
-                                {
-                                    "type": "minecraft:item",
-                                    "conditions": [
-                                        {
-                                            "block": "seasonsgreetings:icing",
-                                            "condition": "minecraft:block_state_property",
-                                            "properties": {
-                                                "layers": "4"
-                                            }
-                                        }
-                                    ],
-                                    "functions": [
-                                        {
-                                            "add": false,
-                                            "count": 4,
-                                            "function": "minecraft:set_count"
-                                        }
-                                    ],
-                                    "name": "seasonsgreetings:icing"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "minecraft:alternatives",
-                    "children": [
-                        {
                             "type": "minecraft:item",
                             "conditions": [
                                 {
                                     "condition": "minecraft:block_state_property",
                                     "block": "seasonsgreetings:icing",
                                     "properties": {
+                                        "layers": "0",
                                         "facing": "north"
                                     }
                                 }
@@ -126,63 +37,146 @@
                         },
                         {
                             "type": "minecraft:item",
-                            "name": "seasonsgreetings:icing",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "seasonsgreetings:icing",
+                                    "properties": {
+                                        "layers": "0",
+                                        "facing": "east"
+                                    }
+                                }
+                            ],
                             "functions": [
                                 {
-                                    "function": "minecraft:set_count",
                                     "add": false,
                                     "count": 1,
-                                    "conditions": [
-                                        {
-                                            "condition": "minecraft:block_state_property",
-                                            "block": "seasonsgreetings:icing",
-                                            "properties": {
-                                                "facing": "east"
-                                            }
-                                        }
-                                    ]
+                                    "function": "minecraft:set_count"
                                 }
-                            ]
+                            ],
+                            "name": "seasonsgreetings:icing"
                         },
                         {
                             "type": "minecraft:item",
-                            "name": "seasonsgreetings:icing",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "seasonsgreetings:icing",
+                                    "properties": {
+                                        "layers": "0",
+                                        "facing": "south"
+                                    }
+                                }
+                            ],
                             "functions": [
                                 {
-                                    "function": "minecraft:set_count",
                                     "add": false,
                                     "count": 1,
-                                    "conditions": [
-                                        {
-                                            "condition": "minecraft:block_state_property",
-                                            "block": "seasonsgreetings:icing",
-                                            "properties": {
-                                                "facing": "south"
-                                            }
-                                        }
-                                    ]
+                                    "function": "minecraft:set_count"
                                 }
-                            ]
+                            ],
+                            "name": "seasonsgreetings:icing"
                         },
                         {
                             "type": "minecraft:item",
-                            "name": "seasonsgreetings:icing",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "seasonsgreetings:icing",
+                                    "properties": {
+                                        "layers": "0",
+                                        "facing": "west"
+                                    }
+                                }
+                            ],
                             "functions": [
                                 {
-                                    "function": "minecraft:set_count",
                                     "add": false,
                                     "count": 1,
-                                    "conditions": [
-                                        {
-                                            "condition": "minecraft:block_state_property",
-                                            "block": "seasonsgreetings:icing",
-                                            "properties": {
-                                                "facing": "west"
-                                            }
-                                        }
-                                    ]
+                                    "function": "minecraft:set_count"
                                 }
-                            ]
+                            ],
+                            "name": "seasonsgreetings:icing"
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:icing",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "layers": "1"
+                                    }
+                                }
+                            ],
+                            "functions": [
+                                {
+                                    "add": false,
+                                    "count": 1,
+                                    "function": "minecraft:set_count"
+                                }
+                            ],
+                            "name": "seasonsgreetings:icing"
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:icing",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "layers": "2"
+                                    }
+                                }
+                            ],
+                            "functions": [
+                                {
+                                    "add": false,
+                                    "count": 2,
+                                    "function": "minecraft:set_count"
+                                }
+                            ],
+                            "name": "seasonsgreetings:icing"
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:icing",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "layers": "3"
+                                    }
+                                }
+                            ],
+                            "functions": [
+                                {
+                                    "add": false,
+                                    "count": 3,
+                                    "function": "minecraft:set_count"
+                                }
+                            ],
+                            "name": "seasonsgreetings:icing"
+                        },
+                        {
+                            "type": "minecraft:item",
+                            "conditions": [
+                                {
+                                    "block": "seasonsgreetings:icing",
+                                    "condition": "minecraft:block_state_property",
+                                    "properties": {
+                                        "layers": "4"
+                                    }
+                                }
+                            ],
+                            "functions": [
+                                {
+                                    "add": false,
+                                    "count": 4,
+                                    "function": "minecraft:set_count"
+                                }
+                            ],
+                            "name": "seasonsgreetings:icing"
                         }
                     ]
                 }

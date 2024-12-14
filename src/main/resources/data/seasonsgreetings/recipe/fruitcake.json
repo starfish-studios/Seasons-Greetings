@@ -3,7 +3,7 @@
   "category": "food",
   "key": {
     "A": {
-      "tag": "c:foods/fruit"
+      "tag": "seasonsgreetings:fruitcake_fruits"
     },
     "B": {
       "item": "minecraft:sugar"
