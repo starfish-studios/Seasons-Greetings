@@ -94,13 +94,14 @@
 
   "tooltip.seasons_greetings.bow": "Bow",
 
-  "subtitles.seasonsgreetings.entity.gingerbread_man.hurt": "Gingerbread Man hurts",
+  "subtitles.seasonsgreetings.block.milk_cauldron.bubble": "Warm Milk bubbles",
+  "subtitles.seasonsgreetings.block.cocoa_cauldron.bubble": "Hot Cocoa bubbles",
 
   "subtitles.seasonsgreetings.block.gift_box.open": "Gift Box opens",
   "subtitles.seasonsgreetings.block.gift_box.close": "Gift Box closes",
 
-  "subtitles.seasonsgreetings.block.milk_cauldron.bubble": "Warm Milk bubbles",
-  "subtitles.seasonsgreetings.entity.generic.drink": "Drinking",
-  "subtitles.seasonsgreetings.block.cocoa_cauldron.bubble": "Hot Cocoa bubbles",
+  "subtitles.seasonsgreetings.item.warm_milk.drink": "Drinking",
+
+  "subtitles.seasonsgreetings.entity.gingerbread_man.hurt": "Gingerbread Man hurts",
   "subtitles.seasonsgreetings.entity.snowball.hit": "Snowball hits"
 }

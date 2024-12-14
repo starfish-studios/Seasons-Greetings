@@ -26,12 +26,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.text.html.BlockView;
-
 public class MilkCauldronBlock extends AbstractCauldronBlock implements BlockPickInteractionAware {
 
+    @SuppressWarnings("all")
     @Override
-    protected MapCodec<? extends AbstractCauldronBlock> codec() {
+    protected @NotNull MapCodec<? extends AbstractCauldronBlock> codec() {
         return null;
     }
 
@@ -40,6 +39,7 @@ public class MilkCauldronBlock extends AbstractCauldronBlock implements BlockPic
         this.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
     }
 
+    @Override
     protected @NotNull InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
         return InteractionResult.PASS;
     }
@@ -51,9 +51,10 @@ public class MilkCauldronBlock extends AbstractCauldronBlock implements BlockPic
 
     @Override
     public ItemStack getPickedStack(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Player player, HitResult hitResult) {
-        return new ItemStack((Items.CAULDRON));
+        return new ItemStack(Items.CAULDRON);
     }
 
+    @Override
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
         if (blockState.is(SGBlocks.MILK_CAULDRON) && level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
             if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 3) {
@@ -85,13 +86,12 @@ public class MilkCauldronBlock extends AbstractCauldronBlock implements BlockPic
 
             if (randomSource.nextInt(10) == 0) {
                 level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5,
-                        SGSoundEvents.MILK_BUBBLE, SoundSource.BLOCKS,
-                        0.3F, 1.0F + level.random.nextFloat() * 0.2F, false);
+                SGSoundEvents.MILK_CAULDRON_BUBBLE, SoundSource.BLOCKS, 0.3F, 1.0F + level.random.nextFloat() * 0.2F, false);
             }
         }
-
     }
 
+    @Override
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (itemStack.is(Items.MILK_BUCKET) && blockState.getValue(LayeredCauldronBlock.LEVEL) < 3) {
             level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, 3));

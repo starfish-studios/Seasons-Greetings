@@ -85,7 +85,7 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
 
 
             if (randomSource.nextInt(10) == 0) {
-                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SGSoundEvents.HOT_COCOA_BUBBLE, SoundSource.BLOCKS,
+                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SGSoundEvents.COCOA_CAULDRON_BUBBLE, SoundSource.BLOCKS,
                         0.3F, 1.0F + level.random.nextFloat() * 0.2F, false);
             }
         }

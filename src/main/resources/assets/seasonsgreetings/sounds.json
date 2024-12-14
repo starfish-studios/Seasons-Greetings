@@ -1,4 +1,213 @@
 {
+  "block.milk_cauldron.bubble": {
+    "sounds": [
+      "seasonsgreetings:block/cauldron/bubbling1",
+      "seasonsgreetings:block/cauldron/bubbling2",
+      "seasonsgreetings:block/cauldron/bubbling3",
+      "seasonsgreetings:block/cauldron/bubbling4",
+      "seasonsgreetings:block/cauldron/bubbling5"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.milk_cauldron.bubble"
+  },
+  "block.cocoa_cauldron.bubble": {
+    "sounds": [
+      "seasonsgreetings:block/cauldron/bubbling1",
+      "seasonsgreetings:block/cauldron/bubbling2",
+      "seasonsgreetings:block/cauldron/bubbling3",
+      "seasonsgreetings:block/cauldron/bubbling4",
+      "seasonsgreetings:block/cauldron/bubbling5"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.cocoa_cauldron.bubble"
+  },
+
+  "block.packed_snow.place": {
+    "sounds": [
+      "seasonsgreetings:block/packed_snow/break1",
+      "seasonsgreetings:block/packed_snow/break2",
+      "seasonsgreetings:block/packed_snow/break3",
+      "seasonsgreetings:block/packed_snow/break4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.packed_snow.break": {
+    "sounds": [
+      "seasonsgreetings:block/packed_snow/break1",
+      "seasonsgreetings:block/packed_snow/break2",
+      "seasonsgreetings:block/packed_snow/break3",
+      "seasonsgreetings:block/packed_snow/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.packed_snow.hit": {
+    "sounds": [
+      "seasonsgreetings:block/packed_snow/step1",
+      "seasonsgreetings:block/packed_snow/step2",
+      "seasonsgreetings:block/packed_snow/step3",
+      "seasonsgreetings:block/packed_snow/step4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.packed_snow.step": {
+    "sounds": [
+      "seasonsgreetings:block/packed_snow/step1",
+      "seasonsgreetings:block/packed_snow/step2",
+      "seasonsgreetings:block/packed_snow/step3",
+      "seasonsgreetings:block/packed_snow/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.packed_snow.fall": {
+    "sounds": [
+      "seasonsgreetings:block/packed_snow/step1",
+      "seasonsgreetings:block/packed_snow/step2",
+      "seasonsgreetings:block/packed_snow/step3",
+      "seasonsgreetings:block/packed_snow/step4"
+    ]
+  },
+
+  "block.candy_block.place": {
+    "sounds": [
+      "seasonsgreetings:block/candy_block/break1",
+      "seasonsgreetings:block/candy_block/break2",
+      "seasonsgreetings:block/candy_block/break3",
+      "seasonsgreetings:block/candy_block/break4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.candy_block.break": {
+    "sounds": [
+      "seasonsgreetings:block/candy_block/break1",
+      "seasonsgreetings:block/candy_block/break2",
+      "seasonsgreetings:block/candy_block/break3",
+      "seasonsgreetings:block/candy_block/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.candy_block.hit": {
+    "sounds": [
+      "seasonsgreetings:block/candy_block/step1",
+      "seasonsgreetings:block/candy_block/step2",
+      "seasonsgreetings:block/candy_block/step3",
+      "seasonsgreetings:block/candy_block/step4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.candy_block.step": {
+    "sounds": [
+      "seasonsgreetings:block/candy_block/step1",
+      "seasonsgreetings:block/candy_block/step2",
+      "seasonsgreetings:block/candy_block/step3",
+      "seasonsgreetings:block/candy_block/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.candy_block.fall": {
+    "sounds": [
+      "seasonsgreetings:block/candy_block/step1",
+      "seasonsgreetings:block/candy_block/step2",
+      "seasonsgreetings:block/candy_block/step3",
+      "seasonsgreetings:block/candy_block/step4"
+    ]
+  },
+
+  "block.gift_box.place": {
+    "sounds": [
+      {
+        "name": "seasonsgreetings:block/gift_box/break1",
+        "pitch": 1.3
+      },
+      {
+        "name": "seasonsgreetings:block/gift_box/break2",
+        "pitch": 1.3
+      },
+      {
+        "name": "seasonsgreetings:block/gift_box/break3",
+        "pitch": 1.3
+      },
+      {
+        "name": "seasonsgreetings:block/gift_box/break4",
+        "pitch": 1.3
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.gift_box.break": {
+    "sounds": [
+      {
+        "name": "seasonsgreetings:block/gift_box/break1",
+        "pitch": 1.2
+      },
+      {
+        "name": "seasonsgreetings:block/gift_box/break2",
+        "pitch": 1.2
+      },
+      {
+        "name": "seasonsgreetings:block/gift_box/break3",
+        "pitch": 1.2
+      },
+      {
+        "name": "seasonsgreetings:block/gift_box/break4",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.gift_box.hit": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box/step1",
+      "seasonsgreetings:block/gift_box/step2",
+      "seasonsgreetings:block/gift_box/step3",
+      "seasonsgreetings:block/gift_box/step4",
+      "seasonsgreetings:block/gift_box/step5",
+      "seasonsgreetings:block/gift_box/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.gift_box.step": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box/step1",
+      "seasonsgreetings:block/gift_box/step2",
+      "seasonsgreetings:block/gift_box/step3",
+      "seasonsgreetings:block/gift_box/step4",
+      "seasonsgreetings:block/gift_box/step5",
+      "seasonsgreetings:block/gift_box/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.gift_box.fall": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box/step1",
+      "seasonsgreetings:block/gift_box/step2",
+      "seasonsgreetings:block/gift_box/step3",
+      "seasonsgreetings:block/gift_box/step4",
+      "seasonsgreetings:block/gift_box/step5",
+      "seasonsgreetings:block/gift_box/step6"
+    ]
+  },
+  "block.gift_box.open": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box/open"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.gift_box.open"
+  },
+  "block.gift_box.close": {
+    "sounds": [
+      "seasonsgreetings:block/gift_box/close"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.block.gift_box.close"
+  },
+
+  "item.warm_milk.drink": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/drink_milk1",
+      "minecraft:mob/wandering_trader/drink_milk2",
+      "minecraft:mob/wandering_trader/drink_milk3",
+      "minecraft:mob/wandering_trader/drink_milk4",
+      "minecraft:mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "subtitles.seasonsgreetings.item.warm_milk.drink"
+  },
+
   "entity.gingerbread_man.hurt": {
     "sounds": [
       "seasonsgreetings:mob/gingerbread_man/hurt1",
@@ -10,56 +219,12 @@
     "subtitle": "subtitles.seasonsgreetings.entity.gingerbread_man.hurt"
   },
 
-  "block.gift_box.close": {
-    "sounds": [
-      "seasonsgreetings:block/gift_box_close"
-    ],
-    "subtitle": "subtitles.seasonsgreetings.block.gift_box.close"
-  },
-  "block.gift_box.open": {
-    "sounds": [
-      "seasonsgreetings:block/gift_box_open"
-    ],
-    "subtitle": "subtitles.seasonsgreetings.block.gift_box.open"
-  },
-
-
   "entity.snowball.hit": {
     "sounds": [
-      "entity/snowman/hurt1",
-      "entity/snowman/hurt2",
-      "entity/snowman/hurt3"
+      "minecraft:entity/snowman/hurt1",
+      "minecraft:entity/snowman/hurt2",
+      "minecraft:entity/snowman/hurt3"
     ],
     "subtitle": "subtitles.seasonsgreetings.entity.snowball.hit"
-  },
-  "block.milk_cauldron.bubble": {
-    "sounds": [
-      "seasonsgreetings:block/bubbling1",
-      "seasonsgreetings:block/bubbling2",
-      "seasonsgreetings:block/bubbling3",
-      "seasonsgreetings:block/bubbling4",
-      "seasonsgreetings:block/bubbling5"
-    ],
-    "subtitle": "subtitles.seasonsgreetings.block.milk_cauldron.bubble"
-  },
-  "block.cocoa_cauldron.bubble": {
-    "sounds": [
-      "seasonsgreetings:block/bubbling1",
-      "seasonsgreetings:block/bubbling2",
-      "seasonsgreetings:block/bubbling3",
-      "seasonsgreetings:block/bubbling4",
-      "seasonsgreetings:block/bubbling5"
-    ],
-    "subtitle": "subtitles.seasonsgreetings.block.cocoa_cauldron.bubble"
-  },
-  "subtitles.entity.generic.drink": {
-    "sounds": [
-      "mob/wandering_trader/drink_milk1",
-      "mob/wandering_trader/drink_milk2",
-      "mob/wandering_trader/drink_milk3",
-      "mob/wandering_trader/drink_milk4",
-      "mob/wandering_trader/drink_milk5"
-    ],
-    "subtitle": "subtitles.seasonsgreetings.entity.generic.drink"
   }
 }

@@ -16,10 +16,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class WarmMilkBottleItem extends Item {
+
     public WarmMilkBottleItem(Properties properties) {
         super(properties);
     }
@@ -66,11 +66,11 @@ public class WarmMilkBottleItem extends Item {
     }
 
     public @NotNull SoundEvent getDrinkingSound() {
-        return SGSoundEvents.DRINKING;
+        return SGSoundEvents.WARM_MILK_DRINK;
     }
 
     public @NotNull SoundEvent getEatingSound() {
-        return SGSoundEvents.DRINKING;
+        return this.getDrinkingSound();
     }
 
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
