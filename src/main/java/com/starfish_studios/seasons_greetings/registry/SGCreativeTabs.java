@@ -36,6 +36,7 @@ public class SGCreativeTabs {
                 if (SGConfig.gingerbreadBlocks) {
                     output.accept(GINGERBREAD_CRUMBS);
                     output.accept(GINGERBREAD_DOOR);
+                    output.accept(GINGERBREAD_TRAPDOOR);
                     output.accept(GINGERBREAD_BLOCK);
                     output.accept(GINGERBREAD_STAIRS);
                     output.accept(GINGERBREAD_SLAB);

@@ -149,6 +149,7 @@ public class SGItems {
 
     // Gingerbread door
     public static final Item GINGERBREAD_DOOR = registerItem("gingerbread_door", new DoubleHighBlockItem(SGBlocks.GINGERBREAD_DOOR, new Item.Properties()));
+    public static final Item GINGERBREAD_TRAPDOOR = registerItem("gingerbread_trapdoor", new BlockItem(SGBlocks.GINGERBREAD_TRAPDOOR, new Item.Properties()));
 
     // endregion
 
