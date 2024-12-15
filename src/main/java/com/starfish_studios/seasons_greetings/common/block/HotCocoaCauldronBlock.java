@@ -1,6 +1,7 @@
 package com.starfish_studios.seasons_greetings.common.block;
 
 import com.mojang.serialization.MapCodec;
+import com.starfish_studios.seasons_greetings.SGConfig;
 import com.starfish_studios.seasons_greetings.registry.*;
 import net.fabricmc.fabric.api.block.BlockPickInteractionAware;
 import net.minecraft.ChatFormatting;
@@ -56,7 +57,6 @@ public class HotCocoaCauldronBlock extends AbstractCauldronBlock implements Bloc
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
         if (blockState.is(SGBlocks.HOT_COCOA_CAULDRON) && level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
-
             if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 3) {
                 for (int i = 0; i < 2; ++i) {
                     double x = (double) blockPos.getX() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
@@ -92,31 +92,72 @@ public class HotCocoaCauldronBlock extends AbstractCauldronBlock implements Bloc
 
     }
 
+    public static void giveItem(Player player, ItemStack consumedItem, ItemStack outputItem) {
+        if (!player.isCreative()) {
+            consumedItem.shrink(1);
+
+            if (!player.getInventory().add(outputItem)) {
+                player.drop(outputItem, false);
+            }
+        } else {
+            if (!player.getInventory().contains(outputItem)) {
+                if (!player.getInventory().add(outputItem)) {
+                    player.drop(outputItem, false);
+                }
+            }
+        }
+    }
+
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (itemStack.is(Items.BUCKET)) {
-            player.playSound(SoundEvents.ARROW_HIT_PLAYER, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
-            player.displayClientMessage(Component.translatable("block.seasons_greetings.hot_cocoa_cauldron.bucket")
-                    .withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC), true);
+        if (itemStack.is(Items.BUCKET) && !level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)
+        || itemStack.is(Items.GLASS_BOTTLE) && !level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)
+        ) {
+            if (SGConfig.warningPings && !SGConfig.calmerWarnings) {
+                player.playSound(SoundEvents.ARROW_HIT_PLAYER, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+                player.displayClientMessage(Component.literal("[!] ")
+                        .append(Component.translatable("block.seasons_greetings.hot_cocoa_cauldron.too_cold"))
+                        .withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC), true);
+            }
+            else if (SGConfig.calmerWarnings) {
+                player.displayClientMessage(Component.translatable("block.seasons_greetings.hot_cocoa_cauldron.too_cold"), true);
+            } else {
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            }
+            player.swing(interactionHand);
+        }
+
+
+        if (itemStack.is(Items.BUCKET) && blockState.getValue(LayeredCauldronBlock.LEVEL) == 3 && level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
+            giveItem(player, itemStack, new ItemStack(SGItems.HOT_COCOA_BUCKET));
+            level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
+            player.playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
             return ItemInteractionResult.SUCCESS;
         }
 
-        else if (itemStack.is(Items.GLASS_BOTTLE)) {
+        if (itemStack.is(Items.GLASS_BOTTLE) && level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
             if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 1) {
                 level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
-                if (!player.getInventory().add(new ItemStack(SGItems.HOT_COCOA))) {
-                    player.drop(new ItemStack(SGItems.HOT_COCOA), false);
-                }
+                giveItem(player, itemStack, new ItemStack(SGItems.HOT_COCOA));
                 player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);
                 return ItemInteractionResult.SUCCESS;
             } else if (blockState.getValue(LayeredCauldronBlock.LEVEL) > 1) {
                 level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, blockState.getValue(LayeredCauldronBlock.LEVEL) - 1));
-                if (!player.getInventory().add(new ItemStack(SGItems.HOT_COCOA))) {
-                    player.drop(new ItemStack(SGItems.HOT_COCOA), false);
-                }
+                giveItem(player, itemStack, new ItemStack(SGItems.HOT_COCOA));
                 player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);
                 return ItemInteractionResult.SUCCESS;
             }
         }
+
+        if (itemStack.is(SGItems.HOT_COCOA)) {
+            if (blockState.getValue(LayeredCauldronBlock.LEVEL) < 3) {
+                level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, blockState.getValue(LayeredCauldronBlock.LEVEL) + 1));
+                giveItem(player, itemStack, new ItemStack(Items.GLASS_BOTTLE));
+                player.playSound(SoundEvents.BOTTLE_EMPTY, 1.0F, 1.0F);
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
+
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }

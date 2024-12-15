@@ -8,6 +8,9 @@ public class SGConfig extends MidnightConfig {
 
     @Comment(category = MAIN, centered = true) public static Comment itemsMisc;
 
+    @Entry(category = MAIN) public static boolean warningPings = true;
+    @Entry(category = MAIN) public static boolean calmerWarnings = false;
+
     @Entry(category = MAIN) public static boolean eggnogEffects = true;
     @Entry(category = MAIN) public static boolean negativeEggnogEffects = true;
     @Entry(category = MAIN) public static boolean crazyGingerbreadMen = true;

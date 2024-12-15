@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "seasonsgreetings:snow_brick_slab",
+	"seasonsgreetings:gingerbread_slab",
+    "seasonsgreetings:gingerbread_brick_slab",
+    "seasonsgreetings:gingerbread_shingle_slab",
+    "seasonsgreetings:peppermint_slab",
+    "seasonsgreetings:chocolate_slab",
+    "seasonsgreetings:icing_slab"
+  ]
+}

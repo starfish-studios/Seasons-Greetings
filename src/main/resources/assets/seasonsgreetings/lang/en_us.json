@@ -83,8 +83,10 @@
   "entity.seasonsgreetings.gingerbread_man": "Gingerbread Man",
 
   "block.seasonsgreetings.hot_cocoa_cauldron": "Hot Cocoa Cauldron",
-  "block.seasons_greetings.hot_cocoa_cauldron.bucket": "[!] You can't fill Buckets with Hot Cocoa, only Bottles!",
-  "block.seasons_greetings.hot_cocoa_cauldron.bucket2": "Sneak + Right Click if you'd like to clear the Cauldron's contents.",
+  "block.seasons_greetings.warm_milk_cauldron.bucket": "You cannot get Warm Milk with a Bucket. Try cooling it down first",
+  "block.seasons_greetings.warm_milk_cauldron.bottle": "You cannot get Milk with a Bottle. Try heating it up first",
+
+  "block.seasons_greetings.hot_cocoa_cauldron.too_cold": "The Cocoa is not hot enough. Try heating it up first",
 
   "item.dyeable": "Dyeable",
   "item.seasonsgreetings.chocolate": "Chocolate",
@@ -96,8 +98,10 @@
   "item.seasonsgreetings.gingerbread_crumbs": "Gingerbread Crumbs",
   "item.seasonsgreetings.gingerbread_man_spawn_egg": "Gingerbread Man Spawn Egg",
   "item.seasonsgreetings.hot_cocoa": "Hot Cocoa",
+  "item.seasonsgreetings.hot_cocoa_bucket": "Hot Cocoa Bucket",
   "item.seasonsgreetings.warm_milk": "Warm Milk",
   "item.seasonsgreetings.eggnog": "Eggnog",
+  "item.seasonsgreetings.eggnog_bucket": "Eggnog Bucket",
 
   "painting.seasonsgreetings.revontulet.title": "Revontulet",
   "painting.seasonsgreetings.revontulet.author": "crispytwig",
@@ -124,6 +128,11 @@
   "seasonsgreetings.midnightconfig.itemsMisc": "§9Items & Misc.",
   "seasonsgreetings.midnightconfig.snowGolems": "§9Snow Golems",
 
+  "seasonsgreetings.midnightconfig.warningPings": "§c§l§o[!] §7Warning Pings",
+  "seasonsgreetings.midnightconfig.warningPings.tooltip": "§8§o[?]§7§o If blocks like Cauldrons play warning pings for incorrect usage.",
+
+  "seasonsgreetings.midnightconfig.calmerWarnings": "§7Calmer Warnings",
+  "seasonsgreetings.midnightconfig.calmerWarnings.tooltip": "§8§o[?]§7§o Removes sounds, formatting, and symbols from Cauldron warning messages.",
 
   "seasonsgreetings.midnightconfig.eggnogEffects": "§7Eggnog Effects",
   "seasonsgreetings.midnightconfig.eggnogEffects.tooltip": "§8§o[?]§7§o If Eggnog should give any effects.",
@@ -135,10 +144,10 @@
   "seasonsgreetings.midnightconfig.gingerbreadManCopyBreak": "§7Gingerbread Men target block their owner is breaking",
   "seasonsgreetings.midnightconfig.gingerbreadManCopyBreak.tooltip": "§8§o[?]§7§o If Gingerbread Men should copy their owner's block break target if they have a valid tool.",
 
-  "seasonsgreetings.midnightconfig.snowGolemsEquippable": "§7Snow Golems can be equipped with items",
-  "seasonsgreetings.midnightconfig.snowGolemsEquippable.tooltip": "§8§o[?]§7§o If Snow Golems should be able to be equipped with items.",
+  "seasonsgreetings.midnightconfig.snowGolemsEquippable": "§7Snow Golems can be equipped with accessories",
+  "seasonsgreetings.midnightconfig.snowGolemsEquippable.tooltip": "§8§o[?]§7§o If Snow Golems should be able to be equipped with hats, scarves, noses, etc..",
   "seasonsgreetings.midnightconfig.snowGolemItemHats": "§7Snow Golems can have items placed on their heads",
-  "seasonsgreetings.midnightconfig.snowGolemItemHats.tooltip": "§8§o[?]§7§o If Snow Golems should be able to have items placed on their heads - not only blocks.",
+  "seasonsgreetings.midnightconfig.snowGolemItemHats.tooltip": "§8§o[?]§7§o If Snow Golems should be able to have items placed on their head slot - not only blocks.",
   "seasonsgreetings.midnightconfig.stationarySnowGolems": "§7Snow Golem right-click stationary interaction",
   "seasonsgreetings.midnightconfig.stationarySnowGolems.tooltip": "§8§o[?]§7§o If Snow Golems can be 'sat' by right-clicking them.",
   "seasonsgreetings.midnightconfig.meltedSnowGolems": "§7Snow Golems can be 'melted' with Flint & Steel",

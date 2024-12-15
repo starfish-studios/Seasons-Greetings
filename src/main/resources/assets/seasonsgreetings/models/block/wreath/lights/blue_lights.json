@@ -1,0 +1,7 @@
+{
+  "parent": "seasonsgreetings:block/wreath/lights",
+  "textures": {
+    "particle": "seasonsgreetings:block/wreath/lights/blue_lights",
+    "lights": "seasonsgreetings:block/wreath/lights/blue_lights"
+  }
+}

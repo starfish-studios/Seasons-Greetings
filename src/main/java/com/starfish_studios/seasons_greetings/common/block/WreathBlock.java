@@ -73,6 +73,13 @@ public class WreathBlock extends Block {
 
     public enum WreathGarland implements StringRepresentable {
         EMPTY("empty"),
+        RED_LIGHTS("red_lights"),
+        ORANGE_LIGHTS("orange_lights"),
+        YELLOW_LIGHTS("yellow_lights"),
+        GREEN_LIGHTS("green_lights"),
+        BLUE_LIGHTS("blue_lights"),
+        PURPLE_LIGHTS("purple_lights"),
+        WHITE_LIGHTS("white_lights"),
         MULTICOLOR_LIGHTS("multicolor_lights"),
         GLOW_BERRIES("glow_berries"),
         SWEET_BERRIES("sweet_berries");

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "seasonsgreetings:snow_brick_stairs",
+    "seasonsgreetings:gingerbread_stairs",
+    "seasonsgreetings:gingerbread_brick_stairs",
+    "seasonsgreetings:gingerbread_shingle_stairs",
+    "seasonsgreetings:peppermint_stairs",
+    "seasonsgreetings:chocolate_stairs",
+    "seasonsgreetings:icing_stairs"
+  ]
+}

@@ -53,6 +53,150 @@
                     "condition": "minecraft:block_state_property",
                     "block": "seasonsgreetings:wreath",
                     "properties": {
+                        "garland": "white_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:white_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "red_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:red_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "orange_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:orange_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "yellow_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:yellow_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "green_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:green_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "blue_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:blue_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "purple_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:purple_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
+                        "garland": "multicolor_lights"
+                    }
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "seasonsgreetings:multicolor_lights"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "conditions": [
+                {
+                    "condition": "minecraft:block_state_property",
+                    "block": "seasonsgreetings:wreath",
+                    "properties": {
                         "bell": "true"
                     }
                 }

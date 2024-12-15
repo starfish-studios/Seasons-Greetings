@@ -154,43 +154,320 @@
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath/multicolor_lights"
+        "model": "seasonsgreetings:block/wreath/lights/white_lights"
       },
       "when": {
         "facing": "north",
-        "garland": "multicolor_lights"
+        "garland": "white_lights"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath/multicolor_lights",
+        "model": "seasonsgreetings:block/wreath/lights/white_lights",
         "y": 90
       },
       "when": {
         "facing": "east",
-        "garland": "multicolor_lights"
+        "garland": "white_lights"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath/multicolor_lights",
+        "model": "seasonsgreetings:block/wreath/lights/white_lights",
         "y": 180
       },
       "when": {
         "facing": "south",
-        "garland": "multicolor_lights"
+        "garland": "white_lights"
       }
     },
     {
       "apply": {
-        "model": "seasonsgreetings:block/wreath/multicolor_lights",
+        "model": "seasonsgreetings:block/wreath/lights/white_lights",
         "y": 270
       },
       "when": {
         "facing": "west",
-        "garland": "multicolor_lights"
+        "garland": "white_lights"
       }
     },
+    {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/red_lights"
+        },
+        "when": {
+            "facing": "north",
+            "garland": "red_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/red_lights",
+            "y": 90
+        },
+        "when": {
+            "facing": "east",
+            "garland": "red_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/red_lights",
+            "y": 180
+        },
+        "when": {
+            "facing": "south",
+            "garland": "red_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/red_lights",
+            "y": 270
+        },
+        "when": {
+            "facing": "west",
+            "garland": "red_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/orange_lights"
+        },
+        "when": {
+            "facing": "north",
+            "garland": "orange_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/orange_lights",
+            "y": 90
+        },
+        "when": {
+            "facing": "east",
+            "garland": "orange_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/orange_lights",
+            "y": 180
+        },
+        "when": {
+            "facing": "south",
+            "garland": "orange_lights"
+        }
+        },
+        {
+        "apply": {
+            "model": "seasonsgreetings:block/wreath/lights/orange_lights",
+            "y": 270
+        },
+        "when": {
+            "facing": "west",
+            "garland": "orange_lights"
+        }
+      },
+        {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/yellow_lights"
+            },
+            "when": {
+                "facing": "north",
+                "garland": "yellow_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/yellow_lights",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "garland": "yellow_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/yellow_lights",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "garland": "yellow_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/yellow_lights",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "garland": "yellow_lights"
+            }
+        },
+        {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/green_lights"
+            },
+            "when": {
+                "facing": "north",
+                "garland": "green_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/green_lights",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "garland": "green_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/green_lights",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "garland": "green_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/green_lights",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "garland": "green_lights"
+            }
+        },
+        {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/blue_lights"
+            },
+            "when": {
+                "facing": "north",
+                "garland": "blue_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/blue_lights",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "garland": "blue_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/blue_lights",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "garland": "blue_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/blue_lights",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "garland": "blue_lights"
+            }
+        },
+        {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/purple_lights"
+            },
+            "when": {
+                "facing": "north",
+                "garland": "purple_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/purple_lights",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "garland": "purple_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/purple_lights",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "garland": "purple_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/purple_lights",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "garland": "purple_lights"
+            }
+        },
+        {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/multicolor_lights"
+            },
+            "when": {
+                "facing": "north",
+                "garland": "multicolor_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/multicolor_lights",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "garland": "multicolor_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/multicolor_lights",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "garland": "multicolor_lights"
+            }
+            },
+            {
+            "apply": {
+                "model": "seasonsgreetings:block/wreath/lights/multicolor_lights",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "garland": "multicolor_lights"
+            }
+        },
+
+
+
+
     {
       "apply": {
         "model": "seasonsgreetings:block/wreath/bow/white_bow"

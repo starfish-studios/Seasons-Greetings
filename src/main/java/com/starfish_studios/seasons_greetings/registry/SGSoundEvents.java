@@ -15,6 +15,7 @@ public class SGSoundEvents {
 
     public static final SoundEvent MILK_CAULDRON_BUBBLE = registerSoundEvent("block.milk_cauldron.bubble");
     public static final SoundEvent COCOA_CAULDRON_BUBBLE = registerSoundEvent("block.cocoa_cauldron.bubble");
+    public static final SoundEvent EGGNOG_CAULDRON_BUBBLE = registerSoundEvent("block.eggnog_cauldron.bubble");
 
     public static final SoundEvent PACKED_SNOW_BREAK = registerSoundEvent("block.packed_snow.break");
     public static final SoundEvent PACKED_SNOW_STEP = registerSoundEvent("block.packed_snow.step");

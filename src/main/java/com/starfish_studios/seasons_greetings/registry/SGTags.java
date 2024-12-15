@@ -20,6 +20,7 @@ public class SGTags {
 
     public static class SGBlockTags {
         public static final TagKey<Block> HEAT_SOURCES = of("heat_sources");
+        public static final TagKey<Block> GINGERBREAD_MAN_BLACKLIST = of("gingerbread_man_blacklist");
 
         private static TagKey<Block> of(String id) {
             return TagKey.create(Registries.BLOCK, SeasonsGreetings.id(id));

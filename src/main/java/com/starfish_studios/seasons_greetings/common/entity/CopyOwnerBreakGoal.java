@@ -1,6 +1,7 @@
 package com.starfish_studios.seasons_greetings.common.entity;
 
 import com.starfish_studios.seasons_greetings.SGConfig;
+import com.starfish_studios.seasons_greetings.registry.SGTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
@@ -62,6 +63,8 @@ public class CopyOwnerBreakGoal extends Goal {
 
         Level level = owner.level();
         BlockState state = level.getBlockState(minedBlockPos);
+
+        if (state.is(SGTags.SGBlockTags.GINGERBREAD_MAN_BLACKLIST)) return false;
 
         if (gingerbreadMan.getItemBySlot(EquipmentSlot.MAINHAND).isDamageableItem() && gingerbreadMan.getItemBySlot(EquipmentSlot.MAINHAND).getDamageValue() == gingerbreadMan.getItemBySlot(EquipmentSlot.MAINHAND).getMaxDamage()) {
             return false;

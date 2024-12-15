@@ -98,6 +98,7 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     private static void registerParticles() {
         ParticleFactoryRegistry.getInstance().register(SGParticles.COCOA_BUBBLE, PoppingBubbleParticle.Provider::new);
         ParticleFactoryRegistry.getInstance().register(SGParticles.MILK_BUBBLE, PoppingBubbleParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(SGParticles.EGGNOG_BUBBLE, PoppingBubbleParticle.Provider::new);
     }
 
     @SuppressWarnings("all")

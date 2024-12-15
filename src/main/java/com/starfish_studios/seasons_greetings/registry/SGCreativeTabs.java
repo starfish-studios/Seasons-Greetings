@@ -20,6 +20,9 @@ public class SGCreativeTabs {
 
         output.accept(stack);
 
+//        output.accept(WARM_MILK_BUCKET);
+        output.accept(HOT_COCOA_BUCKET);
+        output.accept(EGGNOG_BUCKET);
         output.accept(WARM_MILK);
         output.accept(HOT_COCOA);
         output.accept(EGGNOG);

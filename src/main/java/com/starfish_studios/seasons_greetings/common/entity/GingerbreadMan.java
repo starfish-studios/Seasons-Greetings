@@ -121,6 +121,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     public void aiStep() {
         if (!this.level().isClientSide) {
             if (this.isSitting()) {
+                this.setJumping(false);
                 this.navigation.stop();
                 this.setTarget(null);
             }

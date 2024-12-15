@@ -55,15 +55,14 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
     }
 
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
-        if (blockState.is(SGBlocks.HOT_COCOA_CAULDRON) && level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
-
+        if (blockState.is(SGBlocks.EGGNOG_CAULDRON) && level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
             if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 3) {
                 for (int i = 0; i < 2; ++i) {
                     double x = (double) blockPos.getX() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
                     double y = (double) blockPos.getY() + 1 + (level.random.nextDouble() * 0.2D - 0.1D);
                     double z = (double) blockPos.getZ() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
 
-                    level.addParticle(SGParticles.COCOA_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
+                    level.addParticle(SGParticles.EGGNOG_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
                 }
             } else if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 2) {
                 for (int i = 0; i < 2; ++i) {
@@ -71,7 +70,7 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                     double y = (double) blockPos.getY() + 0.8 + (level.random.nextDouble() * 0.2D - 0.1D);
                     double z = (double) blockPos.getZ() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
 
-                    level.addParticle(SGParticles.COCOA_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
+                    level.addParticle(SGParticles.EGGNOG_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
                 }
             } else if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 1) {
                 for (int i = 0; i < 2; ++i) {
@@ -79,13 +78,13 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                     double y = (double) blockPos.getY() + 0.6 + (level.random.nextDouble() * 0.2D - 0.1D);
                     double z = (double) blockPos.getZ() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
 
-                    level.addParticle(SGParticles.COCOA_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
+                    level.addParticle(SGParticles.EGGNOG_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
                 }
             }
 
 
             if (randomSource.nextInt(10) == 0) {
-                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SGSoundEvents.COCOA_CAULDRON_BUBBLE, SoundSource.BLOCKS,
+                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SGSoundEvents.EGGNOG_CAULDRON_BUBBLE, SoundSource.BLOCKS,
                         0.3F, 1.0F + level.random.nextFloat() * 0.2F, false);
             }
         }
@@ -93,27 +92,52 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
     }
 
     protected @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (itemStack.is(Items.BUCKET)) {
-            player.playSound(SoundEvents.ARROW_HIT_PLAYER, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
-            player.displayClientMessage(Component.translatable("block.seasons_greetings.hot_cocoa_cauldron.bucket")
-                    .withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC), true);
+        if (itemStack.is(Items.BUCKET) && blockState.getValue(LayeredCauldronBlock.LEVEL) == 3) {
+            if (!player.isCreative()) {
+                itemStack.shrink(1);
+                if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG_BUCKET))) {
+                    player.drop(new ItemStack(SGItems.EGGNOG_BUCKET), false);
+                }
+            }
+            level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
+            player.playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
             return ItemInteractionResult.SUCCESS;
         }
 
         else if (itemStack.is(Items.GLASS_BOTTLE)) {
             if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 1) {
                 level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
-                if (!player.getInventory().add(new ItemStack(SGItems.HOT_COCOA))) {
-                    player.drop(new ItemStack(SGItems.HOT_COCOA), false);
+                if (!player.isCreative()) {
+                    itemStack.shrink(1);
+                    if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG))) {
+                        player.drop(new ItemStack(SGItems.EGGNOG), false);
+                    }
                 }
                 player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);
                 return ItemInteractionResult.SUCCESS;
             } else if (blockState.getValue(LayeredCauldronBlock.LEVEL) > 1) {
                 level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, blockState.getValue(LayeredCauldronBlock.LEVEL) - 1));
-                if (!player.getInventory().add(new ItemStack(SGItems.HOT_COCOA))) {
-                    player.drop(new ItemStack(SGItems.HOT_COCOA), false);
+                if (!player.isCreative()) {
+                    itemStack.shrink(1);
+                    if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG))) {
+                        player.drop(new ItemStack(SGItems.EGGNOG), false);
+                    }
                 }
                 player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
+        else if (itemStack.is(SGItems.EGGNOG)) {
+            if (blockState.getValue(LayeredCauldronBlock.LEVEL) < 3) {
+                level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, blockState.getValue(LayeredCauldronBlock.LEVEL) + 1));
+                if (!player.isCreative()) {
+                    itemStack.shrink(1);
+                    if (!player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE))) {
+                        player.drop(new ItemStack(Items.GLASS_BOTTLE), false);
+                    }
+                }
+                player.playSound(SoundEvents.BOTTLE_EMPTY, 1.0F, 1.0F);
                 return ItemInteractionResult.SUCCESS;
             }
         }

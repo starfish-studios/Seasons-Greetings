@@ -37,7 +37,7 @@ public class HotCocoaItem extends Item {
         if (livingEntity instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
             serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-            serverPlayer.addEffect(new MobEffectInstance(SGEffects.COZY, 3600, 0, false, false, true));
+            serverPlayer.addEffect(new MobEffectInstance(SGEffects.COZY, 3600, 0));
         }
 
         if (itemStack.isEmpty()) {

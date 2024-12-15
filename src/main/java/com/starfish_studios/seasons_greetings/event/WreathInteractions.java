@@ -66,7 +66,7 @@ public class WreathInteractions implements UseBlockCallback {
         if (GARLAND_MAP.containsKey(item) && blockState.getValue(WreathBlock.GARLAND) == WreathBlock.WreathGarland.EMPTY) {
             BlockState newState = getBlockstateForGarland(item, blockState);
             level.setBlockAndUpdate(pos, newState);
-            playSound(level, pos, SoundEvents.WOOL_PLACE, player);
+            playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
             consumeItemIfNotCreative(player, itemStack);
             return InteractionResult.SUCCESS;
         }
@@ -74,7 +74,7 @@ public class WreathInteractions implements UseBlockCallback {
         // Bell Interaction
         if (item == Items.BELL && !blockState.getValue(WreathBlock.BELL)) {
             level.setBlockAndUpdate(pos, blockState.setValue(WreathBlock.BELL, true));
-            playSound(level, pos, SoundEvents.WOOL_PLACE, player);
+            playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
             consumeItemIfNotCreative(player, itemStack);
             return InteractionResult.SUCCESS;
         }
@@ -100,7 +100,7 @@ public class WreathInteractions implements UseBlockCallback {
             BlockState newState = getBlockstateForCarpet(item, blockState)
                     .setValue(BlockStateProperties.HORIZONTAL_FACING, blockState.getValue(BlockStateProperties.HORIZONTAL_FACING));
             level.setBlockAndUpdate(pos, newState);
-            playSound(level, pos, SoundEvents.WOOL_PLACE, player);
+            playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
             consumeItemIfNotCreative(player, itemStack);
             return InteractionResult.SUCCESS;
         }
@@ -186,13 +186,28 @@ public class WreathInteractions implements UseBlockCallback {
 
     private static final Map<WreathBlock.WreathGarland, Item> GARLAND_SHEAR_MAP = Util.make(new HashMap<>(), (map) -> {
         map.put(WreathBlock.WreathGarland.EMPTY, Items.AIR);
+        map.put(WreathBlock.WreathGarland.WHITE_LIGHTS, SGItems.WHITE_LIGHTS);
+        map.put(WreathBlock.WreathGarland.RED_LIGHTS, SGItems.RED_LIGHTS);
+        map.put(WreathBlock.WreathGarland.ORANGE_LIGHTS, SGItems.ORANGE_LIGHTS);
+        map.put(WreathBlock.WreathGarland.YELLOW_LIGHTS, SGItems.YELLOW_LIGHTS);
+        map.put(WreathBlock.WreathGarland.GREEN_LIGHTS, SGItems.GREEN_LIGHTS);
+        map.put(WreathBlock.WreathGarland.BLUE_LIGHTS, SGItems.BLUE_LIGHTS);
+        map.put(WreathBlock.WreathGarland.PURPLE_LIGHTS, SGItems.PURPLE_LIGHTS);
         map.put(WreathBlock.WreathGarland.MULTICOLOR_LIGHTS, SGItems.MULTICOLOR_LIGHTS);
         map.put(WreathBlock.WreathGarland.GLOW_BERRIES, Items.GLOW_BERRIES);
         map.put(WreathBlock.WreathGarland.SWEET_BERRIES, Items.SWEET_BERRIES);
     });
     private static final Map<Item, WreathBlock.WreathGarland> GARLAND_MAP = Util.make(new HashMap<>(), (map) -> {
         map.put(Items.AIR, WreathBlock.WreathGarland.EMPTY);
+        map.put(SGItems.WHITE_LIGHTS, WreathBlock.WreathGarland.WHITE_LIGHTS);
+        map.put(SGItems.RED_LIGHTS, WreathBlock.WreathGarland.RED_LIGHTS);
+        map.put(SGItems.ORANGE_LIGHTS, WreathBlock.WreathGarland.ORANGE_LIGHTS);
+        map.put(SGItems.YELLOW_LIGHTS, WreathBlock.WreathGarland.YELLOW_LIGHTS);
+        map.put(SGItems.GREEN_LIGHTS, WreathBlock.WreathGarland.GREEN_LIGHTS);
+        map.put(SGItems.BLUE_LIGHTS, WreathBlock.WreathGarland.BLUE_LIGHTS);
+        map.put(SGItems.PURPLE_LIGHTS, WreathBlock.WreathGarland.PURPLE_LIGHTS);
         map.put(SGItems.MULTICOLOR_LIGHTS, WreathBlock.WreathGarland.MULTICOLOR_LIGHTS);
+
         map.put(Items.GLOW_BERRIES, WreathBlock.WreathGarland.GLOW_BERRIES);
         map.put(Items.SWEET_BERRIES, WreathBlock.WreathGarland.SWEET_BERRIES);
     });

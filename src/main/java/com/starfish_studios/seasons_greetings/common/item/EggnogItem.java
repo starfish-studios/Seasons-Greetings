@@ -30,20 +30,15 @@ public class EggnogItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         if (SGConfig.eggnogEffects) {
-            tooltip.add(Component.translatable("effect.minecraft.strength")
-                    .append(" (00:30)")
-                    .withStyle(ChatFormatting.BLUE));
             if (SGConfig.negativeEggnogEffects) {
                 tooltip.add(Component.translatable("effect.minecraft.nausea")
                         .append(" (00:10)")
                         .withStyle(ChatFormatting.RED));
-                tooltip.add(Component.literal(" "));
-                tooltip.add(Component.translatable("potion.whenDrank")
-                        .withStyle(ChatFormatting.DARK_PURPLE));
-                tooltip.add(Component.literal("-4 ")
-                        .append(Component.translatable("attribute.name.generic.attack_damage"))
-                        .withStyle(ChatFormatting.RED));
             }
+            tooltip.add(Component.translatable("effect.minecraft.strength")
+                    .append(" (00:30)")
+                    .withStyle(ChatFormatting.BLUE));
+
         }
     }
 

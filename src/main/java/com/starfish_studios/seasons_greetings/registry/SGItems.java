@@ -5,6 +5,9 @@ import com.starfish_studios.seasons_greetings.common.item.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemContainerContents;
@@ -47,18 +50,22 @@ public class SGItems {
                     .saturationModifier(0.1f)
             .build())));
 
+//    public static final Item WARM_MILK_BUCKET = registerItem("warm_milk_bucket", new WarmMilkBucketItem(new Item.Properties()));
     public static final Item WARM_MILK = registerItem("warm_milk", new WarmMilkItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
             .build())));
 
+    public static final Item HOT_COCOA_BUCKET = registerItem("hot_cocoa_bucket", new HotCocoaBucketItem(new Item.Properties()));
     public static  final Item HOT_COCOA = registerItem("hot_cocoa", new HotCocoaItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
             .build())));
 
+
+    public static final Item EGGNOG_BUCKET = registerItem("eggnog_bucket", new EggnogBucketItem(new Item.Properties()));
     public static final Item EGGNOG = registerItem("eggnog", new EggnogItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
