@@ -60,7 +60,8 @@ public class EggnogBucketItem extends Item {
         } else {
             if (livingEntity instanceof Player player) {
                 if (!player.hasInfiniteMaterials()) {
-                    ItemStack itemStack2 = new ItemStack(Items.GLASS_BOTTLE);
+                    itemStack.shrink(1);
+                    ItemStack itemStack2 = new ItemStack(Items.BUCKET);
                     if (!player.getInventory().add(itemStack2)) {
                         player.drop(itemStack2, false);
                     }

@@ -68,15 +68,16 @@ public class HotCocoaBucketItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
             removeAllNegativeEffects(serverPlayer);
             serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-            serverPlayer.addEffect(new MobEffectInstance(SGEffects.COZY, 600, 0));
+            serverPlayer.addEffect(new MobEffectInstance(SGEffects.COZY, 9600, 0));
         }
 
         if (itemStack.isEmpty()) {
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return new ItemStack(Items.BUCKET);
         } else {
             if (livingEntity instanceof Player player) {
                 if (!player.hasInfiniteMaterials()) {
-                    ItemStack itemStack2 = new ItemStack(Items.GLASS_BOTTLE);
+                    itemStack.shrink(1);
+                    ItemStack itemStack2 = new ItemStack(Items.BUCKET);
                     if (!player.getInventory().add(itemStack2)) {
                         player.drop(itemStack2, false);
                     }

@@ -67,6 +67,7 @@ public class SGCreativeTabs {
 
                 // Config to enable/disable Snow Blocks - enabled by default.
                 if (SGConfig.snowBlocks) {
+                    output.accept(PACKED_SNOW);
                     output.accept(SNOW_BRICKS);
                     output.accept(SNOW_BRICK_STAIRS);
                     output.accept(SNOW_BRICK_SLAB);
