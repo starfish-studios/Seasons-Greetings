@@ -133,7 +133,7 @@ public class IcicleBlock extends Block implements Fallable, SimpleWaterloggedBlo
 
     public void onBrokenAfterFall(Level level, BlockPos blockPos, FallingBlockEntity fallingBlockEntity) {
         if (!fallingBlockEntity.isSilent()) {
-            level.playSound(null, blockPos, SGBlocks.ICICLE.getSoundType(defaultBlockState()).getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, blockPos, defaultBlockState().getSoundType().getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
     }

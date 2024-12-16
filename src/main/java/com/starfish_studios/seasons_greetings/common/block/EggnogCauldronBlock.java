@@ -1,12 +1,13 @@
 package com.starfish_studios.seasons_greetings.common.block;
 
 import com.mojang.serialization.MapCodec;
-import com.starfish_studios.seasons_greetings.registry.*;
-import net.fabricmc.fabric.api.block.BlockPickInteractionAware;
-import net.minecraft.ChatFormatting;
+import com.starfish_studios.seasons_greetings.registry.SGBlocks;
+import com.starfish_studios.seasons_greetings.registry.SGItems;
+import com.starfish_studios.seasons_greetings.registry.SGParticles;
+import com.starfish_studios.seasons_greetings.registry.SGSoundEvents;
+import com.starfish_studios.seasons_greetings.registry.SGTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -16,8 +17,8 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -28,7 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockPickInteractionAware {
+public class EggnogCauldronBlock extends AbstractCauldronBlock {
 
     @Override
     protected MapCodec<? extends AbstractCauldronBlock> codec() {
@@ -45,7 +46,7 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
     }
 
     @Override
-    public ItemStack getPickedStack(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Player player, HitResult hitResult) {
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
         return new ItemStack((Items.CAULDRON));
     }
 
@@ -62,7 +63,7 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                     double y = (double) blockPos.getY() + 1 + (level.random.nextDouble() * 0.2D - 0.1D);
                     double z = (double) blockPos.getZ() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
 
-                    level.addParticle(SGParticles.EGGNOG_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
+                    level.addParticle(SGParticles.EGGNOG_BUBBLE.get(), x, y, z, 0.0D, 0.0D, 0.0D);
                 }
             } else if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 2) {
                 for (int i = 0; i < 2; ++i) {
@@ -70,7 +71,7 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                     double y = (double) blockPos.getY() + 0.8 + (level.random.nextDouble() * 0.2D - 0.1D);
                     double z = (double) blockPos.getZ() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
 
-                    level.addParticle(SGParticles.EGGNOG_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
+                    level.addParticle(SGParticles.EGGNOG_BUBBLE.get(), x, y, z, 0.0D, 0.0D, 0.0D);
                 }
             } else if (blockState.getValue(LayeredCauldronBlock.LEVEL) == 1) {
                 for (int i = 0; i < 2; ++i) {
@@ -78,13 +79,13 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                     double y = (double) blockPos.getY() + 0.6 + (level.random.nextDouble() * 0.2D - 0.1D);
                     double z = (double) blockPos.getZ() + 0.3 + ((level.random.nextDouble() * 0.8D) - 0.2D);
 
-                    level.addParticle(SGParticles.EGGNOG_BUBBLE, x, y, z, 0.0D, 0.0D, 0.0D);
+                    level.addParticle(SGParticles.EGGNOG_BUBBLE.get(), x, y, z, 0.0D, 0.0D, 0.0D);
                 }
             }
 
 
             if (randomSource.nextInt(10) == 0) {
-                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SGSoundEvents.EGGNOG_CAULDRON_BUBBLE, SoundSource.BLOCKS,
+                level.playLocalSound((double) blockPos.getX() + 0.5, (double) blockPos.getY() + 0.5, (double) blockPos.getZ() + 0.5, SGSoundEvents.EGGNOG_CAULDRON_BUBBLE.get(), SoundSource.BLOCKS,
                         0.3F, 1.0F + level.random.nextFloat() * 0.2F, false);
             }
         }
@@ -95,8 +96,8 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
         if (itemStack.is(Items.BUCKET) && blockState.getValue(LayeredCauldronBlock.LEVEL) == 3) {
             if (!player.isCreative()) {
                 itemStack.shrink(1);
-                if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG_BUCKET))) {
-                    player.drop(new ItemStack(SGItems.EGGNOG_BUCKET), false);
+                if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG_BUCKET.asItem()))) {
+                    player.drop(new ItemStack(SGItems.EGGNOG_BUCKET.asItem()), false);
                 }
             }
             level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
@@ -109,8 +110,8 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                 level.setBlockAndUpdate(blockPos, Blocks.CAULDRON.defaultBlockState());
                 if (!player.isCreative()) {
                     itemStack.shrink(1);
-                    if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG))) {
-                        player.drop(new ItemStack(SGItems.EGGNOG), false);
+                    if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG.asItem()))) {
+                        player.drop(new ItemStack(SGItems.EGGNOG.asItem()), false);
                     }
                 }
                 player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);
@@ -119,8 +120,8 @@ public class EggnogCauldronBlock extends AbstractCauldronBlock implements BlockP
                 level.setBlockAndUpdate(blockPos, blockState.setValue(LayeredCauldronBlock.LEVEL, blockState.getValue(LayeredCauldronBlock.LEVEL) - 1));
                 if (!player.isCreative()) {
                     itemStack.shrink(1);
-                    if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG))) {
-                        player.drop(new ItemStack(SGItems.EGGNOG), false);
+                    if (!player.getInventory().add(new ItemStack(SGItems.EGGNOG.asItem()))) {
+                        player.drop(new ItemStack(SGItems.EGGNOG.asItem()), false);
                     }
                 }
                 player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);

@@ -2,20 +2,98 @@ package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SGConfig;
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-import static com.starfish_studios.seasons_greetings.registry.SGItems.*;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.BLACK_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.BLUE_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.BLUE_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.BROKEN_GINGERBREAD_MAN;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.BROWN_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CHISELED_SNOW;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CHOCOLATE;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CHOCOLATE_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CHOCOLATE_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CHOCOLATE_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CHRISTMAS_HAT;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.CYAN_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.EGGNOG;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.EGGNOG_BUCKET;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.FRUITCAKE;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_BRICKS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_BRICK_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_BRICK_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_COOKIE;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_CRUMBS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_DOOR;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_MAN;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_MAN_SPAWN_EGG;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_SHINGLES;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_SHINGLE_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_SHINGLE_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GINGERBREAD_TRAPDOOR;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GRAY_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GREEN_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GREEN_GUMDROP_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GREEN_GUMDROP_BUTTON;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.GREEN_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.HOT_COCOA;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.HOT_COCOA_BUCKET;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ICICLE;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ICING;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ICING_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ICING_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ICING_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.LIGHT_BLUE_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.LIGHT_GRAY_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.LIME_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.MAGENTA_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.MULTICOLOR_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ORANGE_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ORANGE_GUMDROP_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ORANGE_GUMDROP_BUTTON;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.ORANGE_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PACKED_SNOW;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PEPPERMINT_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PEPPERMINT_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PEPPERMINT_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PINK_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PURPLE_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PURPLE_GUMDROP_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PURPLE_GUMDROP_BUTTON;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.PURPLE_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.RED_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.RED_GUMDROP_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.RED_GUMDROP_BUTTON;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.RED_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.SNOW_BRICKS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.SNOW_BRICK_SLAB;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.SNOW_BRICK_STAIRS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.WARM_MILK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.WHITE_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.WHITE_LIGHTS;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.WREATH;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.YELLOW_GIFT_BOX;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.YELLOW_GUMDROP_BLOCK;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.YELLOW_GUMDROP_BUTTON;
+import static com.starfish_studios.seasons_greetings.registry.SGItems.YELLOW_LIGHTS;
 
 public class SGCreativeTabs {
+    private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SeasonsGreetings.MOD_ID);
+
     @SuppressWarnings("unused")
-    public static final CreativeModeTab SEASONS_GREETINGS_TAB = register("item_group", FabricItemGroup.builder().icon(FRUITCAKE::getDefaultInstance).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
-        ItemStack stack = new ItemStack(CHRISTMAS_HAT);
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SEASONS_GREETINGS_TAB = CREATIVE_MODE_TABS.register("item_group", () -> CreativeModeTab.builder().icon(() -> FRUITCAKE.get().getDefaultInstance()).title(Component.translatable("itemGroup.seasonsgreetings.tab")).displayItems((featureFlagSet, output) -> {
+        ItemStack stack = new ItemStack(CHRISTMAS_HAT.asItem());
         stack.set(DataComponents.DYED_COLOR, new DyedItemColor(0xA06540, false));
 
         output.accept(stack);
@@ -142,12 +220,8 @@ public class SGCreativeTabs {
     }).build()
     );
 
-    @SuppressWarnings("all")
-    private static CreativeModeTab register(String id, CreativeModeTab tab) {
-        return Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, SeasonsGreetings.id(id), tab);
-    }
-
-    public static void registerCreativeTabs() {
+    public static void registerCreativeTabs(IEventBus eventBus) {
+        CREATIVE_MODE_TABS.register(eventBus);
 //    ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> entries.addAfter(Items.MACE, SGItems.WAND));
     }
 }

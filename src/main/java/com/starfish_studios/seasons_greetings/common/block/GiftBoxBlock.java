@@ -95,7 +95,7 @@ public class GiftBoxBlock extends BaseEntityBlock {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, SGBlockEntityType.GIFT_BOX, GiftBoxBlockEntity::tick);
+        return createTickerHelper(blockEntityType, SGBlockEntityType.GIFT_BOX.get(), GiftBoxBlockEntity::tick);
     }
 
 //    protected RenderShape getRenderShape(BlockState blockState) {
@@ -265,7 +265,7 @@ public class GiftBoxBlock extends BaseEntityBlock {
 
     public @NotNull ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         ItemStack itemStack = super.getCloneItemStack(levelReader, blockPos, blockState);
-        levelReader.getBlockEntity(blockPos, SGBlockEntityType.GIFT_BOX).ifPresent((giftBoxBlockEntity) -> {
+        levelReader.getBlockEntity(blockPos, SGBlockEntityType.GIFT_BOX.get()).ifPresent((giftBoxBlockEntity) -> {
             itemStack.set(DataComponents.BASE_COLOR, DyeColor.byName(blockState.getValue(BOW).getName(), DyeColor.WHITE));
 
             giftBoxBlockEntity.saveToItem(itemStack, levelReader.registryAccess());
@@ -280,27 +280,27 @@ public class GiftBoxBlock extends BaseEntityBlock {
 
     public static Block getBlockByColor(@Nullable DyeColor dyeColor) {
         if (dyeColor == null) {
-            return SGBlocks.RED_GIFT_BOX;
+            return SGBlocks.RED_GIFT_BOX.get();
         } else {
             Block var10000;
             switch (dyeColor) {
                 // WHITE, LIGHT GRAY, GRAY, BLACK, BROWN, RED, ORANGE, YELLOW, LIME, GREEN, CYAN, LIGHT BLUE, BLUE, PURPLE, MAGENTA, PINK
-                case WHITE -> var10000 = SGBlocks.WHITE_GIFT_BOX;
-                case LIGHT_GRAY -> var10000 = SGBlocks.LIGHT_GRAY_GIFT_BOX;
-                case GRAY -> var10000 = SGBlocks.GRAY_GIFT_BOX;
-                case BLACK -> var10000 = SGBlocks.BLACK_GIFT_BOX;
-                case BROWN -> var10000 = SGBlocks.BROWN_GIFT_BOX;
-                case RED -> var10000 = SGBlocks.RED_GIFT_BOX;
-                case ORANGE -> var10000 = SGBlocks.ORANGE_GIFT_BOX;
-                case YELLOW -> var10000 = SGBlocks.YELLOW_GIFT_BOX;
-                case LIME -> var10000 = SGBlocks.LIME_GIFT_BOX;
-                case GREEN -> var10000 = SGBlocks.GREEN_GIFT_BOX;
-                case CYAN -> var10000 = SGBlocks.CYAN_GIFT_BOX;
-                case LIGHT_BLUE -> var10000 = SGBlocks.LIGHT_BLUE_GIFT_BOX;
-                case BLUE -> var10000 = SGBlocks.BLUE_GIFT_BOX;
-                case PURPLE -> var10000 = SGBlocks.PURPLE_GIFT_BOX;
-                case MAGENTA -> var10000 = SGBlocks.MAGENTA_GIFT_BOX;
-                case PINK -> var10000 = SGBlocks.PINK_GIFT_BOX;
+                case WHITE -> var10000 = SGBlocks.WHITE_GIFT_BOX.get();
+                case LIGHT_GRAY -> var10000 = SGBlocks.LIGHT_GRAY_GIFT_BOX.get();
+                case GRAY -> var10000 = SGBlocks.GRAY_GIFT_BOX.get();
+                case BLACK -> var10000 = SGBlocks.BLACK_GIFT_BOX.get();
+                case BROWN -> var10000 = SGBlocks.BROWN_GIFT_BOX.get();
+                case RED -> var10000 = SGBlocks.RED_GIFT_BOX.get();
+                case ORANGE -> var10000 = SGBlocks.ORANGE_GIFT_BOX.get();
+                case YELLOW -> var10000 = SGBlocks.YELLOW_GIFT_BOX.get();
+                case LIME -> var10000 = SGBlocks.LIME_GIFT_BOX.get();
+                case GREEN -> var10000 = SGBlocks.GREEN_GIFT_BOX.get();
+                case CYAN -> var10000 = SGBlocks.CYAN_GIFT_BOX.get();
+                case LIGHT_BLUE -> var10000 = SGBlocks.LIGHT_BLUE_GIFT_BOX.get();
+                case BLUE -> var10000 = SGBlocks.BLUE_GIFT_BOX.get();
+                case PURPLE -> var10000 = SGBlocks.PURPLE_GIFT_BOX.get();
+                case MAGENTA -> var10000 = SGBlocks.MAGENTA_GIFT_BOX.get();
+                case PINK -> var10000 = SGBlocks.PINK_GIFT_BOX.get();
                 default -> throw new MatchException(null, null);
             }
             return var10000;

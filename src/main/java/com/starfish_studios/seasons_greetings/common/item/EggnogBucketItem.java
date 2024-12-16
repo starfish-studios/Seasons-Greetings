@@ -81,11 +81,11 @@ public class EggnogBucketItem extends Item {
     }
 
     public @NotNull SoundEvent getDrinkingSound() {
-        return SGSoundEvents.DRINK;
+        return SGSoundEvents.DRINK.get();
     }
 
     public @NotNull SoundEvent getEatingSound() {
-        return SGSoundEvents.DRINK;
+        return SGSoundEvents.DRINK.get();
     }
 
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {

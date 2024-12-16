@@ -1,20 +1,29 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class SGParticles {
-    public static SimpleParticleType COCOA_BUBBLE = register("cocoa_bubble", FabricParticleTypes.simple());
-    public static SimpleParticleType MILK_BUBBLE = register("milk_bubble", FabricParticleTypes.simple());
-    public static SimpleParticleType EGGNOG_BUBBLE = register("eggnog_bubble", FabricParticleTypes.simple());
+    private static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, SeasonsGreetings.MOD_ID);
 
-    public static SimpleParticleType register(String id, SimpleParticleType type) {
-        return Registry.register(BuiltInRegistries.PARTICLE_TYPE, SeasonsGreetings.id(id), type);
+    public static DeferredHolder<ParticleType<?>, SimpleParticleType> COCOA_BUBBLE = registerSimple("cocoa_bubble");
+    public static DeferredHolder<ParticleType<?>, SimpleParticleType> MILK_BUBBLE = registerSimple("milk_bubble");
+    public static DeferredHolder<ParticleType<?>, SimpleParticleType> EGGNOG_BUBBLE = registerSimple("eggnog_bubble");
+
+    private static DeferredHolder<ParticleType<?>, SimpleParticleType> registerSimple(String id) {
+        return register(id, new SimpleParticleType(false) {});
     }
 
-    public static void registerParticles() {
+    private static DeferredHolder<ParticleType<?>, SimpleParticleType> register(String id, SimpleParticleType type) {
+        return PARTICLE_TYPES.register(id, () -> type);
+    }
+
+    public static void registerParticles(IEventBus eventBus) {
+        PARTICLE_TYPES.register(eventBus);
     }
 }

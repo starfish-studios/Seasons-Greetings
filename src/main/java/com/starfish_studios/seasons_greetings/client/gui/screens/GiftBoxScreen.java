@@ -2,15 +2,12 @@ package com.starfish_studios.seasons_greetings.client.gui.screens;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.common.inventory.GiftBoxMenu;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-@Environment(EnvType.CLIENT)
 public class GiftBoxScreen extends AbstractContainerScreen<GiftBoxMenu> {
     private static final ResourceLocation CONTAINER_LOCATION = SeasonsGreetings.id("textures/gui/gift_box.png");
 

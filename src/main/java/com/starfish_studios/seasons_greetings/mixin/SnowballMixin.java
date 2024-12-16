@@ -20,7 +20,7 @@ public abstract class SnowballMixin extends ThrowableItemProjectile {
     @Inject(method = "onHit", at = @At("HEAD"))
     private void sg$onHit(HitResult hitResult, CallbackInfo ci) {
         if (!this.level().isClientSide) {
-            this.playSound(SGSoundEvents.SNOWBALL_HIT, 0.2F, (this.random.nextFloat() - this.random.nextFloat()) * 0.5F + 1.0F);
+            this.playSound(SGSoundEvents.SNOWBALL_HIT.get(), 0.2F, (this.random.nextFloat() - this.random.nextFloat()) * 0.5F + 1.0F);
         }
     }
 }

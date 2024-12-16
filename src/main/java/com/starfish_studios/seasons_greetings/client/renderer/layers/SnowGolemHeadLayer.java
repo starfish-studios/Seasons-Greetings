@@ -2,9 +2,6 @@ package com.starfish_studios.seasons_greetings.client.renderer.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.ItemInHandRenderer;
@@ -19,7 +16,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 
-@Environment(EnvType.CLIENT)
 public class SnowGolemHeadLayer extends RenderLayer<SnowGolem, SnowGolemModel<SnowGolem>> {
     private final float scaleX;
     private final float scaleY;

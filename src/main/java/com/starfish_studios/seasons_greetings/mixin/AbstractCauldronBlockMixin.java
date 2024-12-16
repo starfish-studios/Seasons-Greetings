@@ -3,9 +3,7 @@ package com.starfish_studios.seasons_greetings.mixin;
 import com.starfish_studios.seasons_greetings.registry.SGBlocks;
 import com.starfish_studios.seasons_greetings.registry.SGTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -24,7 +22,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractCauldronBlock.class)
@@ -37,7 +34,7 @@ public class AbstractCauldronBlockMixin extends Block {
     public void sg$useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult, CallbackInfoReturnable<ItemInteractionResult> cir) {
         if (blockState.is(Blocks.CAULDRON)) {
             if (itemStack.is(SGTags.SGItemTags.MILK)) {
-                level.setBlockAndUpdate(blockPos, SGBlocks.MILK_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
+                level.setBlockAndUpdate(blockPos, SGBlocks.MILK_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
                 if (!player.isCreative()) {
                     itemStack.shrink(1);
                     if (!player.getInventory().add(new ItemStack(Items.BUCKET))) {

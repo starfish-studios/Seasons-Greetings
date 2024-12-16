@@ -1,9 +1,9 @@
 {
   "type": "minecraft:jigsaw",
   "biomes": "#seasonsgreetings:has_witch_house",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "seasonsgreetings:witch_house_enabled"
+      "type": "seasonsgreetings:witch_house_enabled"
     }
   ],
   "step": "surface_structures",

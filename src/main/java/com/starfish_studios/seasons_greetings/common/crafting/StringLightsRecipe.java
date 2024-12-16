@@ -44,7 +44,7 @@ public class StringLightsRecipe extends CustomRecipe {
 
     @Override
     public @NotNull ItemStack assemble(CraftingInput recipeInput, HolderLookup.Provider provider) {
-        return new ItemStack(SGItems.MULTICOLOR_LIGHTS, 4);
+        return new ItemStack(SGItems.MULTICOLOR_LIGHTS.asItem(), 4);
     }
 
     @Override
@@ -54,6 +54,6 @@ public class StringLightsRecipe extends CustomRecipe {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return SGRecipeSerializer.STRING_LIGHTS;
+        return SGRecipeSerializer.STRING_LIGHTS.get();
     }
 }

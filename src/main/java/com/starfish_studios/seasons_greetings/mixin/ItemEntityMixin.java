@@ -39,7 +39,7 @@ public class ItemEntityMixin {
         BlockPos blockPos = itemEntity.blockPosition();
         Level level = itemEntity.level();
 
-        GingerbreadMan gingerbreadMan = SGEntityType.GINGERBREAD_MAN.create(level);
+        GingerbreadMan gingerbreadMan = SGEntityType.GINGERBREAD_MAN.get().create(level);
 
 
 
@@ -91,13 +91,13 @@ public class ItemEntityMixin {
 
             if (level.getBlockState(blockPos.below()).is(SGTags.SGBlockTags.HEAT_SOURCES)) {
                 if (itemStack.is(Items.EGG)) {
-                    level.setBlockAndUpdate(blockPos, SGBlocks.EGGNOG_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
+                    level.setBlockAndUpdate(blockPos, SGBlocks.EGGNOG_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
                     level.playSound(null, blockPos, SoundEvents.EGG_THROW, itemEntity.getSoundSource(), 0.5F, 1.3F);
                     shrinkItemStack(itemEntity, level, blockPos);
                 }
 
                 if (itemStack.is(SGItems.CHOCOLATE)) {
-                    level.setBlockAndUpdate(blockPos, SGBlocks.HOT_COCOA_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
+                    level.setBlockAndUpdate(blockPos, SGBlocks.HOT_COCOA_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3));
                     level.playSound(null, blockPos, SoundEvents.AXOLOTL_SPLASH, itemEntity.getSoundSource(), 0.5F, 1.3F);
                     shrinkItemStack(itemEntity, level, blockPos);
                 }

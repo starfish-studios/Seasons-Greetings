@@ -4,8 +4,6 @@ import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -24,7 +22,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumMap;
 
-@Environment(EnvType.CLIENT)
 public class SnowGolemDecorLayer extends RenderLayer<SnowGolem, SnowGolemModel<SnowGolem>> {
     private static final EnumMap<DyeColor, @Nullable Object> TEXTURE_LOCATION = Util.make(Maps.newEnumMap(DyeColor.class), (enumMap) -> {
         enumMap.put(DyeColor.byId(DyeColor.RED.getId()), SeasonsGreetings.id("textures/entity/snow_golem/decor/red.png"));

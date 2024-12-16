@@ -1,72 +1,86 @@
 package com.starfish_studios.seasons_greetings.registry;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import com.starfish_studios.seasons_greetings.common.item.*;
-import net.minecraft.core.Registry;
+import com.starfish_studios.seasons_greetings.common.item.ChristmasHatItem;
+import com.starfish_studios.seasons_greetings.common.item.EggnogBucketItem;
+import com.starfish_studios.seasons_greetings.common.item.EggnogItem;
+import com.starfish_studios.seasons_greetings.common.item.GiftBoxItem;
+import com.starfish_studios.seasons_greetings.common.item.GingerbreadManItem;
+import com.starfish_studios.seasons_greetings.common.item.HotCocoaBucketItem;
+import com.starfish_studios.seasons_greetings.common.item.HotCocoaItem;
+import com.starfish_studios.seasons_greetings.common.item.WarmMilkItem;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DoubleHighBlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class SGItems {
-    public static final Item CHRISTMAS_HAT = registerItem("christmas_hat", new ChristmasHatItem(ArmorMaterials.LEATHER, ArmorItem.Type.HELMET, new Item.Properties()));
+    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SeasonsGreetings.MOD_ID);
+
+    public static final DeferredItem<Item> CHRISTMAS_HAT = ITEMS.register("christmas_hat", () -> new ChristmasHatItem(ArmorMaterials.LEATHER, ArmorItem.Type.HELMET, new Item.Properties()));
 
     // region Edible Items
 
-    public static final Item FRUITCAKE = registerItem("fruitcake", new Item(new Item.Properties()
+    public static final DeferredItem<Item> FRUITCAKE = ITEMS.register("fruitcake", () -> new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(10)
                     .saturationModifier(0.3f)
             .build())));
 
-    public static final Item GINGERBREAD_COOKIE = registerItem("gingerbread_cookie", new Item(new Item.Properties()
+    public static final DeferredItem<Item> GINGERBREAD_COOKIE = ITEMS.register("gingerbread_cookie", () -> new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(2)
                     .saturationModifier(0.1f)
             .build())));
 
-    public static final Item BROKEN_GINGERBREAD_MAN = registerItem("broken_gingerbread_man", new Item(new Item.Properties()
+    public static final DeferredItem<Item> BROKEN_GINGERBREAD_MAN = ITEMS.register("broken_gingerbread_man", () -> new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(1)
                     .saturationModifier(0.1f)
             .build())));
 
-    public static final Item GINGERBREAD_MAN = registerItem("gingerbread_man", new GingerbreadManItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> GINGERBREAD_MAN = ITEMS.register("gingerbread_man", () -> new GingerbreadManItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
-    public static final Item GINGERBREAD_CRUMBS = registerItem("gingerbread_crumbs", new Item(new Item.Properties()
+    public static final DeferredItem<Item> GINGERBREAD_CRUMBS = ITEMS.register("gingerbread_crumbs", () -> new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(1)
                     .saturationModifier(0.1f)
                     .fast()
             .build())));
 
-    public static final Item CHOCOLATE = registerItem("chocolate", new Item(new Item.Properties()
+    public static final DeferredItem<Item> CHOCOLATE = ITEMS.register("chocolate", () -> new Item(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(2)
                     .saturationModifier(0.1f)
             .build())));
 
-//    public static final Item WARM_MILK_BUCKET = registerItem("warm_milk_bucket", new WarmMilkBucketItem(new Item.Properties()));
-    public static final Item WARM_MILK = registerItem("warm_milk", new WarmMilkItem(new Item.Properties()
+//    public static final DeferredItem<Item> WARM_MILK_BUCKET = ITEMS.register("warm_milk_bucket", new WarmMilkBucketItem(new Item.Properties()));
+    public static final DeferredItem<Item> WARM_MILK = ITEMS.register("warm_milk", () -> new WarmMilkItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
             .build())));
 
-    public static final Item HOT_COCOA_BUCKET = registerItem("hot_cocoa_bucket", new HotCocoaBucketItem(new Item.Properties()));
-    public static  final Item HOT_COCOA = registerItem("hot_cocoa", new HotCocoaItem(new Item.Properties()
+    public static final DeferredItem<Item> HOT_COCOA_BUCKET = ITEMS.register("hot_cocoa_bucket", () -> new HotCocoaBucketItem(new Item.Properties()));
+    public static  final DeferredItem<Item> HOT_COCOA = ITEMS.register("hot_cocoa", () -> new HotCocoaItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
             .build())));
 
 
-    public static final Item EGGNOG_BUCKET = registerItem("eggnog_bucket", new EggnogBucketItem(new Item.Properties()));
-    public static final Item EGGNOG = registerItem("eggnog", new EggnogItem(new Item.Properties()
+    public static final DeferredItem<Item> EGGNOG_BUCKET = ITEMS.register("eggnog_bucket", () -> new EggnogBucketItem(new Item.Properties()));
+    public static final DeferredItem<Item> EGGNOG = ITEMS.register("eggnog", () -> new EggnogItem(new Item.Properties()
             .food(new FoodProperties.Builder()
                     .nutrition(4)
                     .saturationModifier(0.3f)
@@ -74,106 +88,103 @@ public class SGItems {
 
     // endregion
 
-    public static final Item WREATH = registerItem("wreath", new BlockItem(SGBlocks.WREATH, new Item.Properties()));
+    public static final DeferredItem<BlockItem> WREATH = ITEMS.registerSimpleBlockItem(SGBlocks.WREATH);
 
-    public static final Item PACKED_SNOW = registerItem("packed_snow", new BlockItem(SGBlocks.PACKED_SNOW, new Item.Properties()));
-    public static final Item SNOW_BRICKS = registerItem("snow_bricks", new BlockItem(SGBlocks.SNOW_BRICKS, new Item.Properties()));
-    public static final Item SNOW_BRICK_STAIRS = registerItem("snow_brick_stairs", new BlockItem(SGBlocks.SNOW_BRICK_STAIRS, new Item.Properties()));
-    public static final Item SNOW_BRICK_SLAB = registerItem("snow_brick_slab", new BlockItem(SGBlocks.SNOW_BRICK_SLAB, new Item.Properties()));
-    public static final Item CHISELED_SNOW = registerItem("chiseled_snow", new BlockItem(SGBlocks.CHISELED_SNOW, new Item.Properties()));
+    public static final DeferredItem<BlockItem> PACKED_SNOW = ITEMS.registerSimpleBlockItem(SGBlocks.PACKED_SNOW);
+    public static final DeferredItem<BlockItem> SNOW_BRICKS = ITEMS.registerSimpleBlockItem(SGBlocks.SNOW_BRICKS);
+    public static final DeferredItem<BlockItem> SNOW_BRICK_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.SNOW_BRICK_STAIRS);
+    public static final DeferredItem<BlockItem> SNOW_BRICK_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.SNOW_BRICK_SLAB);
+    public static final DeferredItem<BlockItem> CHISELED_SNOW = ITEMS.registerSimpleBlockItem(SGBlocks.CHISELED_SNOW);
 
-    public static final Item ICICLE = registerItem("icicle", new BlockItem(SGBlocks.ICICLE, new Item.Properties()));
+    public static final DeferredItem<BlockItem> ICICLE = ITEMS.registerSimpleBlockItem(SGBlocks.ICICLE);
 
     // region Lights
-    public static final Item WHITE_LIGHTS = registerItem("white_lights", new BlockItem(SGBlocks.WHITE_LIGHTS, new Item.Properties()));
-    public static final Item RED_LIGHTS = registerItem("red_lights", new BlockItem(SGBlocks.RED_LIGHTS, new Item.Properties()));
-    public static final Item ORANGE_LIGHTS = registerItem("orange_lights", new BlockItem(SGBlocks.ORANGE_LIGHTS, new Item.Properties()));
-    public static final Item YELLOW_LIGHTS = registerItem("yellow_lights", new BlockItem(SGBlocks.YELLOW_LIGHTS, new Item.Properties()));
-    public static final Item GREEN_LIGHTS = registerItem("green_lights", new BlockItem(SGBlocks.GREEN_LIGHTS, new Item.Properties()));
-    public static final Item BLUE_LIGHTS = registerItem("blue_lights", new BlockItem(SGBlocks.BLUE_LIGHTS, new Item.Properties()));
-    public static final Item PURPLE_LIGHTS = registerItem("purple_lights", new BlockItem(SGBlocks.PURPLE_LIGHTS, new Item.Properties()));
-    public static final Item MULTICOLOR_LIGHTS = registerItem("multicolor_lights", new BlockItem(SGBlocks.MULTICOLOR_LIGHTS, new Item.Properties()));
+    public static final DeferredItem<BlockItem> WHITE_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.WHITE_LIGHTS);
+    public static final DeferredItem<BlockItem> RED_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.RED_LIGHTS);
+    public static final DeferredItem<BlockItem> ORANGE_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.ORANGE_LIGHTS);
+    public static final DeferredItem<BlockItem> YELLOW_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.YELLOW_LIGHTS);
+    public static final DeferredItem<BlockItem> GREEN_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.GREEN_LIGHTS);
+    public static final DeferredItem<BlockItem> BLUE_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.BLUE_LIGHTS);
+    public static final DeferredItem<BlockItem> PURPLE_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.PURPLE_LIGHTS);
+    public static final DeferredItem<BlockItem> MULTICOLOR_LIGHTS = ITEMS.registerSimpleBlockItem(SGBlocks.MULTICOLOR_LIGHTS);
     // endregion
 
     // region Gifts
 
     public static final Item.Properties giftBoxProperties = new Item.Properties().stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY);
 
-    public static final Item WHITE_GIFT_BOX = registerItem("white_gift_box", new GiftBoxItem(SGBlocks.WHITE_GIFT_BOX, giftBoxProperties));
-    public static final Item LIGHT_GRAY_GIFT_BOX = registerItem("light_gray_gift_box", new GiftBoxItem(SGBlocks.LIGHT_GRAY_GIFT_BOX, giftBoxProperties));
-    public static final Item GRAY_GIFT_BOX = registerItem("gray_gift_box", new GiftBoxItem(SGBlocks.GRAY_GIFT_BOX, giftBoxProperties));
-    public static final Item BLACK_GIFT_BOX = registerItem("black_gift_box", new GiftBoxItem(SGBlocks.BLACK_GIFT_BOX, giftBoxProperties));
-    public static final Item BROWN_GIFT_BOX = registerItem("brown_gift_box", new GiftBoxItem(SGBlocks.BROWN_GIFT_BOX, giftBoxProperties));
-    public static final Item RED_GIFT_BOX = registerItem("red_gift_box", new GiftBoxItem(SGBlocks.RED_GIFT_BOX, giftBoxProperties));
-    public static final Item ORANGE_GIFT_BOX = registerItem("orange_gift_box", new GiftBoxItem(SGBlocks.ORANGE_GIFT_BOX, giftBoxProperties));
-    public static final Item YELLOW_GIFT_BOX = registerItem("yellow_gift_box", new GiftBoxItem(SGBlocks.YELLOW_GIFT_BOX, giftBoxProperties));
-    public static final Item LIME_GIFT_BOX = registerItem("lime_gift_box", new GiftBoxItem(SGBlocks.LIME_GIFT_BOX, giftBoxProperties));
-    public static final Item GREEN_GIFT_BOX = registerItem("green_gift_box", new GiftBoxItem(SGBlocks.GREEN_GIFT_BOX, giftBoxProperties));
-    public static final Item CYAN_GIFT_BOX = registerItem("cyan_gift_box", new GiftBoxItem(SGBlocks.CYAN_GIFT_BOX, giftBoxProperties));
-    public static final Item LIGHT_BLUE_GIFT_BOX = registerItem("light_blue_gift_box", new GiftBoxItem(SGBlocks.LIGHT_BLUE_GIFT_BOX, giftBoxProperties));
-    public static final Item BLUE_GIFT_BOX = registerItem("blue_gift_box", new GiftBoxItem(SGBlocks.BLUE_GIFT_BOX, giftBoxProperties));
-    public static final Item PURPLE_GIFT_BOX = registerItem("purple_gift_box", new GiftBoxItem(SGBlocks.PURPLE_GIFT_BOX, giftBoxProperties));
-    public static final Item MAGENTA_GIFT_BOX = registerItem("magenta_gift_box", new GiftBoxItem(SGBlocks.MAGENTA_GIFT_BOX, giftBoxProperties));
-    public static final Item PINK_GIFT_BOX = registerItem("pink_gift_box", new GiftBoxItem(SGBlocks.PINK_GIFT_BOX, giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> WHITE_GIFT_BOX = ITEMS.register("white_gift_box", () -> new GiftBoxItem(SGBlocks.WHITE_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> LIGHT_GRAY_GIFT_BOX = ITEMS.register("light_gray_gift_box", () -> new GiftBoxItem(SGBlocks.LIGHT_GRAY_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> GRAY_GIFT_BOX = ITEMS.register("gray_gift_box", () -> new GiftBoxItem(SGBlocks.GRAY_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> BLACK_GIFT_BOX = ITEMS.register("black_gift_box", () -> new GiftBoxItem(SGBlocks.BLACK_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> BROWN_GIFT_BOX = ITEMS.register("brown_gift_box", () -> new GiftBoxItem(SGBlocks.BROWN_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> RED_GIFT_BOX = ITEMS.register("red_gift_box", () -> new GiftBoxItem(SGBlocks.RED_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> ORANGE_GIFT_BOX = ITEMS.register("orange_gift_box", () -> new GiftBoxItem(SGBlocks.ORANGE_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> YELLOW_GIFT_BOX = ITEMS.register("yellow_gift_box", () -> new GiftBoxItem(SGBlocks.YELLOW_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> LIME_GIFT_BOX = ITEMS.register("lime_gift_box", () -> new GiftBoxItem(SGBlocks.LIME_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> GREEN_GIFT_BOX = ITEMS.register("green_gift_box", () -> new GiftBoxItem(SGBlocks.GREEN_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> CYAN_GIFT_BOX = ITEMS.register("cyan_gift_box", () -> new GiftBoxItem(SGBlocks.CYAN_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> LIGHT_BLUE_GIFT_BOX = ITEMS.register("light_blue_gift_box", () -> new GiftBoxItem(SGBlocks.LIGHT_BLUE_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> BLUE_GIFT_BOX = ITEMS.register("blue_gift_box", () -> new GiftBoxItem(SGBlocks.BLUE_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> PURPLE_GIFT_BOX = ITEMS.register("purple_gift_box", () -> new GiftBoxItem(SGBlocks.PURPLE_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> MAGENTA_GIFT_BOX = ITEMS.register("magenta_gift_box", () -> new GiftBoxItem(SGBlocks.MAGENTA_GIFT_BOX.get(), giftBoxProperties));
+    public static final DeferredItem<GiftBoxItem> PINK_GIFT_BOX = ITEMS.register("pink_gift_box", () -> new GiftBoxItem(SGBlocks.PINK_GIFT_BOX.get(), giftBoxProperties));
 
     // endregion
 
     // region Gumdrop Blocks
 
-    public static final Item RED_GUMDROP_BLOCK = registerItem("red_gumdrop_block", new BlockItem(SGBlocks.RED_GUMDROP_BLOCK, new Item.Properties()));
-    public static final Item ORANGE_GUMDROP_BLOCK = registerItem("orange_gumdrop_block", new BlockItem(SGBlocks.ORANGE_GUMDROP_BLOCK, new Item.Properties()));
-    public static final Item YELLOW_GUMDROP_BLOCK = registerItem("yellow_gumdrop_block", new BlockItem(SGBlocks.YELLOW_GUMDROP_BLOCK, new Item.Properties()));
-    public static final Item GREEN_GUMDROP_BLOCK = registerItem("green_gumdrop_block", new BlockItem(SGBlocks.GREEN_GUMDROP_BLOCK, new Item.Properties()));
-    public static final Item PURPLE_GUMDROP_BLOCK = registerItem("purple_gumdrop_block", new BlockItem(SGBlocks.PURPLE_GUMDROP_BLOCK, new Item.Properties()));
+    public static final DeferredItem<BlockItem> RED_GUMDROP_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.RED_GUMDROP_BLOCK);
+    public static final DeferredItem<BlockItem> ORANGE_GUMDROP_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.ORANGE_GUMDROP_BLOCK);
+    public static final DeferredItem<BlockItem> YELLOW_GUMDROP_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.YELLOW_GUMDROP_BLOCK);
+    public static final DeferredItem<BlockItem> GREEN_GUMDROP_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.GREEN_GUMDROP_BLOCK);
+    public static final DeferredItem<BlockItem> PURPLE_GUMDROP_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.PURPLE_GUMDROP_BLOCK);
 
-    public static final Item RED_GUMDROP_BUTTON = registerItem("red_gumdrop_button", new BlockItem(SGBlocks.RED_GUMDROP_BUTTON, new Item.Properties()));
-    public static final Item ORANGE_GUMDROP_BUTTON = registerItem("orange_gumdrop_button", new BlockItem(SGBlocks.ORANGE_GUMDROP_BUTTON, new Item.Properties()));
-    public static final Item YELLOW_GUMDROP_BUTTON = registerItem("yellow_gumdrop_button", new BlockItem(SGBlocks.YELLOW_GUMDROP_BUTTON, new Item.Properties()));
-    public static final Item GREEN_GUMDROP_BUTTON = registerItem("green_gumdrop_button", new BlockItem(SGBlocks.GREEN_GUMDROP_BUTTON, new Item.Properties()));
-    public static final Item PURPLE_GUMDROP_BUTTON = registerItem("purple_gumdrop_button", new BlockItem(SGBlocks.PURPLE_GUMDROP_BUTTON, new Item.Properties()));
+    public static final DeferredItem<BlockItem> RED_GUMDROP_BUTTON = ITEMS.registerSimpleBlockItem(SGBlocks.RED_GUMDROP_BUTTON);
+    public static final DeferredItem<BlockItem> ORANGE_GUMDROP_BUTTON = ITEMS.registerSimpleBlockItem(SGBlocks.ORANGE_GUMDROP_BUTTON);
+    public static final DeferredItem<BlockItem> YELLOW_GUMDROP_BUTTON = ITEMS.registerSimpleBlockItem(SGBlocks.YELLOW_GUMDROP_BUTTON);
+    public static final DeferredItem<BlockItem> GREEN_GUMDROP_BUTTON = ITEMS.registerSimpleBlockItem(SGBlocks.GREEN_GUMDROP_BUTTON);
+    public static final DeferredItem<BlockItem> PURPLE_GUMDROP_BUTTON = ITEMS.registerSimpleBlockItem(SGBlocks.PURPLE_GUMDROP_BUTTON);
 
 
     // endregion
 
     // region Gingerbread
 
-    public static final Item GINGERBREAD_BLOCK = registerItem("gingerbread_block", new BlockItem(SGBlocks.GINGERBREAD_BLOCK, new Item.Properties()));
-    public static final Item GINGERBREAD_STAIRS = registerItem("gingerbread_stairs", new BlockItem(SGBlocks.GINGERBREAD_STAIRS, new Item.Properties()));
-    public static final Item GINGERBREAD_SLAB = registerItem("gingerbread_slab", new BlockItem(SGBlocks.GINGERBREAD_SLAB, new Item.Properties()));
-    public static final Item GINGERBREAD_BRICKS = registerItem("gingerbread_bricks", new BlockItem(SGBlocks.GINGERBREAD_BRICKS, new Item.Properties()));
-    public static final Item GINGERBREAD_BRICK_STAIRS = registerItem("gingerbread_brick_stairs", new BlockItem(SGBlocks.GINGERBREAD_BRICK_STAIRS, new Item.Properties()));
-    public static final Item GINGERBREAD_BRICK_SLAB = registerItem("gingerbread_brick_slab", new BlockItem(SGBlocks.GINGERBREAD_BRICK_SLAB, new Item.Properties()));
-    public static final Item GINGERBREAD_SHINGLES = registerItem("gingerbread_shingles", new BlockItem(SGBlocks.GINGERBREAD_SHINGLES, new Item.Properties()));
-    public static final Item GINGERBREAD_SHINGLE_STAIRS = registerItem("gingerbread_shingle_stairs", new BlockItem(SGBlocks.GINGERBREAD_SHINGLE_STAIRS, new Item.Properties()));
-    public static final Item GINGERBREAD_SHINGLE_SLAB = registerItem("gingerbread_shingle_slab", new BlockItem(SGBlocks.GINGERBREAD_SHINGLE_SLAB, new Item.Properties()));
+    public static final DeferredItem<BlockItem> GINGERBREAD_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_BLOCK);
+    public static final DeferredItem<BlockItem> GINGERBREAD_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_STAIRS);
+    public static final DeferredItem<BlockItem> GINGERBREAD_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_SLAB);
+    public static final DeferredItem<BlockItem> GINGERBREAD_BRICKS = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_BRICKS);
+    public static final DeferredItem<BlockItem> GINGERBREAD_BRICK_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_BRICK_STAIRS);
+    public static final DeferredItem<BlockItem> GINGERBREAD_BRICK_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_BRICK_SLAB);
+    public static final DeferredItem<BlockItem> GINGERBREAD_SHINGLES = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_SHINGLES);
+    public static final DeferredItem<BlockItem> GINGERBREAD_SHINGLE_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_SHINGLE_STAIRS);
+    public static final DeferredItem<BlockItem> GINGERBREAD_SHINGLE_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_SHINGLE_SLAB);
 
     // Gingerbread door
-    public static final Item GINGERBREAD_DOOR = registerItem("gingerbread_door", new DoubleHighBlockItem(SGBlocks.GINGERBREAD_DOOR, new Item.Properties()));
-    public static final Item GINGERBREAD_TRAPDOOR = registerItem("gingerbread_trapdoor", new BlockItem(SGBlocks.GINGERBREAD_TRAPDOOR, new Item.Properties()));
+    public static final DeferredItem<Item> GINGERBREAD_DOOR = ITEMS.register("gingerbread_door", () -> new DoubleHighBlockItem(SGBlocks.GINGERBREAD_DOOR.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> GINGERBREAD_TRAPDOOR = ITEMS.registerSimpleBlockItem(SGBlocks.GINGERBREAD_TRAPDOOR);
 
     // endregion
 
-    public static final Item ICING = registerItem("icing", new BlockItem(SGBlocks.ICING, new Item.Properties()));
-    public static final Item ICING_BLOCK = registerItem("icing_block", new BlockItem(SGBlocks.ICING_BLOCK, new Item.Properties()));
-    public static final Item ICING_STAIRS = registerItem("icing_stairs", new BlockItem(SGBlocks.ICING_STAIRS, new Item.Properties()));
-    public static final Item ICING_SLAB = registerItem("icing_slab", new BlockItem(SGBlocks.ICING_SLAB, new Item.Properties()));
+    public static final DeferredItem<BlockItem> ICING = ITEMS.registerSimpleBlockItem(SGBlocks.ICING);
+    public static final DeferredItem<BlockItem> ICING_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.ICING_BLOCK);
+    public static final DeferredItem<BlockItem> ICING_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.ICING_STAIRS);
+    public static final DeferredItem<BlockItem> ICING_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.ICING_SLAB);
 
-    public static final Item PEPPERMINT_BLOCK = registerItem("peppermint_block", new BlockItem(SGBlocks.PEPPERMINT_BLOCK, new Item.Properties()));
-    public static final Item PEPPERMINT_STAIRS = registerItem("peppermint_stairs", new BlockItem(SGBlocks.PEPPERMINT_STAIRS, new Item.Properties()));
-    public static final Item PEPPERMINT_SLAB = registerItem("peppermint_slab", new BlockItem(SGBlocks.PEPPERMINT_SLAB, new Item.Properties()));
+    public static final DeferredItem<BlockItem> PEPPERMINT_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.PEPPERMINT_BLOCK);
+    public static final DeferredItem<BlockItem> PEPPERMINT_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.PEPPERMINT_STAIRS);
+    public static final DeferredItem<BlockItem> PEPPERMINT_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.PEPPERMINT_SLAB);
 
-    public static final Item CHOCOLATE_BLOCK = registerItem("chocolate_block", new BlockItem(SGBlocks.CHOCOLATE_BLOCK, new Item.Properties()));
-    public static final Item CHOCOLATE_STAIRS = registerItem("chocolate_stairs", new BlockItem(SGBlocks.CHOCOLATE_STAIRS, new Item.Properties()));
-    public static final Item CHOCOLATE_SLAB = registerItem("chocolate_slab", new BlockItem(SGBlocks.CHOCOLATE_SLAB, new Item.Properties()));
+    public static final DeferredItem<BlockItem> CHOCOLATE_BLOCK = ITEMS.registerSimpleBlockItem(SGBlocks.CHOCOLATE_BLOCK);
+    public static final DeferredItem<BlockItem> CHOCOLATE_STAIRS = ITEMS.registerSimpleBlockItem(SGBlocks.CHOCOLATE_STAIRS);
+    public static final DeferredItem<BlockItem> CHOCOLATE_SLAB = ITEMS.registerSimpleBlockItem(SGBlocks.CHOCOLATE_SLAB);
 
-    public static final Item GINGERBREAD_MAN_SPAWN_EGG = registerItem("gingerbread_man_spawn_egg", new SpawnEggItem(SGEntityType.GINGERBREAD_MAN, 0xFF8B24, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredItem<SpawnEggItem> GINGERBREAD_MAN_SPAWN_EGG = ITEMS.register("gingerbread_man_spawn_egg", () -> new DeferredSpawnEggItem(SGEntityType.GINGERBREAD_MAN, 0xFF8B24, 0xFFFFFF, new Item.Properties()));
 
     // Registry
 
-    @SuppressWarnings("all")
-    private static Item registerItem(String name, Item item) {
-        return Registry.register(BuiltInRegistries.ITEM, SeasonsGreetings.id(name), item);
+    public static void registerItems(IEventBus eventBus) {
+        ITEMS.register(eventBus);
     }
-
-    public static void registerItems() {}
 }

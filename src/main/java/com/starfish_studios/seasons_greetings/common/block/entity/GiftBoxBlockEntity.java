@@ -39,14 +39,14 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
     private final DyeColor color;
 
     public GiftBoxBlockEntity(@Nullable DyeColor dyeColor, BlockPos blockPos, BlockState blockState) {
-        super(SGBlockEntityType.GIFT_BOX, blockPos, blockState);
+        super(SGBlockEntityType.GIFT_BOX.get(), blockPos, blockState);
         this.itemStacks = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
         this.animationStatus = AnimationStatus.CLOSED;
         this.color = dyeColor;
     }
 
     public GiftBoxBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(SGBlockEntityType.GIFT_BOX, blockPos, blockState);
+        super(SGBlockEntityType.GIFT_BOX.get(), blockPos, blockState);
         this.itemStacks = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
         this.animationStatus = AnimationStatus.CLOSED;
         this.color = GiftBoxBlock.getColorFromBlock(blockState.getBlock());
@@ -129,7 +129,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
             this.level.blockEvent(this.worldPosition, this.getBlockState().getBlock(), 1, this.openCount);
             if (this.openCount == 1) {
                 this.level.gameEvent(player, GameEvent.CONTAINER_OPEN, this.worldPosition);
-                this.level.playSound(null, this.worldPosition, SGSoundEvents.GIFT_BOX_OPEN, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+                this.level.playSound(null, this.worldPosition, SGSoundEvents.GIFT_BOX_OPEN.get(), SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
             }
         }
 
@@ -142,7 +142,7 @@ public class GiftBoxBlockEntity extends RandomizableContainerBlockEntity impleme
             this.level.blockEvent(this.worldPosition, this.getBlockState().getBlock(), 1, this.openCount);
             if (this.openCount <= 0) {
                 this.level.gameEvent(player, GameEvent.CONTAINER_CLOSE, this.worldPosition);
-                this.level.playSound(null, this.worldPosition, SGSoundEvents.GIFT_BOX_CLOSE, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+                this.level.playSound(null, this.worldPosition, SGSoundEvents.GIFT_BOX_CLOSE.get(), SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
             }
         }
 

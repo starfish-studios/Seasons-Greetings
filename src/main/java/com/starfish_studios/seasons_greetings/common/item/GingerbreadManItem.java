@@ -23,7 +23,7 @@ public class GingerbreadManItem extends Item {
     @Override
     public @NotNull InteractionResult useOn(UseOnContext context) {
         if (!context.getLevel().isClientSide) {
-            GingerbreadMan gingerbreadMan = SGEntityType.GINGERBREAD_MAN.create(context.getLevel());
+            GingerbreadMan gingerbreadMan = SGEntityType.GINGERBREAD_MAN.get().create(context.getLevel());
             assert gingerbreadMan != null;
 
             gingerbreadMan.setTame(true, true);

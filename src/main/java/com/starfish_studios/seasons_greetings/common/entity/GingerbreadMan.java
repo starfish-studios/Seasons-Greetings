@@ -144,13 +144,13 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
     public @NotNull InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         ItemStack itemStack2 = this.getMainHandItem();
-        ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), new ItemStack(SGItems.GINGERBREAD_COOKIE));
+        ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), new ItemStack(SGItems.GINGERBREAD_COOKIE.asItem()));
 
         InteractionResult interactionResult = super.mobInteract(player, hand);
 
         if (isCantCatchMe(false)) {
             if (!level().isClientSide) {
-                ItemStack cookie = new ItemStack(SGItems.GINGERBREAD_MAN);
+                ItemStack cookie = new ItemStack(SGItems.GINGERBREAD_MAN.asItem());
                 itemEntity.setPos(this.getX(), this.getY(), this.getZ());
                 itemEntity.setItem(cookie);
                 itemEntity.setDeltaMovement(0.0D, 0.2D, 0.0D);
@@ -223,7 +223,7 @@ public class GingerbreadMan extends TamableAnimal implements GeoEntity, NeutralM
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SGSoundEvents.GINGERBREAD_MAN_HURT;
+        return SGSoundEvents.GINGERBREAD_MAN_HURT.get();
     }
 
     @Override
