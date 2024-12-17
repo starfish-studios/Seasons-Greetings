@@ -4,9 +4,11 @@ import com.starfish_studios.seasons_greetings.common.block.WreathBlock;
 import com.starfish_studios.seasons_greetings.registry.SGItems;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -64,8 +66,10 @@ public class WreathInteractions {
         if (InteractionMaps.GARLAND_MAP.containsKey(item) && blockState.getValue(WreathBlock.GARLAND) == WreathBlock.WreathGarland.EMPTY) {
             BlockState newState = InteractionMaps.getBlockstateForGarland(item, blockState);
             level.setBlockAndUpdate(pos, newState);
-            playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
             consumeItemIfNotCreative(player, itemStack);
+            if (newState.getValue(WreathBlock.GARLAND) != WreathBlock.WreathGarland.EMPTY) {
+                playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
+            }
             event.setCancellationResult(InteractionResult.SUCCESS);
         }
 

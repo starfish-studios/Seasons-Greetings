@@ -37,7 +37,7 @@ public class SGBlocks {
     public static final DeferredBlock<Block> HOT_COCOA_CAULDRON = BLOCKS.register("hot_cocoa_cauldron", () -> new HotCocoaCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
     public static final DeferredBlock<Block> EGGNOG_CAULDRON = BLOCKS.register("eggnog_cauldron", () -> new EggnogCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
-    public static final DeferredBlock<Block> WREATH = BLOCKS.register("wreath", () -> new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES)));
+    public static final DeferredBlock<Block> WREATH = BLOCKS.register("wreath", () -> new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES).lightLevel(WreathBlock.litBlockEmission(10))));
 
     public static final BlockBehaviour.Properties lightProperties = Block.Properties.of().sound(SoundType.STONE).instabreak().noCollission().noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(WrappedBlock.emission(10));
     public static final DeferredBlock<Block> WHITE_LIGHTS = BLOCKS.register("white_lights", () -> new WrappedBlock(lightProperties));
