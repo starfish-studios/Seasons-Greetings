@@ -4,56 +4,64 @@ import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.client.gui.screens.GiftBoxScreen;
 import com.starfish_studios.seasons_greetings.client.particles.PoppingBubbleParticle;
 import com.starfish_studios.seasons_greetings.client.renderer.GingerbreadManRenderer;
-import com.starfish_studios.seasons_greetings.registry.*;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.client.gui.screens.MenuScreens;
+import com.starfish_studios.seasons_greetings.registry.SGBlocks;
+import com.starfish_studios.seasons_greetings.registry.SGEntityType;
+import com.starfish_studios.seasons_greetings.registry.SGItems;
+import com.starfish_studios.seasons_greetings.registry.SGMenus;
+import com.starfish_studios.seasons_greetings.registry.SGParticles;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import software.bernie.geckolib.util.Color;
 
 import java.util.Objects;
 
 import static com.starfish_studios.seasons_greetings.SeasonsGreetings.getColor;
 
-@Environment(EnvType.CLIENT)
-public class SeasonsGreetingsClient  implements ClientModInitializer {
-    @Override
-    public void onInitializeClient() {
-        addResourcePacks();
+public class SeasonsGreetingsClient {
 
+    public static void init(IEventBus eventBus) {
+        eventBus.addListener(SeasonsGreetingsClient::onClientSetup);
+        eventBus.addListener(SeasonsGreetingsClient::registerItemColors);
+        eventBus.addListener(SeasonsGreetingsClient::registerScreens);
+        eventBus.addListener(SeasonsGreetingsClient::registerEntityModelLayers);
+        eventBus.addListener(SeasonsGreetingsClient::registerParticles);
+        eventBus.addListener(SeasonsGreetingsClient::addResourcePacks);
+    }
+
+    private static void onClientSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(SeasonsGreetingsClient::registerAllGiftBoxProperties);
         registerRenderers();
-        registerScreens();
-        registerParticles();
-        registerEntityModelLayers();
+    }
 
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) ->
+    private static void registerItemColors(final RegisterColorHandlersEvent.Item event) {
+        event.register((stack, tintIndex) ->
                         tintIndex > 0 ? -1 : DyedItemColor.getOrDefault(stack, getColor(Color.WHITE.argbInt())),
-                SGItems.CHRISTMAS_HAT
-        );
-
-        registerAllGiftBoxProperties();
+                SGItems.CHRISTMAS_HAT);
     }
 
 
-    public static void addResourcePacks() {
-        ModContainer modContainer = FabricLoader.getInstance().getModContainer(SeasonsGreetings.MOD_ID).orElseThrow(() -> new IllegalStateException("Season's Greetings' ModContainer couldn't be found!"));
-        ResourceManagerHelper.registerBuiltinResourcePack(SeasonsGreetings.id("snowier_snow"), modContainer, Component.literal("§b§o❆ §9§oSnowier Snow §b§o❆"), ResourcePackActivationType.DEFAULT_ENABLED);
+    private static void addResourcePacks(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            event.addPackFinders(SeasonsGreetings.id("snowier_snow"), PackType.CLIENT_RESOURCES,
+                    Component.literal("§b§o❆ §9§oSnowier Snow §b§o❆"), PackSource.DEFAULT, false, Pack.Position.TOP);
+        }
     }
 
 
@@ -69,74 +77,72 @@ public class SeasonsGreetingsClient  implements ClientModInitializer {
     }
 
     private static void registerAllGiftBoxProperties() {
-        registerGiftBoxProperties(SGItems.WHITE_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.LIGHT_GRAY_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.GRAY_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.BLACK_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.BROWN_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.RED_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.ORANGE_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.YELLOW_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.LIME_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.GREEN_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.CYAN_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.LIGHT_BLUE_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.BLUE_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.PURPLE_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.MAGENTA_GIFT_BOX);
-        registerGiftBoxProperties(SGItems.PINK_GIFT_BOX);
+        registerGiftBoxProperties(SGItems.WHITE_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.LIGHT_GRAY_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.GRAY_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.BLACK_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.BROWN_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.RED_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.ORANGE_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.YELLOW_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.LIME_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.GREEN_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.CYAN_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.LIGHT_BLUE_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.BLUE_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.PURPLE_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.MAGENTA_GIFT_BOX.asItem());
+        registerGiftBoxProperties(SGItems.PINK_GIFT_BOX.asItem());
     }
 
-    private static void registerEntityModelLayers() {
-        EntityRendererRegistry.register(SGEntityType.GINGERBREAD_MAN, GingerbreadManRenderer::new);
+    private static void registerEntityModelLayers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(SGEntityType.GINGERBREAD_MAN.get(), GingerbreadManRenderer::new);
     }
 
-    public static void registerScreens() {
-        MenuScreens.register(SGMenus.GIFT_BOX, GiftBoxScreen::new);
+    private static void registerScreens(final RegisterMenuScreensEvent event) {
+        event.register(SGMenus.GIFT_BOX.get(), GiftBoxScreen::new);
     }
 
-    private static void registerParticles() {
-        ParticleFactoryRegistry.getInstance().register(SGParticles.COCOA_BUBBLE, PoppingBubbleParticle.Provider::new);
-        ParticleFactoryRegistry.getInstance().register(SGParticles.MILK_BUBBLE, PoppingBubbleParticle.Provider::new);
-        ParticleFactoryRegistry.getInstance().register(SGParticles.EGGNOG_BUBBLE, PoppingBubbleParticle.Provider::new);
+    private static void registerParticles(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(SGParticles.COCOA_BUBBLE.get(), PoppingBubbleParticle.Provider::new);
+        event.registerSpriteSet(SGParticles.MILK_BUBBLE.get(), PoppingBubbleParticle.Provider::new);
+        event.registerSpriteSet(SGParticles.EGGNOG_BUBBLE.get(), PoppingBubbleParticle.Provider::new);
     }
 
     @SuppressWarnings("all")
-    public static void registerRenderers() {
-    BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
-            Blocks.SNOW,
-            SGBlocks.ICICLE,
+    private static void registerRenderers() {
+        ItemBlockRenderTypes.setRenderLayer(Blocks.SNOW, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.ICICLE.get(), RenderType.cutout());
 
-            SGBlocks.WHITE_LIGHTS,
-            SGBlocks.RED_LIGHTS,
-            SGBlocks.ORANGE_LIGHTS,
-            SGBlocks.YELLOW_LIGHTS,
-            SGBlocks.GREEN_LIGHTS,
-            SGBlocks.BLUE_LIGHTS,
-            SGBlocks.PURPLE_LIGHTS,
-            SGBlocks.MULTICOLOR_LIGHTS,
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.WHITE_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.RED_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.ORANGE_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.YELLOW_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.GREEN_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.BLUE_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.PURPLE_LIGHTS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.MULTICOLOR_LIGHTS.get(), RenderType.cutout());
 
-            SGBlocks.WREATH,
-            SGBlocks.GINGERBREAD_DOOR,
-            SGBlocks.ICING,
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.WREATH.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.GINGERBREAD_DOOR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.ICING.get(), RenderType.cutout());
 
-            SGBlocks.WHITE_GIFT_BOX,
-            SGBlocks.LIGHT_GRAY_GIFT_BOX,
-            SGBlocks.GRAY_GIFT_BOX,
-            SGBlocks.BLACK_GIFT_BOX,
-            SGBlocks.BROWN_GIFT_BOX,
-            SGBlocks.RED_GIFT_BOX,
-            SGBlocks.ORANGE_GIFT_BOX,
-            SGBlocks.YELLOW_GIFT_BOX,
-            SGBlocks.LIME_GIFT_BOX,
-            SGBlocks.GREEN_GIFT_BOX,
-            SGBlocks.CYAN_GIFT_BOX,
-            SGBlocks.LIGHT_BLUE_GIFT_BOX,
-            SGBlocks.BLUE_GIFT_BOX,
-            SGBlocks.PURPLE_GIFT_BOX,
-            SGBlocks.MAGENTA_GIFT_BOX,
-            SGBlocks.PINK_GIFT_BOX
-        );
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.WHITE_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.LIGHT_GRAY_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.GRAY_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.BLACK_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.BROWN_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.RED_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.ORANGE_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.YELLOW_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.LIME_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.GREEN_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.CYAN_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.LIGHT_BLUE_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.BLUE_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.PURPLE_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.MAGENTA_GIFT_BOX.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(SGBlocks.PINK_GIFT_BOX.get(), RenderType.cutout());
 
 
 //        EntityModelLayerRegistry.registerModelLayer(SNOW_GOLEM_DECOR, () -> SnowGolemModel.createBodyLayer());

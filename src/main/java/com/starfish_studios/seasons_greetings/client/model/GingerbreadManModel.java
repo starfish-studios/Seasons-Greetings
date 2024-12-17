@@ -2,14 +2,11 @@ package com.starfish_studios.seasons_greetings.client.model;
 
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
 import com.starfish_studios.seasons_greetings.common.entity.GingerbreadMan;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
-@Environment(EnvType.CLIENT)
 public class GingerbreadManModel extends DefaultedEntityGeoModel<GingerbreadMan> {
 
     public GingerbreadManModel() {

@@ -16,14 +16,11 @@ import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import org.apache.logging.log4j.core.jmx.Server;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Objects;
 
 @Mixin(AbstractFurnaceBlockEntity.class)
 public class AbstractFurnaceBlockEntityMixin {
@@ -43,7 +40,7 @@ public class AbstractFurnaceBlockEntityMixin {
     private static void spawnGingerbreadMan(ServerLevel level, BlockPos pos, ItemStack itemStack, BlockState state) {
         Direction facing = state.getValue(FurnaceBlock.FACING);
         Vec3 spawnVec = rotateVec(new Vec3(0, -0.5F, -1F), facing);
-        GingerbreadMan gingerbreadMan = SGEntityType.GINGERBREAD_MAN.create(level);
+        GingerbreadMan gingerbreadMan = SGEntityType.GINGERBREAD_MAN.get().create(level);
 
         itemStack.shrink(1);
         assert gingerbreadMan != null;
@@ -70,7 +67,7 @@ public class AbstractFurnaceBlockEntityMixin {
         ItemStack itemStack = blockEntity.getItem(2);
         Item item = itemStack.getItem();
 
-        if (item == SGItems.GINGERBREAD_MAN && state.hasProperty(FurnaceBlock.FACING) && SGConfig.crazyGingerbreadMen) {
+        if (item == SGItems.GINGERBREAD_MAN.asItem() && state.hasProperty(FurnaceBlock.FACING) && SGConfig.crazyGingerbreadMen) {
             if (itemStack.getCount() > 4 && level.getGameTime() % 10 == 0) {
                 spawnGingerbreadMan((ServerLevel) level, pos, itemStack, state);
             } else if (itemStack.getCount() < 4) {

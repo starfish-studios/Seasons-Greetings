@@ -4,8 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.starfish_studios.seasons_greetings.client.model.GingerbreadManModel;
 import com.starfish_studios.seasons_greetings.common.entity.GingerbreadMan;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -16,7 +14,6 @@ import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 
-@Environment(EnvType.CLIENT)
 public class GingerbreadManRenderer extends GeoEntityRenderer<GingerbreadMan> {
 
     public GingerbreadManRenderer(EntityRendererProvider.Context context) {

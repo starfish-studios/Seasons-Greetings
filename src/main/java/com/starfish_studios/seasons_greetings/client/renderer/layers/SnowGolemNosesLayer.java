@@ -3,8 +3,6 @@ package com.starfish_studios.seasons_greetings.client.renderer.layers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.starfish_studios.seasons_greetings.SeasonsGreetings;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.Util;
 import net.minecraft.client.model.SnowGolemModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -21,7 +19,6 @@ import net.minecraft.world.item.Items;
 
 import java.util.HashMap;
 
-@Environment(EnvType.CLIENT)
 public class SnowGolemNosesLayer extends RenderLayer<SnowGolem, SnowGolemModel<SnowGolem>> {
     public static final HashMap<Item, ResourceLocation> TEXTURE_LOCATION = Util.make(new HashMap<>(), (hashMap) -> {
         hashMap.put(Items.CARROT, SeasonsGreetings.id("textures/entity/snow_golem/nose/carrot.png"));

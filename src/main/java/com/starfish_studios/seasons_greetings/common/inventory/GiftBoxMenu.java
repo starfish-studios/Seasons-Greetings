@@ -23,7 +23,7 @@ public class GiftBoxMenu extends AbstractContainerMenu {
     }
 
     public GiftBoxMenu(int i, Inventory inventory, Container container) {
-        super(SGMenus.GIFT_BOX, i);
+        super(SGMenus.GIFT_BOX.get(), i);
         checkContainerSize(container, 5);
         this.gitBox = container;
         container.startOpen(inventory.player);

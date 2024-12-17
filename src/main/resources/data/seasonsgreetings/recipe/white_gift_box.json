@@ -1,7 +1,7 @@
 {
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "seasonsgreetings:block_enabled",
+      "type": "seasonsgreetings:block_enabled",
       "block_enabled": "gifts"
     }
   ],

@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+issueTrackerURL="https://github.com/starfish-studios/Seasons-Greetings/issues"
+license="ARR & MIT Combined License - see details at our source."
+
+[[mods]]
+modId="seasonsgreetings"
+version="${file.jarVersion}"
+displayName="Season's Greetings"
+displayURL="https://curseforge.com/minecraft/mc-mods/seasons-greetings"
+authors="Starfish Studios"
+description='''
+A mod that adds features related to holidays!
+'''
+[[dependencies.seasonsgreetings]]
+modId="minecraft"
+type="required"
+versionRange="[1.21,1.22)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.seasonsgreetings]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.1,)"
+ordering="NONE"
+side="BOTH"
+[[mixins]]
+config = "seasonsgreetings.mixins.json"

@@ -60,7 +60,8 @@ public class EggnogBucketItem extends Item {
         } else {
             if (livingEntity instanceof Player player) {
                 if (!player.hasInfiniteMaterials()) {
-                    ItemStack itemStack2 = new ItemStack(Items.GLASS_BOTTLE);
+                    itemStack.shrink(1);
+                    ItemStack itemStack2 = new ItemStack(Items.BUCKET);
                     if (!player.getInventory().add(itemStack2)) {
                         player.drop(itemStack2, false);
                     }
@@ -80,11 +81,11 @@ public class EggnogBucketItem extends Item {
     }
 
     public @NotNull SoundEvent getDrinkingSound() {
-        return SGSoundEvents.DRINK;
+        return SGSoundEvents.DRINK.get();
     }
 
     public @NotNull SoundEvent getEatingSound() {
-        return SGSoundEvents.DRINK;
+        return SGSoundEvents.DRINK.get();
     }
 
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {

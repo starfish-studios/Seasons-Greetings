@@ -70,6 +70,6 @@ public class GiftBoxColoring extends CustomRecipe {
     }
 
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return SGRecipeSerializer.GIFT_BOX_COLORING;
+        return SGRecipeSerializer.GIFT_BOX_COLORING.get();
     }
 }

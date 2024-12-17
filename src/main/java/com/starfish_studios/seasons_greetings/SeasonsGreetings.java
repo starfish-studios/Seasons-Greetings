@@ -1,15 +1,19 @@
 package com.starfish_studios.seasons_greetings;
 
+import com.starfish_studios.seasons_greetings.client.SeasonsGreetingsClient;
 import com.starfish_studios.seasons_greetings.event.CauldronUseEvent;
 import com.starfish_studios.seasons_greetings.event.WreathInteractions;
 import com.starfish_studios.seasons_greetings.registry.SGRegistry;
 import eu.midnightdust.lib.config.MidnightConfig;
-import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
 
-public class SeasonsGreetings implements ModInitializer {
+@Mod(SeasonsGreetings.MOD_ID)
+public class SeasonsGreetings {
 	public static final String MOD_ID = "seasonsgreetings";
 
 	public static ResourceLocation id(String name) {
@@ -20,14 +24,20 @@ public class SeasonsGreetings implements ModInitializer {
 		return (255 << 24) | rgb;
 	}
 
-	@Override
-	public void onInitialize() {
+	public SeasonsGreetings(IEventBus eventBus, Dist dist, ModContainer container) {
 
 		MidnightConfig.init(MOD_ID, SGConfig.class);
 
-		SGRegistry.registerAll();
+		SGRegistry.registerAll(eventBus);
 
-		UseBlockCallback.EVENT.register(new CauldronUseEvent());
-		UseBlockCallback.EVENT.register(new WreathInteractions());
+//		UseBlockCallback.EVENT.register(new CauldronUseEvent());
+//		UseBlockCallback.EVENT.register(new WreathInteractions());
+
+		NeoForge.EVENT_BUS.register(new CauldronUseEvent());
+		NeoForge.EVENT_BUS.register(new WreathInteractions());
+
+		if (dist.isClient()) {
+			SeasonsGreetingsClient.init(eventBus);
+		}
 	}
 }
