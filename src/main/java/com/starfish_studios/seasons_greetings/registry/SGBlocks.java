@@ -19,7 +19,7 @@ public class SGBlocks {
     public static final Block HOT_COCOA_CAULDRON = registerBlock("hot_cocoa_cauldron", new HotCocoaCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
     public static final Block EGGNOG_CAULDRON = registerBlock("eggnog_cauldron", new EggnogCauldronBlock(Block.Properties.ofFullCopy(Blocks.CAULDRON), null));
 
-    public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES)));
+    public static final Block WREATH = registerBlock("wreath", new WreathBlock(Block.Properties.of().instabreak().noCollission().noOcclusion().sound(SoundType.AZALEA_LEAVES).lightLevel(WreathBlock.litBlockEmission(10))));
 
     public static final BlockBehaviour.Properties lightProperties = Block.Properties.of().sound(SoundType.STONE).instabreak().noCollission().noOcclusion().emissiveRendering((state, world, pos) -> true).lightLevel(WrappedBlock.emission(10));
     public static final Block WHITE_LIGHTS = registerBlock("white_lights", new WrappedBlock(lightProperties));
@@ -48,8 +48,7 @@ public class SGBlocks {
             .strength(1.5F, 3.0F)
             .dynamicShape()
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
-            .isRedstoneConductor(Blocks::never)));
+            .pushReaction(PushReaction.DESTROY)));
 
 
     // region Gingerbread House Blocks

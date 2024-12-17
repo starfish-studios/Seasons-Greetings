@@ -18,6 +18,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.ToIntFunction;
+
 public class WreathBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<WreathGarland> GARLAND = EnumProperty.create("garland", WreathGarland.class);
@@ -36,6 +38,17 @@ public class WreathBlock extends Block {
                 .setValue(GARLAND, WreathGarland.EMPTY)
                 .setValue(BOW, WreathBowColors.EMPTY)
                 .setValue(BELL, false));
+    }
+
+    public static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
+        return (blockState) -> blockState.getValue(GARLAND) == WreathGarland.RED_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.ORANGE_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.YELLOW_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.GREEN_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.BLUE_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.PURPLE_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.WHITE_LIGHTS ||
+                blockState.getValue(GARLAND) == WreathGarland.MULTICOLOR_LIGHTS ? lightValue : 0;
     }
 
     @Override

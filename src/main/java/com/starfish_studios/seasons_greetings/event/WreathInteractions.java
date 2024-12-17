@@ -68,6 +68,9 @@ public class WreathInteractions implements UseBlockCallback {
             level.setBlockAndUpdate(pos, newState);
             playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
             consumeItemIfNotCreative(player, itemStack);
+            if (newState.getValue(WreathBlock.GARLAND) != WreathBlock.WreathGarland.EMPTY) {
+                playSound(level, pos, SoundEvents.AZALEA_PLACE, player);
+            }
             return InteractionResult.SUCCESS;
         }
 
